@@ -92,7 +92,7 @@ This software manages data for at least 15 college campuses (starting with 11) a
 | Milestone | Date | Points |
 |-----------|------|--------|
 | Team Partner Submission | January 27 | -3 if late |
-| First Checkpoint | February 11 | 3 |
+| First Checkpoint | February 16 | 3 |
 | Second Checkpoint | February 25 | 3 |
 | Final Checkpoint/Demo | March 11 | - |
 
