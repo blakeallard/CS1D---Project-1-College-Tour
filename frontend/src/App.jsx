@@ -1,33 +1,55 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selected, setSelected] = new useState("none");
+  const [submit, setSubmit] = new useState(false);
+
+  const handleSelected = (e) => {
+    setSelected(e.target.value);
+    console.log("selected value: ", e.target.value);
+  }
+
+  const checkSelected = () => {
+    console.log("Clicked!");
+    if(selected != "none") {
+      setSubmit(true);
+      setTimeout(() => {
+        setSubmit(false);
+      }, 3000);
+    }
+  }
+
+  const setSubmitStatusValue = () => {
+    switch(selected) {
+      case "saddleback_start" :
+        return "Saddleback";
+      case "asu_start" :
+        return "ASU"
+      case "custom_start" :
+        return "Custom"
+      default :
+        break;
+    }
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="selection_status">{submit ? setSubmitStatusValue() + " Tour Selected!" : ""}</div>
+      <h1>Campus Tours</h1>
+      <img className="menu_logo" src="/src/assets/grad-cap-logo.svg" alt="graduation cap" />
+      <div className="menu_selection">
+        <p>Choose your tour:</p>
+        <select name="tour_type_selection" onChange={handleSelected}>
+          <option value="none">---</option>
+          <option value="saddleback_start">Saddleback</option>
+          <option value="asu_start">ASU</option>
+          <option value="custom_start">Custom</option>
+        </select>
+        <div className="button_container">
+          <button type="button" onClick={checkSelected}>Submit</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
