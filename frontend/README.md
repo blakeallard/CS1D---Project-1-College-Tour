@@ -1,16 +1,15 @@
-# React + Vite
+# College Tour Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This folder contains all frontend code for the CS1D College Tour program.
 
-Currently, two official plugins are available:
+## Running Frontend Code on LocalHost:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Pull latest changes to your machine.
+2. In console, navigate to the parent folder "frontend".
+3. run the following command in your console: `npm run dev`.
+4. The following should appear in your console:
 
-## React Compiler
+<img src="image.png" width="300px"/>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+5. Navigate to the provided "Local" URL to view the site on your machine's local host
+6. Once complete, enter `Ctrl+C` to end the session.
