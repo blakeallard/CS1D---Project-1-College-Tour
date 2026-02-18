@@ -1,6 +1,7 @@
 #ifndef CONTROLLERS_H
 #define CONTROLLERS_H
 #include "crow/json.h"
+#include "../include/database.h"
 
 struct UniversityController
 {
