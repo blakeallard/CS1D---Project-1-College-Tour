@@ -6,6 +6,21 @@ A C++ application designed to help prospective college students plan their colle
 
 This software manages data for at least 15 college campuses (starting with 11) and their traditional souvenirs (up to 7 per campus). The program allows users to plan efficient campus tours and purchase souvenirs while tracking expenses.
 
+---
+## Building The Project
+```bash
+git clone https://github.com/blakeallard/CS1D---Project-1-College-Tour.git
+cd CS1D---Project-1-College-Tour
+#Build
+cmake . -B build
+#Compile with your system or
+cmake --build build
+
+```
+
+- NOTE: MSVC will spit out a bunch of warnings while compiling, they're okay to ignore
+
+---
 ## Core Features
 
 ### 1. Display Information
