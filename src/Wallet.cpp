@@ -20,3 +20,18 @@ bool Wallet::DeductFunds(const std::string& campus, double amount)
 
     return true;
 }
+
+double Wallet::GetBalance()
+{
+    return balance;
+}
+
+double Wallet::GetTotalSpent()
+{
+    return totalSpent;
+}
+
+double Wallet::GetSpendingByCampus(const std::string& campus)
+{
+    return spendingByCampus[campus];
+}

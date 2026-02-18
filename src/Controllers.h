@@ -2,6 +2,8 @@
 #define CONTROLLERS_H
 #include "crow/json.h"
 #include "../include/database.h"
+#include "../include/Wallet.h"
+#include "../include/StudentPurchases.h"
 
 struct UniversityController
 {
@@ -13,6 +15,9 @@ struct UniversityController
 
 struct UserController
 {
+        static Wallet wallet;
+        static StudentPurchases purchases;
+
         static crow::json::wvalue read(std::string id);
         static crow::json::wvalue patch(std::string id);
         static crow::json::wvalue create(std::string id);
