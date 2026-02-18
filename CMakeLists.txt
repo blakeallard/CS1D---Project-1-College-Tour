@@ -12,6 +12,7 @@ set(PROJECT_SOURCES src/main.cpp
         src/Controllers/AdminController.cpp
         src/Controllers/TourController.cpp
         src/database.cpp
+        src/Wallet.cpp
 )
 
 add_executable(execBinary ${PROJECT_SOURCES})
