@@ -9,13 +9,44 @@ crow::json::wvalue UserController::read(std::string id)
 {
     // Get value, then store it in a json then return the json
     crow::json::wvalue result;
-    result["value"] = 1;
+
+    if (id == "summary")
+    {
+        result["balances"] = wallet.GetBalance();
+        result["totalSpent"] = wallet.GetTotalSpent();
+
+        std::vector<PurchasedItem> items = purchases.GetAllItems();
+        for (int i = 0; i < (int)items.size(); i++)
+        {
+            result["items"][i]["campus"] = items[i].campus;
+            result["items"][i]["item"] = items[i].item;
+            result["items"][i]["price"] = items[i].price;
+            result["items"][i]["quantity"] = items[i].quantity;
+        }
+    }
+    else
+    {
+        std::vector<PurchasedItem> items = purchases.GetItemsByCampus(id);
+        for (int i = 0; i < (int)items.size(); i++)
+        {
+            result["items"][i]["item"] = items[i].item;
+            result["items"][i]["price"] = items[i].price;
+            result["items"][i]["quantity"] = items[i].quantity;
+        }
+        result["campusSpent"] = wallet.GetSpendingByCampus(id);
+    }
+
     return result;
 }
 
 crow::json::wvalue UserController::patch(std::string id)
 {
     crow::json::wvalue result;
+
+    double amount = std::stod(id);
+    wallet.AddFunds(amount);
+    result["balance"] = wallet.GetBalance();
+
     return result;
 }
 
