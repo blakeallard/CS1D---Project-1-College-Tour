@@ -6,12 +6,23 @@
 int main()
 {
     crow::SimpleApp app;
+    // Serve index at /
     CROW_ROUTE(app, "/")(
         []()
         {
             crow::response res;
             res.code = 302;
-            res.set_header("Location", "/static/index.html");
+            res.set_static_file_info("frontend/dist/index.html");
+            return res;
+        });
+
+    // Serve ALL other static files (js, css, etc.)
+    CROW_ROUTE(app, "/<path>")
+    (
+        [](std::string path)
+        {
+            crow::response res;
+            res.set_static_file_info("frontend/dist/" + path);
             return res;
         });
 
