@@ -1,4 +1,4 @@
-#include "database.h"
+#include "../include/database.h"
 #include <iostream>
 #include <sqlite3.h>
 
@@ -146,3 +146,5 @@ std::vector<Souvenir> Database::GetSouvenirs(const std::string& campus)
 
     return souvenirs;
 }
+
+
