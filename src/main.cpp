@@ -7,6 +7,12 @@ int main()
 {
     crow::SimpleApp app;
     // Serve index at /
+
+    register_crud_routes<UniversityController>(app, "University/");
+    register_crud_routes<UserController>(app, "User/");
+    register_crud_routes<AdminController>(app, "Admin/");
+    register_crud_routes<TourController>(app, "Tour/");
+
     CROW_ROUTE(app, "/")(
         []()
         {
@@ -25,11 +31,6 @@ int main()
             res.set_static_file_info("frontend/dist/" + path);
             return res;
         });
-
-    register_crud_routes<UniversityController>(app, "University/");
-    register_crud_routes<UserController>(app, "User/");
-    register_crud_routes<AdminController>(app, "Admin/");
-    register_crud_routes<TourController>(app, "Tour/");
 
     app.port(18080).multithreaded().run();
 }
