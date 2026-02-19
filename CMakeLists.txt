@@ -4,6 +4,11 @@ project("CS1D_GROUP_PROJECT")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_subdirectory(vendor/sqlite3)
+
+get_target_property(SQLITE_INCLUDES sqlite3 INCLUDE_DIRECTORIES)
+message(STATUS "SQLite includes: ${SQLITE_INCLUDES}")
+
 set(PROJECT_SOURCES src/main.cpp
         src/RouteRegister.h
         src/Controllers.h
@@ -18,10 +23,13 @@ set(PROJECT_SOURCES src/main.cpp
 
 add_executable(execBinary ${PROJECT_SOURCES})
 
-target_include_directories(execBinary PUBLIC ${CMAKE_SOURCE_DIR}/include/ASIO_headers
-PUBLIC ${CMAKE_SOURCE_DIR}/include/crow_headers
-PUBLIC ${CMAKE_SOURCE_DIR}/include
+target_include_directories(execBinary
+    PUBLIC sqlite3
+    PUBLIC ${CMAKE_SOURCE_DIR}/include/ASIO_headers
+    PUBLIC ${CMAKE_SOURCE_DIR}/include/crow_headers
 )
 
-find_package(SQLite3 REQUIRED)
-target_link_libraries(execBinary SQLite::SQLite3)
+target_link_libraries(execBinary
+    PRIVATE
+        sqlite3
+)
