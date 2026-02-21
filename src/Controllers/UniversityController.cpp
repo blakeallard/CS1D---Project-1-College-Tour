@@ -2,6 +2,20 @@
 
 crow::json::wvalue UniversityController::read(std::string id)
 {
+    std::string decoded;
+    for (size_t i = 0; i < id.size(); i++)
+    {
+        if (id[i] == '%' && i + 2 < id.size())
+        {
+            int hex = std::stoi(id.substr(i + 1, 2), nullptr, 16);
+            decoded += (char)hex;
+            i += 2;
+        }
+        else
+            decoded += id[i];
+    }
+    id = decoded;
+    std::cout << "ID received: '" << id << "'" << std::endl;
     Database db;
     db.ConnectToDB("distances.db", "souvenirs.db");
     crow::json::wvalue result;
