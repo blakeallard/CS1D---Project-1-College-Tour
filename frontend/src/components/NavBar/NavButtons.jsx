@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import "./NavButtons.css"
 
 export default function NavButtons() {
     return (
