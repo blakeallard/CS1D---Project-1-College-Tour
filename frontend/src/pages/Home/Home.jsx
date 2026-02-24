@@ -1,57 +1,21 @@
-import { useState } from 'react'
-import NavBar from '../../components/NavBar/NavBar';
+// import { useState } from 'react'
+import NavButtons from '../../components/NavBar/NavButtons';
 import './Home.css'
 
 export default function Home() {
-  const [selected, setSelected] = new useState("none");
-  const [submit, setSubmit] = new useState(false);
-
-  const handleSelected = (e) => {
-    setSelected(e.target.value);
-    console.log("selected value: ", e.target.value);
-  }
-
-  const checkSelected = () => {
-    console.log("Clicked!");
-    if(selected != "none") {
-      setSubmit(true);
-      setTimeout(() => {
-        setSubmit(false);
-      }, 3000);
-    }
-  }
-
-  const setSubmitStatusValue = () => {
-    switch(selected) {
-      case "saddleback_start" :
-        return "Saddleback";
-      case "asu_start" :
-        return "ASU"
-      case "custom_start" :
-        return "Custom"
-      default :
-        break;
-    }
-  }
+  // const [selected, setSelected] = new useState("none");
 
   return (
     <>
-      <div className="selection_status">{submit ? setSubmitStatusValue() + " Tour Selected!" : ""}</div>
-      <h1>Campus Tours</h1>
-      <img className="menu_logo" src="/src/assets/grad-cap-logo.svg" alt="graduation cap" />
-      <div className="menu_selection">
-        <NavBar />
-        <p>Choose your tour:</p>
-        <select name="tour_type_selection" onChange={handleSelected}>
-          <option value="none">---</option>
-          <option value="saddleback_start">Saddleback</option>
-          <option value="asu_start">ASU</option>
-          <option value="custom_start">Custom</option>
-        </select>
-        <div className="button_container">
-          <button type="button" onClick={checkSelected}>Submit</button>
+      <header>
+        <h1 className="homepage-header">Campus Tours</h1>
+        <img className="menu_logo" src="/src/assets/grad-cap-logo.svg" alt="graduation cap" />
+      </header>
+      <main>
+        <div className="menu_selection">
+          <NavButtons />
         </div>
-      </div>
+      </main>
     </>
   )
 }

@@ -1,7 +1,7 @@
 export default function Campuses() {
     return (
         <>
-            <h1>Admin</h1>
+            <h1>Campuses</h1>
         </>
     );
 }

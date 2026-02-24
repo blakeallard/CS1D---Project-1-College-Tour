@@ -6,19 +6,13 @@
 }
 
 .menu_logo {
-  width: 200px;
-  fill: #d2d2d2;
+  width: 120px;
+  margin: 1.2rem 0;
 }
 
-.selection_status {
-  border-bottom: 1px solid #d2d2d2;
-  font-size: 1.2rem;
-}
-
-.menu_selection {
-  width: 12rem;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.homepage-header {
+  margin: 0;
+  font-size: 5rem;
+  font-family: "Catata One", serif;
+  font-weight: 400;
 }
