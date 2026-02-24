@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './App.css'
+import './Home.css'
 
-function App() {
+export default function Home() {
   const [selected, setSelected] = new useState("none");
   const [submit, setSubmit] = new useState(false);
 
@@ -53,5 +53,3 @@ function App() {
     </>
   )
 }
-
-export default App
