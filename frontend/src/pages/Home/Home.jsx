@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import NavBar from '../../components/NavBar/NavBar';
 import './Home.css'
 
 export default function Home() {
@@ -39,6 +40,7 @@ export default function Home() {
       <h1>Campus Tours</h1>
       <img className="menu_logo" src="/src/assets/grad-cap-logo.svg" alt="graduation cap" />
       <div className="menu_selection">
+        <NavBar />
         <p>Choose your tour:</p>
         <select name="tour_type_selection" onChange={handleSelected}>
           <option value="none">---</option>
