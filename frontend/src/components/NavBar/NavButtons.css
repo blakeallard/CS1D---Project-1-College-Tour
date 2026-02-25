@@ -8,10 +8,9 @@ nav.nav_buttons-container {
 
 .nav-button {
     color: #f1ecec;
-    width: 20rem;
+    width: 400px;
     padding: 2.5rem;
     border: 1px solid #f1ecec;
     border-radius: 10px;
     font-size: 1.6rem;
 }
-

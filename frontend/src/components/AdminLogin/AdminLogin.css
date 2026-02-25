@@ -1,0 +1,27 @@
+.admin_login-window {
+    width: 70vw;
+    height: 50vh;
+    border: 1px solid #f1ecec;
+    border-radius: 10px;
+    position: absolute;
+    top: 25vh;
+    background: #020617;
+}
+
+.close_window-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #f1ecec;
+    border-radius: 50%;
+}
+
+.close_window-cross {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+}
