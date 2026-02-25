@@ -125,7 +125,7 @@ export default function Campuses() {
                         {campuses.map((campus, i) => {
                             return (
                                 <tr key={i}>
-                                    <td>
+                                    <td className="svnr-hover">
                                         {/* If campus name clicked, toggle svnrClicked and set campusName to selected campus */}
                                         <button className={"souvenir_link"} onClick={() => {
                                             handleSvnrClicked();

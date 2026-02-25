@@ -48,3 +48,16 @@ h2#svnr_info-window {
 .svnr-table {
     margin: auto;
 }
+
+@keyframes svnrHover {
+  from {
+    background: none;
+  }
+  to {
+    background: #f1ecec6e;
+  }
+}
+
+.svnr-hover:hover {
+  animation: 0.2s svnrHover ease-out forwards;
+}
