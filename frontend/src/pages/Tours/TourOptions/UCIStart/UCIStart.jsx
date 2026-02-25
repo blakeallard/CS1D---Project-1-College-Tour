@@ -6,10 +6,10 @@ export default function UCIStart() {
     return (
         <>
             <HomeButton />
-            <header>
+            <header data-aos="zoom-in" data-aos-duration="600">
                 <h1 className="tours-header">UCI Tour</h1>
             </header>
-            <main>
+            <main data-aos="zoom-in" data-aos-duration="600">
                 <div>
 
                 </div>

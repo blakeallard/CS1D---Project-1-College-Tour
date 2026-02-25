@@ -62,7 +62,7 @@ export default function AdminLogin({ handleAdminClicked }) {
     // }, []);
     
     return (
-        <div className="admin_login-window">
+        <div id="admin_login-window" data-aos="zoom-in" data-aos-duration="400">
             <button className="close_window-button" onClick={handleAdminClicked}>
                 <img className="close_window-cross" src={cross} alt="close window" />
             </button>

@@ -1,10 +1,10 @@
-.admin_login-window {
+#admin_login-window {
     width: 50vw;
     height: 50vh;
     border: 1px solid #f1ecec;
     border-radius: 10px;
     position: absolute;
-    top: 25vh;
+    top: -18vh;
     background: #020617ee;
 }
 

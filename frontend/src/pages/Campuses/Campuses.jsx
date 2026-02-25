@@ -37,7 +37,7 @@ const SouvenirInfo = ({ handleSvnrClicked, campusName }) => {
     }, []);
 
     return (
-        <div className="svnr_info-window">
+        <div id="svnr_info-window" data-aos="zoom-in" data-aos-duration="600">
             <button className="close_window-button" onClick={handleSvnrClicked}>
                 <img className="close_window-cross" src={cross} alt="close window" />
             </button>
@@ -105,13 +105,13 @@ export default function Campuses() {
     return (
         <>
             <HomeButton />
-            <h1>Campus Information</h1>
-            <div className="campus_info-container">
+            {svnrClicked ?
+                <SouvenirInfo handleSvnrClicked={handleSvnrClicked} campusName={campusName} />
+            : ''}
+            <h1 data-aos="zoom-in" data-aos-duration="600">Campus Information</h1>
+            <div className="campus_info-container" data-aos="zoom-in" data-aos-duration="600">
                 {/* Conditionally show SouvenirInfo:
                 if svnrClicked is "true" then show component, otherwise show nothing */}
-                {svnrClicked ?
-                    <SouvenirInfo handleSvnrClicked={handleSvnrClicked} campusName={campusName} />
-                : ''}
                 <table>
                     <thead>
                         <tr>

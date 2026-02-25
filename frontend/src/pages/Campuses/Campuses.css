@@ -29,17 +29,19 @@ td button {
     color: #f1ecec;
 }
 
-.svnr_info-window {
+#svnr_info-window {
     padding: 40px 20px;
     width: 70vw;
     border: 1px solid #f1ecec;
     border-radius: 10px;
     position: absolute;
     top: 25vh;
+    left: 15vw;
     background: #020617ee;
+    z-index: 1;
 }
 
-h2.svnr_info-window {
+h2#svnr_info-window {
     margin: 2rem;
 }
 

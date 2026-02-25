@@ -5,7 +5,7 @@ export default function Admin() {
     return (
         <>
             <HomeButton />
-            <h1>Admin</h1>
+            <h1 data-aos="zoom-in" data-aos-duration="600">Admin</h1>
         </>
     );
 }

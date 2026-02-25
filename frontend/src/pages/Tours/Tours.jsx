@@ -8,10 +8,10 @@ export default function Tours() {
         <>
             {/* Link to homepage */}
             <HomeButton />
-            <header>
+            <header data-aos="zoom-in" data-aos-duration="600">
                 <h1 className="tours-header">Select a Tour</h1>
             </header>
-            <main>
+            <main data-aos="zoom-in" data-aos-duration="600">
                 {/* Navigation for selecting tour type, each option navigates to a different page */}
                 <nav className="tours-nav_buttons-container">
                     <NavLink className="nav-button" to={"/saddleback-start"}>Saddleback</NavLink>
