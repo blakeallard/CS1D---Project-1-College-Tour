@@ -8,8 +8,9 @@ export default function Home() {
   return (
     <>
       <header>
-        <h1 className="homepage-header">Campus Tours</h1>
         <img className="menu_logo" src="/src/assets/grad-cap-logo.svg" alt="graduation cap" />
+        <h1 className="homepage-header">Campus Tour Program</h1>
+        <p className="homepage-subheader">Tour campuses, view colleges, purchase souvenirs!</p>
       </header>
       <main>
         <div className="menu_selection">

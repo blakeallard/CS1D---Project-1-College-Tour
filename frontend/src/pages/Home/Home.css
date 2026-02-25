@@ -1,18 +1,20 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
 .menu_logo {
   width: 120px;
-  margin: 1.2rem 0;
 }
 
 .homepage-header {
-  margin: 0;
-  font-size: 5rem;
+  margin: 0 0 1.2rem 0;
+  font-size: 4rem;
   font-family: "Catata One", serif;
   font-weight: 400;
+}
+
+.homepage-subheader {
+  margin: 1rem 0 2rem;
 }

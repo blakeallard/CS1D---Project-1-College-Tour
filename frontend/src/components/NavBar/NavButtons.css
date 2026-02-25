@@ -7,10 +7,10 @@ nav {
 }
 
 .nav-button {
+    color: #f1ecec;
     width: 20rem;
-    /* height: 5rem; */
-    padding: 3rem;
-    border: 1px solid;
+    padding: 2.5rem;
+    border: 1px solid #f1ecec;
     border-radius: 10px;
     font-size: 1.6rem;
 }
