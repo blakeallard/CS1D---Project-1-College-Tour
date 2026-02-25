@@ -4,16 +4,32 @@ import HomeButton from "../../components/HomeButton/HomeButton";
 import cross from "../../assets/cross-svgrepo-com.svg";
 import "./Campuses.css";
 
+/** Function for showing souvenir information.
+ * 
+ * Info is displayed conditionally,
+ * only when users click on a campus name.
+ */
 const SouvenirInfo = ({ handleSvnrClicked, campusName }) => {
+    // STATE VARIABLES:
+    // Holds souvenir data (array)
     const [souvenirs, setSouvenirs] = new useState([]);
+
+    /** String with campus name, whitespace replaced with '%20'.
+     * 
+     * Used for grabbing svnr data
+     */
     const campusNameWithoutSpaces = campusName.replaceAll(' ', '%20');
 
+    /** Set value for souvenirs to campus-specific souvenirs array */
     const handleSouvenirs = (newSvnrs) => {
         setSouvenirs(newSvnrs);
     }
 
+    // API call for grabbing University-sounvenir data
     useEffect(() => {
+        // Actual API call
         axios.get(`/api/University/${campusNameWithoutSpaces}`)
+            // Set souvenirs variable to response data
             .then(response => {
                 const svnrs = response.data.souvenirs;
                 handleSouvenirs(svnrs);
@@ -34,6 +50,8 @@ const SouvenirInfo = ({ handleSvnrClicked, campusName }) => {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Map array of svnrs to multiple <td> elements, each containing
+                    individual svnr information */}
                     {souvenirs.map((svnr, i) => {
                         return (
                             <tr key={i}>
@@ -48,25 +66,36 @@ const SouvenirInfo = ({ handleSvnrClicked, campusName }) => {
     );
 }
 
+/** Campuses Page: shows data for all campuses */
 export default function Campuses() {
+    // STATE VARIABLES:
+    // Holds all campus data (array)
     const [campuses, setCampuses] = new useState([]);
-    const [campusName, setCampusName] = new useState("svnr");
+    // Holds current-selected campus name (string)
+    const [campusName, setCampusName] = new useState("");
+    // Holds whether campus name was clicked or nah (boolean)
     const [svnrClicked, setSvnrClicked] = new useState(false);
     
+    /** Set campus to data for all campuses */
     const handleCampuses = (campusData) => {
         setCampuses(campusData);
     }
 
+    /** Set campusName to current campus' name */
     const handleCampusName = (newCampusName) => {
         setCampusName(newCampusName);
     }
     
+    /** Toggle snvrClicked to opposite boolean value */
     const handleSvnrClicked = () => {
         setSvnrClicked(!svnrClicked);
     }
 
+    // API call for grabbing all university data
     useEffect(() => {
+        // Actual API call for uni data
         axios.get("/api/University/all")
+            // Set campuses var to hold response data of all campuses
             .then(response => {
                 const allCampuses = response.data.campuses;
                 handleCampuses(allCampuses);
@@ -78,6 +107,8 @@ export default function Campuses() {
             <HomeButton />
             <h1>Campus Information</h1>
             <div className="campus_info-container">
+                {/* Conditionally show SouvenirInfo:
+                if svnrClicked is "true" then show component, otherwise show nothing */}
                 {svnrClicked ?
                     <SouvenirInfo handleSvnrClicked={handleSvnrClicked} campusName={campusName} />
                 : ''}
@@ -89,10 +120,13 @@ export default function Campuses() {
                         </tr>
                     </thead>
                     <tbody>
+                        {/* Map all campuses to <td> elements, each item containing
+                        unique campus data */}
                         {campuses.map((campus, i) => {
                             return (
                                 <tr key={i}>
                                     <td>
+                                        {/* If campus name clicked, toggle svnrClicked and set campusName to selected campus */}
                                         <button className={"souvenir_link"} onClick={() => {
                                             handleSvnrClicked();
                                             handleCampusName(campus.name);

@@ -13,6 +13,7 @@ import './index.css'
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <Routes>
+            {/* Routes for all pages in program. Each component represents a page */}
             <Route path='/' element={<Home />} />
             <Route path='/tour' element={<Tours />} />
             <Route path='/saddleback-start' element={<SaddlebackStart />} />

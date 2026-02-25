@@ -2,6 +2,7 @@ import { NavLink } from "react-router";
 import gradCap from "../../assets/grad-cap-logo.svg";
 import "./HomeButton.css";
 
+/** Button for navigating back to homepage from any othe page */
 export default function HomeButton() {
     return (
         <>

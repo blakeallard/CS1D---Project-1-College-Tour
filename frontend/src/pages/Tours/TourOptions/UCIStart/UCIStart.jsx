@@ -1,6 +1,7 @@
 import HomeButton from "../../../../components/HomeButton/HomeButton";
 import "./UCIStart.css";
 
+/** Tour that starts from UCI */
 export default function UCIStart() {
     return (
         <>

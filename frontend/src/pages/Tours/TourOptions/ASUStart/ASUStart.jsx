@@ -1,6 +1,7 @@
 import HomeButton from "../../../../components/HomeButton/HomeButton";
 import "./ASUStart.css";
 
+/** Tour that starts from ASU */
 export default function ASUStart() {
     return (
         <>
