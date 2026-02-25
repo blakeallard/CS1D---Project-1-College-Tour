@@ -19,6 +19,8 @@ int main()
             crow::response res;
             //res.code = 302;
             res.set_static_file_info("index.html");
+            res.code = 302;
+            res.set_static_file_info("frontend/dist/index.html");
             return res;
         });
 
@@ -29,6 +31,7 @@ int main()
         {
             crow::response res;
             res.set_static_file_info(path);
+            res.set_static_file_info("frontend/dist/" + path);
             return res;
         });
 

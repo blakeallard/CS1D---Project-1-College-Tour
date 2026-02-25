@@ -1,0 +1,31 @@
+nav.nav_buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+}
+
+.nav-button {
+    color: #f1ecec;
+    width: 400px;
+    padding: 2.5rem;
+    border: 1px solid #f1ecec;
+    border-radius: 10px;
+    font-size: 1.6rem;
+}
+
+@keyframes buttonHover {
+  from {
+    background: none;
+    color: #f1ecec;
+  }
+  to {
+    background: #f1ececa0;
+    color: #372323;
+  }
+}
+
+.nav-button:hover {
+  animation: 0.2s buttonHover ease-out forwards;
+}

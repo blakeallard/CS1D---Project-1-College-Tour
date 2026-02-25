@@ -1,11 +1,19 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
+  font-family: "Ledger", serif;
+  color: #f1ecec;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  /* background: radial-gradient(ellipse 85% 65% at 8% 8%, rgba(175, 109, 255, 0.42), transparent 60%),
+              radial-gradient(ellipse 75% 60% at 75% 35%, rgba(255, 235, 170, 0.55), transparent 62%),
+              radial-gradient(ellipse 70% 60% at 15% 80%, rgba(255, 100, 180, 0.40), transparent 62%),
+              radial-gradient(ellipse 70% 60% at 92% 92%, rgba(120, 190, 255, 0.45), transparent 62%),
+              linear-gradient(180deg, #f7eaff 0%, #fde2ea 100%); */
+
+  
+  background: #020617;
+  /* background-image: radial-gradient(circle 700px at 50% 150px, rgba(239,68,68,0.4), transparent); */
+  background: radial-gradient(circle 700px at 50% 150px, #ef444466, transparent),
+              radial-gradient(circle 700px at 50% 800px, #cca8a866, transparent);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,12 +22,7 @@
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  text-decoration: none;
 }
 
 body {
@@ -31,21 +34,19 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 4rem;
+  font-family: "Catata One", serif;
+  font-weight: 400;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  box-sizing: content-box;
 }
+
+/*
 button:hover {
   border-color: #646cff;
 }
@@ -65,4 +66,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

@@ -1,0 +1,63 @@
+.campus_info-container {
+    display: flex;
+    justify-content: center;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #f1ecec;
+}
+
+th, td {
+    padding: 1.2rem;
+}
+
+th {
+    background-color: #f1ecec27;
+}
+
+td button {
+    border: none;
+}
+
+.souvenir_link {
+    color: #f1ecec;
+}
+
+#svnr_info-window {
+    padding: 40px 20px;
+    width: 70vw;
+    border: 1px solid #f1ecec;
+    border-radius: 10px;
+    position: absolute;
+    top: 25vh;
+    left: 15vw;
+    background: #020617ee;
+    z-index: 1;
+}
+
+h2#svnr_info-window {
+    margin: 2rem;
+}
+
+.svnr-table {
+    margin: auto;
+}
+
+@keyframes svnrHover {
+  from {
+    background: none;
+  }
+  to {
+    background: #f1ecec6e;
+  }
+}
+
+.svnr-hover:hover {
+  animation: 0.2s svnrHover ease-out forwards;
+}
