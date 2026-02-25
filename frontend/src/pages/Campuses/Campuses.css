@@ -1,0 +1,22 @@
+.campus_info-container {
+    display: flex;
+    justify-content: center;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #f1ecec;
+}
+
+th, td {
+    padding: 1.2rem;
+}
+
+th {
+    background-color: #f1ecec27;
+}
