@@ -7,6 +7,10 @@ import ASUStart from './pages/Tours/TourOptions/ASUStart/ASUStart.jsx'
 import UCIStart from './pages/Tours/TourOptions/UCIStart/UCIStart.jsx'
 import CustomTour from './pages/Tours/TourOptions/CustomTour/CustomTour.jsx'
 import Admin from './pages/Admin/Admin.jsx'
+import ImportData from './pages/Admin/AdminOperations/ImportData./ImportData.jsx'
+import AddSvnr from './pages/Admin/AdminOperations/AddSvnr/AddSvnr.jsx'
+import DeleteSvnr from './pages/Admin/AdminOperations/DeleteSvnr/DeleteSvnr.jsx'
+import EditSvnr from './pages/Admin/AdminOperations/EditSvnr/EditSvnr.jsx'
 import Campuses from './pages/Campuses/Campuses.jsx'
 import './index.css'
 
@@ -20,8 +24,12 @@ createRoot(document.getElementById('root')).render(
             <Route path='/asu-start' element={<ASUStart />} />
             <Route path='/uci-start' element={<UCIStart />} />
             <Route path='/custom-tour' element={<CustomTour />} />
-            <Route path='/admin' element={<Admin />} />
             <Route path='/campuses' element={<Campuses />} />
+            <Route path='/admin' element={<Admin />} />
+            <Route path='/admin/import-data' element={<ImportData />} />
+            <Route path='/admin/add-svnrs' element={<AddSvnr />} />
+            <Route path='/admin/delete-svnrs' element={<DeleteSvnr />} />
+            <Route path='/admin/edit-svnrs' element={<EditSvnr />} />
         </Routes>
     </BrowserRouter>
 )
