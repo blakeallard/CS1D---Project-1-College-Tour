@@ -20,3 +20,29 @@ th, td {
 th {
     background-color: #f1ecec27;
 }
+
+td button {
+    border: none;
+}
+
+.souvenir_link {
+    color: #f1ecec;
+}
+
+.svnr_info-window {
+    padding: 40px 20px;
+    width: 70vw;
+    border: 1px solid #f1ecec;
+    border-radius: 10px;
+    position: absolute;
+    top: 25vh;
+    background: #020617;
+}
+
+h2.svnr_info-window {
+    margin: 2rem;
+}
+
+.svnr-table {
+    margin: auto;
+}
