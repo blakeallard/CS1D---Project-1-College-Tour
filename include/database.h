@@ -10,24 +10,24 @@ struct Souvenir
 {
     std::string campus;
     std::string item;
-    double price;
+    double price = 0;
 };
 
 struct User
 {
-    int id;
+    int id = 0;
     std::string username;
-    double wallet_balance;
+    double wallet_balance = 0;
 };
 
 struct Purchase
 {
-    int id;
-    int user_id;
+    int id = 0;
+    int user_id = 0;
     std::string campus;
     std::string item;
-    double price;
-    int quantity;
+    double price = 0;
+    int quantity = 0;
     std::string purchase_date;
 };
 

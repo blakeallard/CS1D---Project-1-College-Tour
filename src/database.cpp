@@ -2,16 +2,17 @@
 #include <iostream>
 #include <sqlite3.h>
 
-bool Database::ConnectToDB(const std::string& distancesFile,
-                           const std::string& souvenirsFile,
-                           const std::string& newCampusesFile,
-                           const std::string& usersFile)
+bool Database::ConnectToDB(const std::string &distancesFile,
+                           const std::string &souvenirsFile,
+                           const std::string &newCampusesFile,
+                           const std::string &usersFile)
 {
     // Open "distances.db" Database
     int result = sqlite3_open(distancesFile.c_str(), &distances_db);
     if (result != SQLITE_OK)
     {
-        std::cerr << "Failed to connect to 'distances.db' database" << std::endl;
+        std::cerr << "Failed to connect to 'distances.db' database"
+                  << std::endl;
         sqlite3_close(distances_db);
         return false;
     }
@@ -20,7 +21,8 @@ bool Database::ConnectToDB(const std::string& distancesFile,
     result = sqlite3_open(souvenirsFile.c_str(), &souvenirs_db);
     if (result != SQLITE_OK)
     {
-        std::cerr << "Failed to connect to 'souvenirs.db' database" << std::endl;
+        std::cerr << "Failed to connect to 'souvenirs.db' database"
+                  << std::endl;
         sqlite3_close(souvenirs_db);
         sqlite3_close(distances_db);
         return false;
@@ -30,7 +32,8 @@ bool Database::ConnectToDB(const std::string& distancesFile,
     result = sqlite3_open(newCampusesFile.c_str(), &new_campuses_db);
     if (result != SQLITE_OK)
     {
-        std::cerr << "Failed to connect to 'newCampusesFile.db' database" << std::endl;
+        std::cerr << "Failed to connect to 'newCampusesFile.db' database"
+                  << std::endl;
         sqlite3_close(souvenirs_db);
         sqlite3_close(distances_db);
         sqlite3_close(new_campuses_db);
@@ -82,22 +85,24 @@ void Database::CloseDB()
     std::cout << "All databases closed" << std::endl;
 }
 
-
 // HELPER -
-double Database::QueryDistance(sqlite3* db, const std::string& campus1, const std::string& campus2)
+double Database::QueryDistance(sqlite3 *db, const std::string &campus1,
+                               const std::string &campus2)
 {
     if (!db)
     {
         return -1.0;
     }
 
-    std::string query = "SELECT distance FROM distances WHERE starting_college = ? AND ending_college = ?";
-    sqlite3_stmt* stmt;
+    std::string query = "SELECT distance FROM distances WHERE starting_college "
+                        "= ? AND ending_college = ?";
+    sqlite3_stmt *stmt;
 
     int result = sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
-        std::cerr << "QueryDistance prepare failed: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "QueryDistance prepare failed: " << sqlite3_errmsg(db)
+                  << std::endl;
         return -1.0;
     }
 
@@ -115,18 +120,19 @@ double Database::QueryDistance(sqlite3* db, const std::string& campus1, const st
     return distance;
 }
 
-void Database::QueryAllDistancesFromDB(sqlite3* db, const std::string& campus, std::unordered_map<std::string, double>& distances)
+void Database::QueryAllDistancesFromDB(
+    sqlite3 *db, const std::string &campus,
+    std::unordered_map<std::string, double> &distances)
 {
     if (!db)
     {
         return;
     }
 
-    std::string query =
-        "SELECT ending_college, distance "
-        "FROM distances WHERE starting_college = ?";
+    std::string query = "SELECT ending_college, distance "
+                        "FROM distances WHERE starting_college = ?";
 
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
 
     if (sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, nullptr) != SQLITE_OK)
     {
@@ -137,11 +143,9 @@ void Database::QueryAllDistancesFromDB(sqlite3* db, const std::string& campus, s
 
     while (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        std::string dest =
-            (const char*)sqlite3_column_text(stmt, 0);
+        std::string dest = (const char *)sqlite3_column_text(stmt, 0);
 
-        double dist =
-            sqlite3_column_double(stmt, 1);
+        double dist = sqlite3_column_double(stmt, 1);
 
         distances[dest] = dist;
     }
@@ -149,14 +153,16 @@ void Database::QueryAllDistancesFromDB(sqlite3* db, const std::string& campus, s
     sqlite3_finalize(stmt);
 }
 
-bool Database::CampusExists(const std::string& campus)
+bool Database::CampusExists(const std::string &campus)
 {
-    std::string query = "SELECT COUNT(*) FROM distances WHERE starting_college = ? OR ending_college = ?";
+    std::string query = "SELECT COUNT(*) FROM distances WHERE starting_college "
+                        "= ? OR ending_college = ?";
 
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
 
     // Check original distances DB
-    int result = sqlite3_prepare_v2(distances_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(distances_db, query.c_str(), -1, &stmt, nullptr);
 
     if (result != SQLITE_OK)
     {
@@ -181,7 +187,8 @@ bool Database::CampusExists(const std::string& campus)
     }
 
     // Check new campuses DB
-    result = sqlite3_prepare_v2(new_campuses_db, query.c_str(), -1, &stmt, nullptr);
+    result =
+        sqlite3_prepare_v2(new_campuses_db, query.c_str(), -1, &stmt, nullptr);
 
     if (result != SQLITE_OK)
     {
@@ -202,7 +209,8 @@ bool Database::CampusExists(const std::string& campus)
 }
 
 // DISTANCES -
-double Database::GetDistance(const std::string& campus1, const std::string& campus2)
+double Database::GetDistance(const std::string &campus1,
+                             const std::string &campus2)
 {
     double d = QueryDistance(distances_db, campus1, campus2);
 
@@ -214,7 +222,8 @@ double Database::GetDistance(const std::string& campus1, const std::string& camp
     return QueryDistance(new_campuses_db, campus1, campus2);
 }
 
-std::unordered_map<std::string, double> Database::GetAllDistances(const std::string& campus)
+std::unordered_map<std::string, double>
+Database::GetAllDistances(const std::string &campus)
 {
     std::unordered_map<std::string, double> distances;
 
@@ -222,35 +231,6 @@ std::unordered_map<std::string, double> Database::GetAllDistances(const std::str
     QueryAllDistancesFromDB(new_campuses_db, campus, distances);
 
     return distances;
-/*
-    if (distances_db == nullptr)
-    {
-        std::cerr << "Database not connected" << std::endl;
-        return distances;
-    }
-
-    std::string query = "SELECT ending_college, distance FROM distances WHERE starting_college = ?";
-    sqlite3_stmt* stmt;
-
-    int result = sqlite3_prepare_v2(distances_db, query.c_str(), -1, &stmt, nullptr);
-    if (result != SQLITE_OK)
-    {
-        std::cerr << "Failed to prepare query: " << sqlite3_errmsg(distances_db) << std::endl;
-        return distances;
-    }
-
-    sqlite3_bind_text(stmt, 1, campus.c_str(), -1, SQLITE_STATIC);
-
-    while (sqlite3_step(stmt) == SQLITE_ROW)
-    {
-        std::string destination = (const char*)sqlite3_column_text(stmt, 0);
-        double distance = sqlite3_column_double(stmt, 1);
-        distances[destination] = distance;
-    }
-
-    sqlite3_finalize(stmt);
-    return distances;
-    */
 }
 
 std::vector<std::string> Database::GetAllCampuses()
@@ -263,23 +243,26 @@ std::vector<std::string> Database::GetAllCampuses()
         return campuses;
     }
 
-    std::string query = "SELECT DISTINCT college FROM souvenirs ORDER BY college";
+    std::string query =
+        "SELECT DISTINCT college FROM souvenirs ORDER BY college";
 
     // Create pointer to database object
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
 
     // Compile database query
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
 
     if (result != SQLITE_OK)
     {
-        std::cerr << "GetAllCampuses: Failed to prepare query " << sqlite3_errmsg(souvenirs_db) << std::endl;
+        std::cerr << "GetAllCampuses: Failed to prepare query "
+                  << sqlite3_errmsg(souvenirs_db) << std::endl;
         return campuses;
     }
 
     while (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        const char* college_name = (const char*)sqlite3_column_text(stmt, 0);
+        const char *college_name = (const char *)sqlite3_column_text(stmt, 0);
         campuses.push_back(std::string(college_name));
     }
 
@@ -289,7 +272,7 @@ std::vector<std::string> Database::GetAllCampuses()
 }
 
 // SOUVENIRS -
-std::vector<Souvenir> Database::GetSouvenirs(const std::string& campus)
+std::vector<Souvenir> Database::GetSouvenirs(const std::string &campus)
 {
     std::vector<Souvenir> souvenirs;
 
@@ -299,25 +282,25 @@ std::vector<Souvenir> Database::GetSouvenirs(const std::string& campus)
         return souvenirs;
     }
 
-    std::string query = "SELECT college, item, price FROM souvenirs WHERE college = ?";
-    sqlite3_stmt* stmt{nullptr};
+    std::string query =
+        "SELECT college, item, price FROM souvenirs WHERE college = ?";
+    sqlite3_stmt *stmt{nullptr};
 
-
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
         return souvenirs;
     }
 
-
     sqlite3_bind_text(stmt, 1, campus.c_str(), -1, SQLITE_STATIC);
     while (sqlite3_step(stmt) == SQLITE_ROW)
     {
         Souvenir s;
-        s.campus = (const char*)sqlite3_column_text(stmt, 0);
-        s.item = (const char*)sqlite3_column_text(stmt, 1);
-        s.price = sqlite3_column_double(stmt, 2);
+        s.campus = (const char *)sqlite3_column_text(stmt, 0);
+        s.item   = (const char *)sqlite3_column_text(stmt, 1);
+        s.price  = sqlite3_column_double(stmt, 2);
 
         souvenirs.push_back(s);
     }
@@ -327,12 +310,13 @@ std::vector<Souvenir> Database::GetSouvenirs(const std::string& campus)
     return souvenirs;
 }
 
-Souvenir Database::GetSouvenir(const std::string& campus, const std::string& item)
+Souvenir Database::GetSouvenir(const std::string &campus,
+                               const std::string &item)
 {
     Souvenir s;
     s.campus = "";
-    s.item = "";
-    s.price = -1.0;
+    s.item   = "";
+    s.price  = -1.0;
 
     if (souvenirs_db == nullptr)
     {
@@ -340,10 +324,12 @@ Souvenir Database::GetSouvenir(const std::string& campus, const std::string& ite
         return s;
     }
 
-    std::string query = "SELECT college, item, price FROM souvenirs WHERE college = ? AND item = ?";
-    sqlite3_stmt* stmt;
+    std::string query = "SELECT college, item, price FROM souvenirs WHERE "
+                        "college = ? AND item = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -355,8 +341,8 @@ Souvenir Database::GetSouvenir(const std::string& campus, const std::string& ite
 
     if (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        s.campus = (const char*)sqlite3_column_text(stmt, 0);
-        s.item   = (const char*)sqlite3_column_text(stmt, 1);
+        s.campus = (const char *)sqlite3_column_text(stmt, 0);
+        s.item   = (const char *)sqlite3_column_text(stmt, 1);
         s.price  = sqlite3_column_double(stmt, 2);
     }
 
@@ -364,7 +350,8 @@ Souvenir Database::GetSouvenir(const std::string& campus, const std::string& ite
     return s;
 }
 
-double Database::GetSouvenirPrice(const std::string& campus, const std::string& item)
+double Database::GetSouvenirPrice(const std::string &campus,
+                                  const std::string &item)
 {
     if (souvenirs_db == nullptr)
     {
@@ -372,10 +359,12 @@ double Database::GetSouvenirPrice(const std::string& campus, const std::string& 
         return -1.0;
     }
 
-    std::string query = "SELECT price FROM souvenirs WHERE college = ? AND item = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "SELECT price FROM souvenirs WHERE college = ? AND item = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -395,7 +384,8 @@ double Database::GetSouvenirPrice(const std::string& campus, const std::string& 
     return price;
 }
 
-bool Database::SouvenirExists(const std::string& campus, const std::string& item)
+bool Database::SouvenirExists(const std::string &campus,
+                              const std::string &item)
 {
     if (souvenirs_db == nullptr)
     {
@@ -403,10 +393,12 @@ bool Database::SouvenirExists(const std::string& campus, const std::string& item
         return false;
     }
 
-    std::string query = "SELECT COUNT(*) FROM souvenirs WHERE college = ? AND item = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "SELECT COUNT(*) FROM souvenirs WHERE college = ? AND item = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -420,7 +412,7 @@ bool Database::SouvenirExists(const std::string& campus, const std::string& item
     if (sqlite3_step(stmt) == SQLITE_ROW)
     {
         int count = sqlite3_column_int(stmt, 0);
-        exists = (count > 0);
+        exists    = (count > 0);
     }
 
     sqlite3_finalize(stmt);
@@ -428,7 +420,8 @@ bool Database::SouvenirExists(const std::string& campus, const std::string& item
 }
 
 // USERS
-int Database::AuthenticateUser(const std::string& username, const std::string& password)
+int Database::AuthenticateUser(const std::string &username,
+                               const std::string &password)
 {
     if (users_db == nullptr)
     {
@@ -436,10 +429,12 @@ int Database::AuthenticateUser(const std::string& username, const std::string& p
         return -1;
     }
 
-    std::string query = "SELECT id FROM users WHERE username = ? AND password = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "SELECT id FROM users WHERE username = ? AND password = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -462,8 +457,8 @@ int Database::AuthenticateUser(const std::string& username, const std::string& p
 User Database::GetUser(int user_id)
 {
     User u;
-    u.id = -1;
-    u.username = "";
+    u.id             = -1;
+    u.username       = "";
     u.wallet_balance = 0.0;
 
     if (users_db == nullptr)
@@ -472,10 +467,12 @@ User Database::GetUser(int user_id)
         return u;
     }
 
-    std::string query = "SELECT id, username, wallet_balance FROM users WHERE id = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "SELECT id, username, wallet_balance FROM users WHERE id = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -486,8 +483,8 @@ User Database::GetUser(int user_id)
 
     if (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        u.id = sqlite3_column_int(stmt, 0);
-        u.username = (const char*)sqlite3_column_text(stmt, 1);
+        u.id             = sqlite3_column_int(stmt, 0);
+        u.username       = (const char *)sqlite3_column_text(stmt, 1);
         u.wallet_balance = sqlite3_column_double(stmt, 2);
     }
 
@@ -495,11 +492,11 @@ User Database::GetUser(int user_id)
     return u;
 }
 
-User Database::GetUserByUsername(const std::string& username)
+User Database::GetUserByUsername(const std::string &username)
 {
     User u;
-    u.id = -1;
-    u.username = "";
+    u.id             = -1;
+    u.username       = "";
     u.wallet_balance = 0.0;
 
     if (users_db == nullptr)
@@ -508,10 +505,12 @@ User Database::GetUserByUsername(const std::string& username)
         return u;
     }
 
-    std::string query = "SELECT id, username, wallet_balance FROM users WHERE username = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "SELECT id, username, wallet_balance FROM users WHERE username = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -522,8 +521,8 @@ User Database::GetUserByUsername(const std::string& username)
 
     if (sqlite3_step(stmt) == SQLITE_ROW)
     {
-        u.id = sqlite3_column_int(stmt, 0);
-        u.username = (const char*)sqlite3_column_text(stmt, 1);
+        u.id             = sqlite3_column_int(stmt, 0);
+        u.username       = (const char *)sqlite3_column_text(stmt, 1);
         u.wallet_balance = sqlite3_column_double(stmt, 2);
     }
 
@@ -531,7 +530,7 @@ User Database::GetUserByUsername(const std::string& username)
     return u;
 }
 
-bool Database::UserExists(const std::string& username)
+bool Database::UserExists(const std::string &username)
 {
     if (users_db == nullptr)
     {
@@ -540,9 +539,10 @@ bool Database::UserExists(const std::string& username)
     }
 
     std::string query = "SELECT COUNT(*) FROM users WHERE username = ?";
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -555,14 +555,15 @@ bool Database::UserExists(const std::string& username)
     if (sqlite3_step(stmt) == SQLITE_ROW)
     {
         int count = sqlite3_column_int(stmt, 0);
-        exists = (count > 0);
+        exists    = (count > 0);
     }
 
     sqlite3_finalize(stmt);
     return exists;
 }
 
-int Database::CreateUser(const std::string& username, const std::string& password, double initial_balance)
+int Database::CreateUser(const std::string &username,
+                         const std::string &password, double initial_balance)
 {
     if (users_db == nullptr)
     {
@@ -570,10 +571,12 @@ int Database::CreateUser(const std::string& username, const std::string& passwor
         return -1;
     }
 
-    std::string query = "INSERT INTO users (username, password, wallet_balance) VALUES (?, ?, ?)";
-    sqlite3_stmt* stmt;
+    std::string query = "INSERT INTO users (username, password, "
+                        "wallet_balance) VALUES (?, ?, ?)";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -605,10 +608,10 @@ double Database::GetWalletBalance(int user_id)
     }
 
     std::string query = "SELECT wallet_balance FROM users WHERE id = ?";
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
 
-
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -635,10 +638,12 @@ bool Database::AddFunds(int user_id, double amount)
         return false;
     }
 
-    std::string query = "UPDATE users SET wallet_balance = wallet_balance + ? WHERE id = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "UPDATE users SET wallet_balance = wallet_balance + ? WHERE id = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -662,10 +667,12 @@ bool Database::DeductFunds(int user_id, double amount)
         return false;
     }
 
-    std::string query = "UPDATE users SET wallet_balance = wallet_balance - ? WHERE id = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "UPDATE users SET wallet_balance = wallet_balance - ? WHERE id = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -682,7 +689,8 @@ bool Database::DeductFunds(int user_id, double amount)
 }
 
 // PURCHASES -
-bool Database::AddPurchase(int user_id, const std::string& campus, const std::string& item, double price, int quantity)
+bool Database::AddPurchase(int user_id, const std::string &campus,
+                           const std::string &item, double price, int quantity)
 {
     if (users_db == nullptr)
     {
@@ -690,10 +698,12 @@ bool Database::AddPurchase(int user_id, const std::string& campus, const std::st
         return false;
     }
 
-    std::string query = "INSERT INTO user_purchases (user_id, campus, item, price, quantity) VALUES (? ,? ,? ,?, ?)";
-    sqlite3_stmt* stmt;
+    std::string query = "INSERT INTO user_purchases (user_id, campus, item, "
+                        "price, quantity) VALUES (? ,? ,? ,?, ?)";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -722,10 +732,13 @@ std::vector<Purchase> Database::GetUserPurchases(int user_id)
         return purchases;
     }
 
-    std::string query = "SELECT id, user_id, campus, item, price, quantity, purchase_date FROM user_purchases WHERE user_id = ? ORDER BY purchase_date DESC";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "SELECT id, user_id, campus, item, price, quantity, purchase_date FROM "
+        "user_purchases WHERE user_id = ? ORDER BY purchase_date DESC";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -739,11 +752,11 @@ std::vector<Purchase> Database::GetUserPurchases(int user_id)
         Purchase p;
         p.id            = sqlite3_column_int(stmt, 0);
         p.user_id       = sqlite3_column_int(stmt, 1);
-        p.campus        = (const char*)sqlite3_column_text(stmt, 2);
-        p.item          = (const char*)sqlite3_column_text(stmt, 3);
+        p.campus        = (const char *)sqlite3_column_text(stmt, 2);
+        p.item          = (const char *)sqlite3_column_text(stmt, 3);
         p.price         = sqlite3_column_double(stmt, 4);
         p.quantity      = sqlite3_column_int(stmt, 5);
-        p.purchase_date = (const char*)sqlite3_column_text(stmt, 6);
+        p.purchase_date = (const char *)sqlite3_column_text(stmt, 6);
         purchases.push_back(p);
     }
 
@@ -751,7 +764,8 @@ std::vector<Purchase> Database::GetUserPurchases(int user_id)
     return purchases;
 }
 
-std::vector<Purchase> Database::GetUserPurchasesByCampus(int user_id, const std::string& campus)
+std::vector<Purchase>
+Database::GetUserPurchasesByCampus(int user_id, const std::string &campus)
 {
     std::vector<Purchase> purchases;
 
@@ -761,10 +775,13 @@ std::vector<Purchase> Database::GetUserPurchasesByCampus(int user_id, const std:
         return purchases;
     }
 
-    std::string query = "SELECT id, user_id, campus, item, price, quantity, purchase_date FROM user_purchases WHERE user_id = ? AND campus = ? ORDER BY purchase_date DESC";
-    sqlite3_stmt* stmt;
+    std::string query = "SELECT id, user_id, campus, item, price, quantity, "
+                        "purchase_date FROM user_purchases WHERE user_id = ? "
+                        "AND campus = ? ORDER BY purchase_date DESC";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -779,11 +796,11 @@ std::vector<Purchase> Database::GetUserPurchasesByCampus(int user_id, const std:
         Purchase p;
         p.id            = sqlite3_column_int(stmt, 0);
         p.user_id       = sqlite3_column_int(stmt, 1);
-        p.campus        = (const char*)sqlite3_column_text(stmt, 2);
-        p.item          = (const char*)sqlite3_column_text(stmt, 3);
+        p.campus        = (const char *)sqlite3_column_text(stmt, 2);
+        p.item          = (const char *)sqlite3_column_text(stmt, 3);
         p.price         = sqlite3_column_double(stmt, 4);
         p.quantity      = sqlite3_column_int(stmt, 5);
-        p.purchase_date = (const char*)sqlite3_column_text(stmt, 6);
+        p.purchase_date = (const char *)sqlite3_column_text(stmt, 6);
         purchases.push_back(p);
     }
 
@@ -799,10 +816,12 @@ double Database::GetTotalSpent(int user_id)
         return 0.0;
     }
 
-    std::string query = "SELECT SUM(price * quantity) FROM user_purchases WHERE user_id = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "SELECT SUM(price * quantity) FROM user_purchases WHERE user_id = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -821,7 +840,7 @@ double Database::GetTotalSpent(int user_id)
     return total;
 }
 
-double Database::GetSpendingByCampus(int user_id, const std::string& campus)
+double Database::GetSpendingByCampus(int user_id, const std::string &campus)
 {
     if (users_db == nullptr)
     {
@@ -829,10 +848,12 @@ double Database::GetSpendingByCampus(int user_id, const std::string& campus)
         return 0.0;
     }
 
-    std::string query = "SELECT SUM(price * quantity) FROM user_purchases WHERE user_id = ? AND campus = ?";
-    sqlite3_stmt* stmt;
+    std::string query = "SELECT SUM(price * quantity) FROM user_purchases "
+                        "WHERE user_id = ? AND campus = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -861,9 +882,10 @@ int Database::GetPurchaseCount(int user_id)
     }
 
     std::string query = "SELECT COUNT(*) FROM user_purchases WHERE user_id = ?";
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(users_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -883,7 +905,8 @@ int Database::GetPurchaseCount(int user_id)
 }
 
 // ADMIN -
-bool Database::AddSouvenir(const std::string& campus, const std::string& item, double price)
+bool Database::AddSouvenir(const std::string &campus, const std::string &item,
+                           double price)
 {
     if (souvenirs_db == nullptr)
     {
@@ -901,10 +924,12 @@ bool Database::AddSouvenir(const std::string& campus, const std::string& item, d
         return false;
     }
 
-    std::string query = "INSERT INTO souvenirs (college, item, price) VALUES (?, ?, ?)";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "INSERT INTO souvenirs (college, item, price) VALUES (?, ?, ?)";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -921,7 +946,8 @@ bool Database::AddSouvenir(const std::string& campus, const std::string& item, d
     return (result == SQLITE_DONE);
 }
 
-bool Database::UpdateSouvenirPrice(const std::string& campus, const std::string& item, double new_price)
+bool Database::UpdateSouvenirPrice(const std::string &campus,
+                                   const std::string &item, double new_price)
 {
     if (souvenirs_db == nullptr)
     {
@@ -929,10 +955,12 @@ bool Database::UpdateSouvenirPrice(const std::string& campus, const std::string&
         return false;
     }
 
-    std::string query = "UPDATE souvenirs SET price = ? WHERE college = ? AND item = ?";
-    sqlite3_stmt* stmt;
+    std::string query =
+        "UPDATE souvenirs SET price = ? WHERE college = ? AND item = ?";
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;
@@ -949,7 +977,8 @@ bool Database::UpdateSouvenirPrice(const std::string& campus, const std::string&
     return (result == SQLITE_DONE);
 }
 
-bool Database::DeleteSouvenir(const std::string& campus, const std::string& item)
+bool Database::DeleteSouvenir(const std::string &campus,
+                              const std::string &item)
 {
     if (souvenirs_db == nullptr)
     {
@@ -958,9 +987,10 @@ bool Database::DeleteSouvenir(const std::string& campus, const std::string& item
     }
 
     std::string query = "DELETE FROM souvenirs WHERE college = ? AND item = ?";
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
 
-    int result = sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
+    int result =
+        sqlite3_prepare_v2(souvenirs_db, query.c_str(), -1, &stmt, nullptr);
     if (result != SQLITE_OK)
     {
         std::cerr << "Failed to prepare query" << std::endl;

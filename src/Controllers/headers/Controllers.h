@@ -1,9 +1,9 @@
 #ifndef CONTROLLERS_H
 #define CONTROLLERS_H
-#include "crow/json.h"
-#include "../include/database.h"
-#include "../include/Wallet.h"
-#include "../include/StudentPurchases.h"
+#include <crow.h>
+#include "../../../include/database.h"
+#include "../../../include/Wallet.h"
+#include "../../../include/StudentPurchases.h"
 
 struct UniversityController
 {
