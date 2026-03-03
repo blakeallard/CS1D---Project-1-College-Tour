@@ -79,7 +79,6 @@ bool insertRow(const std::string &dbName, const std::string &table,
                const std::vector<std::string> &columns,
                const std::vector<SQLiteValue> &values)
 {
-    ABSDatabase db("Databases/" + dbName);
     if (columns.size() != values.size())
         return false;
 
@@ -107,11 +106,108 @@ bool insertRow(const std::string &dbName, const std::string &table,
 
     std::string sql = ss.str();
 
+    ABSDatabase db("Databases/" + dbName);
     Statement st(db.get(), sql);
     for (int i = 0; i < values.size(); ++i)
     {
         st.bind(i + 1, values[i]);
     }
+    st.execute();
+    return true;
+}
+
+bool deleteRow(const std::string &dbName, const std::string &table,
+               const std::vector<std::string> &whereColumns,
+               const std::vector<SQLiteValue> &whereValues)
+{
+    if (whereColumns.size() != whereValues.size())
+        return false;
+
+    std::stringstream ss;
+    ss << "DELETE FROM " << table;
+
+    if (!whereColumns.empty())
+    {
+        ss << " WHERE ";
+        for (size_t i = 0; i < whereColumns.size(); ++i)
+        {
+            ss << whereColumns[i] << " = ?";
+            if (i < whereColumns.size() - 1)
+                ss << " AND ";
+        }
+    }
+
+    ss << ";";
+    std::string sql = ss.str();
+
+    ABSDatabase db("Databases/" + dbName);
+    Statement st(db.get(), sql);
+
+    for (int i = 0; i < whereValues.size(); ++i)
+    {
+        st.bind(i + 1, whereValues[i]);
+    }
+
+    st.execute();
+
+    return true;
+}
+
+bool updateRows(const std::string &dbName, const std::string &table,
+                const std::vector<std::string> &whereColumns,
+                const std::vector<SQLiteValue> &whereValues,
+                const std::vector<std::string> &updateColumns,
+                const std::vector<SQLiteValue> &updateValues)
+{
+    if (updateColumns.size() != updateValues.size())
+        return false;
+
+    if (whereColumns.size() != whereValues.size())
+        return false;
+
+    std::stringstream ss;
+    ss << "UPDATE " << table << " SET ";
+
+    for (size_t i = 0; i < updateColumns.size(); ++i)
+    {
+        ss << updateColumns[i] << " = ?";
+        if (i < updateColumns.size() - 1)
+            ss << ", ";
+    }
+
+    if (!whereColumns.empty())
+    {
+        ss << " WHERE ";
+        for (size_t i = 0; i < whereColumns.size(); ++i)
+        {
+            ss << whereColumns[i] << " = ?";
+            if (i < whereColumns.size() - 1)
+                ss << " AND ";
+        }
+    }
+
+    ss << ";";
+    std::string sql = ss.str();
+
+    ABSDatabase db("Databases/" + dbName);
+    Statement st(db.get(), sql);
+    int bindIndex = 1;
+
+    // Bind SET values first
+    int index = 1;
+    for (int i = 0; i < updateValues.size(); ++i)
+    {
+        st.bind(index, updateValues[i]);
+        index++;
+    }
+
+    // Bind SET values first
+    for (int i = 0; i < whereValues.size(); ++i)
+    {
+        st.bind(index, whereValues[i]);
+        index++;
+    }
+
     st.execute();
     return true;
 }

@@ -8,33 +8,6 @@
 int main()
 {
 
-    sqlite3 *db;
-
-    if (sqlite3_open("Databases/Test.db", &db))
-    {
-        std::cerr << "Can't open database\n";
-        return 1;
-    }
-
-    const char *sql = "CREATE TABLE IF NOT EXISTS testTable ("
-                      "testColumn TEXT PRIMARY KEY,"
-                      "testTwoColumn TEXT"
-                      ");";
-
-    char *errMsg = nullptr;
-
-    if (sqlite3_exec(db, sql, nullptr, nullptr, &errMsg) != SQLITE_OK)
-    {
-        std::cerr << "SQL error: " << errMsg << std::endl;
-        sqlite3_free(errMsg);
-    }
-
-    sqlite3_close(db);
-    QueryData::insertRow("Test.db", "testTable",
-                         {"testColumn", "testTwoColumn"},
-                         {"ten", "4"});
-    return 0;
-
     crow::SimpleApp app;
     // Serve index at /
 
