@@ -42,6 +42,11 @@ class Statement
         sqlite3 *absDB;
 
     public:
+        sqlite3_stmt *getStatement()
+        {
+            return stmt;
+        }
+
         Statement(sqlite3 *db, const std::string &sql)
         {
             absDB = db;

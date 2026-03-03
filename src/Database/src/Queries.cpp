@@ -7,6 +7,9 @@
 #include <vector>
 
 using SQLiteValue = std::variant<int, double, std::string, std::nullptr_t>;
+using Row         = std::unordered_map<std::string, SQLiteValue>;
+using QueryResult = std::vector<Row>;
+
 namespace QueryData
 {
 // DISTANCES
@@ -212,4 +215,90 @@ bool updateRows(const std::string &dbName, const std::string &table,
     return true;
 }
 
+QueryResult selectRows(const std::string &dbName, const std::string &table,
+                       const std::vector<std::string> &columns,
+                       const std::vector<std::string> &whereColumns,
+                       const std::vector<SQLiteValue> &whereValues)
+{
+    QueryResult results;
+
+    if (whereColumns.size() != whereValues.size())
+        return results;
+
+    std::stringstream ss;
+
+    ss << "SELECT ";
+
+    if (columns.empty())
+        ss << "*";
+    else
+    {
+        for (size_t i = 0; i < columns.size(); ++i)
+        {
+            ss << columns[i];
+            if (i < columns.size() - 1)
+                ss << ", ";
+        }
+    }
+
+    ss << " FROM " << table;
+
+    if (!whereColumns.empty())
+    {
+        ss << " WHERE ";
+        for (size_t i = 0; i < whereColumns.size(); ++i)
+        {
+            ss << whereColumns[i] << " = ?";
+            if (i < whereColumns.size() - 1)
+                ss << " AND ";
+        }
+    }
+
+    ss << ";";
+
+    std::string sql = ss.str();
+
+    ABSDatabase db("Databases/" + dbName);
+    Statement st(db.get(), sql);
+
+    // Bind WHERE values
+    for (size_t i = 0; i < whereValues.size(); ++i)
+        st.bind(i + 1, whereValues[i]);
+
+    while (st.step())
+    {
+        Row row;
+        int colCount = sqlite3_column_count(st.getStatement());
+
+        for (int i = 0; i < colCount; ++i)
+        {
+            std::string name = sqlite3_column_name(st.getStatement(), i);
+            int type         = sqlite3_column_type(st.getStatement(), i);
+
+            switch (type)
+            {
+                case SQLITE_INTEGER:
+                    row[name] = sqlite3_column_int(st.getStatement(), i);
+                    break;
+
+                case SQLITE_FLOAT:
+                    row[name] = sqlite3_column_double(st.getStatement(), i);
+                    break;
+
+                case SQLITE_TEXT:
+                    row[name] = std::string(reinterpret_cast<const char *>(
+                        sqlite3_column_text(st.getStatement(), i)));
+                    break;
+
+                case SQLITE_NULL:
+                    row[name] = nullptr;
+                    break;
+            }
+        }
+
+        results.push_back(row);
+    }
+
+    return results;
+}
 } // namespace QueryData
