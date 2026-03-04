@@ -5,10 +5,10 @@ import "./AdminLogin.css";
 import axios from "axios";
 
 /** Login component for Admin access.
- * 
+ *
  * Takes username and password input, validates against credentials
  * stored in database, and handles result accordingly.
- * 
+ *
  * If successful, navigates user to Admin page. Otherwise, clears
  * form and shows login error.
  */
@@ -16,8 +16,8 @@ export default function AdminLogin({ handleAdminClicked }) {
     /** Stores method to force route to Admin page */
     let navigate = useNavigate();
     // DUMMY CREDENTIALS, REPLACE WITH ACTUAL ONES FROM DATABASE
-    const exampleUN = "Bilbo Baggins";
-    const examplePW = "My Precious";
+    const exampleUN = "";
+    const examplePW = "";
 
     // STATE VARIABLES:
     // Stores username input
@@ -29,23 +29,23 @@ export default function AdminLogin({ handleAdminClicked }) {
     const handleUsername = (e) => {
         setUsername(e.target.value);
     }
-    
+
     /** Sets password to user's input for such */
     const handlePassword = (e) => {
         setPassword(e.target.value);
     }
 
     /** Handles submitted input, accepts or rejects input.
-     * 
+     *
      * Upon success, navigate to Admin page.
      * Upon failure, clear form and show error.
      */
     const handleSubmit = () => {
         if(username == exampleUN && password == examplePW) {
-            window.alert("Success!!!!");
+            // window.alert("Success!!!!");
             navigate("/admin")
         } else {
-            window.alert("Wth dude u aint an admin");
+            // window.alert("Wth dude u aint an admin");
         }
         // Clear username & password inputs
         setUsername("");
@@ -60,7 +60,7 @@ export default function AdminLogin({ handleAdminClicked }) {
     //             console.log(response.data);
     //         })
     // }, []);
-    
+
     return (
         <div id="admin_login-window" data-aos="zoom-in" data-aos-duration="400">
             <button className="close_window-button" onClick={handleAdminClicked}>
@@ -76,7 +76,7 @@ export default function AdminLogin({ handleAdminClicked }) {
                 {/* Password Input Field */}
                 <div>
                     <label htmlFor="admin-password-input">Password:</label>
-                    <input type="text" id="admin-password-input" value={password} className="password-input" onChange={(e) => handlePassword(e)} />
+                    <input type="password" id="admin-password-input" value={password} className="password-input" onChange={(e) => handlePassword(e)} />
                 </div>
                 <button className="admin_login-submit" onClick={handleSubmit}>Login</button>
             </div>
