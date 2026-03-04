@@ -1,6 +1,8 @@
 #include <Controllers.h>
 #include <DatabaseTypes.h>
 #include <Queries.h>
+#include <stdexcept>
+using namespace std;
 
 crow::json::wvalue UniversityController::read(std::string id)
 {
@@ -9,24 +11,44 @@ crow::json::wvalue UniversityController::read(std::string id)
 
     if (id == "all")
     {
-        std::vector<std::string> campuses;
-        QueryData::allCampuses(campuses);
-        for (int i = 0; i < (int)campuses.size(); i++)
+
+        QueryData::QueryResult campusQuery = QueryData::selectRowsWithQuery(
+            "souvenirs.db",
+            "SELECT DISTINCT college FROM souvenirs ORDER BY college");
+
+        int i = 0;
+        for (const auto &row : campusQuery)
         {
-            result["campuses"][i]["name"] = campuses[i];
-            result["campuses"][i]["distance"] =
-                QueryData::distance("Saddleback College", campuses[i]);
+            std::string campusName = std::get<std::string>(row.at("college"));
+            result["campuses"][i]["name"] = campusName;
+
+            QueryData::QueryResult distanceQuery =
+                QueryData::selectRows("distances.db", "distances", {"distance"},
+                                      {"starting_college", "ending_college"},
+                                      {"Saddleback College", campusName});
+
+            // If not using an iterator must check for empty
+            if (!distanceQuery.empty())
+                result["campuses"][i]["distance"] =
+                    std::get<double>(distanceQuery[0].at("distance"));
+            else
+                result["campuses"][i]["distance"] = -1;
+            i++;
         }
     }
     else
     {
-        std::vector<SouvenirItem> souvenirs;
-        QueryData::souvenirs(id, souvenirs);
 
-        for (int i = 0; i < (int)souvenirs.size(); i++)
+        QueryData::QueryResult souvenirs = QueryData::selectRows(
+            "souvenirs.db", "souvenirs", {"item", "price"}, {"college"}, {id});
+
+        int i = 0;
+        cout << "SIZE: " << souvenirs.size();
+        for (const auto &row : souvenirs)
         {
-            result["souvenirs"][i]["item"]  = souvenirs[i].item;
-            result["souvenirs"][i]["price"] = souvenirs[i].price;
+            result["souvenirs"][i]["item"]  = get<string>(row.at("item"));
+            result["souvenirs"][i]["price"] = get<double>(row.at("price"));
+            i++;
         }
     }
     return result;

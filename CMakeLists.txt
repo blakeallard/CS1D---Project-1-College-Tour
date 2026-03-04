@@ -10,9 +10,6 @@ add_subdirectory(include/crow)
 
 set(PROJECT_SOURCES src/main.cpp
         src/RouteRegister.h
-        src/database.cpp
-        src/Wallet.cpp
-        src/StudentPurchases.cpp
 
 )
 

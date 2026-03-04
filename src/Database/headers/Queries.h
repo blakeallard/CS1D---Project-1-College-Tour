@@ -12,13 +12,9 @@ static const std::string NEW_DISTANCES = "Databases/new_campuses.db";
 
 namespace QueryData
 {
-double distance(const std::string &campus1, const std::string &campus2);
-void allDistances(const std::string &campus,
-                  std::unordered_map<std::string, double> &distances);
-void allCampuses(std::vector<std::string> &campuses);
-void souvenirs(const std::string &campus, std::vector<SouvenirItem> &souvenirs);
 
 // For the following functions any of these types can be used in a table
+// Meaning you can put a {string, int, or double} in value vectors
 using SQLiteValue = std::variant<int, double, std::string, std::nullptr_t>;
 using Row         = std::unordered_map<std::string, SQLiteValue>;
 using QueryResult = std::vector<Row>;
@@ -43,11 +39,18 @@ bool deleteRow(const std::string &dbName, const std::string &table,
 //                      {"For these columns"}, {"that have these values"},
 //                      {"update these columns", "id"}, {"to these values
 //                      here",4});
+// TO USE THE MATH INSTEAD OF REGULAR UPDATE:
+// Only 1 column can be updated with no update values, it will simply adjust the
+// value already set in the db
+// QueryData::updateRows("Test.db", "testTable",
+//                      {"For these columns"}, {"that have these values"},
+//                      {"update only 1 column}, {}, "+ 5.3");
 bool updateRows(const std::string &dbName, const std::string &table,
                 const std::vector<std::string> &whereColumns,
                 const std::vector<SQLiteValue> &whereValues,
                 const std::vector<std::string> &updateColumns,
-                const std::vector<SQLiteValue> &updateValues);
+                const std::vector<SQLiteValue> &updateValues,
+                const std::string &mathValue = "");
 
 // Example
 // QueryData::selectRows
@@ -68,6 +71,13 @@ QueryResult selectRows(const std::string &dbName, const std::string &table,
         std::string name = std::get<std::string>(row.at("name"));
     }
 */
+
+// Simply a custom select query, gets output the same way
+QueryResult selectRowsWithQuery(const std::string &dbName,
+                                const std::string &query);
+
+// A custom query for things like insert, update and delete
+bool customExecuteQuery(const std::string &dbName, const std::string &query);
 
 }; // namespace QueryData
 
