@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_subdirectory(vendor/sqlite3)
 add_subdirectory(src/Database)
 add_subdirectory(src/Controllers)
-add_subdirectory(include/crow)
+add_subdirectory(vendor/crow)
 
 set(PROJECT_SOURCES src/main.cpp
         src/RouteRegister.h
