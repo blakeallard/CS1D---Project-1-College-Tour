@@ -64,10 +64,11 @@ QueryResult selectRows(const std::string &dbName, const std::string &table,
                        const std::vector<SQLiteValue> &whereValues  = {});
 // Exapmle for getting data out of the query result
 /*
+ *  we get a row in the result vector, we get a value from a column of that row
+ *  with row.at("column"), we then convert it to the value we need using get
     for (const auto &row : results)
     {
-        // Get the string variant from a row at the column name if we extracted
-        // name
+        // Get a string from a row at the column name
         std::string name = std::get<std::string>(row.at("name"));
     }
 */
