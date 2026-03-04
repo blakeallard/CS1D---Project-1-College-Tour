@@ -1,7 +1,6 @@
 #include <Controllers.h>
 #include <DatabaseTypes.h>
 #include <Queries.h>
-#include <stdexcept>
 using namespace std;
 
 crow::json::wvalue UniversityController::read(std::string id)
@@ -12,25 +11,30 @@ crow::json::wvalue UniversityController::read(std::string id)
     if (id == "all")
     {
 
-        QueryData::QueryResult campusQuery = QueryData::selectRowsWithQuery(
+        QueryData::QueryResult campuses = QueryData::selectRowsWithQuery(
             "souvenirs.db",
             "SELECT DISTINCT college FROM souvenirs ORDER BY college");
 
         int i = 0;
-        for (const auto &row : campusQuery)
+        // For rows in the campuses return
+        for (const auto &row : campuses)
         {
-            std::string campusName = std::get<std::string>(row.at("college"));
+            // We get the campus name by specifying the row.at(column) then
+            // converting it to a string
+            string campusName             = get<string>(row.at("college"));
             result["campuses"][i]["name"] = campusName;
 
-            QueryData::QueryResult distanceQuery =
+            QueryData::QueryResult distances =
+                // Get distances, where starting and ending college are
+                // saddleback and the campus we're iterating
                 QueryData::selectRows("distances.db", "distances", {"distance"},
                                       {"starting_college", "ending_college"},
                                       {"Saddleback College", campusName});
 
             // If not using an iterator must check for empty
-            if (!distanceQuery.empty())
+            if (!distances.empty())
                 result["campuses"][i]["distance"] =
-                    std::get<double>(distanceQuery[0].at("distance"));
+                    std::get<double>(distances[0].at("distance"));
             else
                 result["campuses"][i]["distance"] = -1;
             i++;
@@ -51,6 +55,7 @@ crow::json::wvalue UniversityController::read(std::string id)
             i++;
         }
     }
+
     return result;
 }
 

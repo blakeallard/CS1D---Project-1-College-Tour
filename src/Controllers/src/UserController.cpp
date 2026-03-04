@@ -2,14 +2,12 @@
 #include <sstream>
 using namespace std;
 
-Wallet UserController::wallet;
-StudentPurchases UserController::purchases;
-
 crow::json::wvalue UserController::read(std::string id)
 {
     // Get value, then store it in a json then return the json
     crow::json::wvalue result;
 
+    /* TODO refactor
     if (id == "summary")
     {
         result["balances"] = wallet.GetBalance();
@@ -35,6 +33,7 @@ crow::json::wvalue UserController::read(std::string id)
         }
         result["campusSpent"] = wallet.GetSpendingByCampus(id);
     }
+    */
 
     return result;
 }
@@ -43,9 +42,11 @@ crow::json::wvalue UserController::patch(std::string id)
 {
     crow::json::wvalue result;
 
+    /* TODO refactor
     double amount = std::stod(id);
     wallet.AddFunds(amount);
     result["balance"] = wallet.GetBalance();
+    */
 
     return result;
 }
@@ -58,24 +59,10 @@ bool UserController::remove(std::string id)
 
 crow::json::wvalue UserController::create(std::string id)
 {
+
     crow::json::wvalue result;
 
-    std::string decoded;
-    for (size_t i = 0; i < id.size(); i++)
-    {
-        if (id[i] == '%' && i + 2 < id.size())
-        {
-            int hex = std::stoi(id.substr(i + 1, 2), nullptr, 16);
-            decoded += (char)hex;
-            i += 2;
-        }
-        else
-        {
-            decoded += id[i];
-        }
-    }
-    id = decoded;
-
+    /* TODO refactor
     std::stringstream ss(id);
     std::string campus;
     std::string item;
@@ -103,7 +90,7 @@ crow::json::wvalue UserController::create(std::string id)
         result["success"] = false;
         result["error"] = "Insufficient funds";
     }
+    */
 
     return result;
 }
-
