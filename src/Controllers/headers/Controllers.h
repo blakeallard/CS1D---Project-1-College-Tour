@@ -4,34 +4,42 @@
 
 struct UniversityController
 {
-        static crow::json::wvalue read(std::string id);
-        static crow::json::wvalue patch(std::string id);
-        static crow::json::wvalue create(std::string id);
-        static bool remove(std::string id);
+        static crow::response read(std::string id);
+        static crow::response patch(const crow::request &req, std::string id);
+        static crow::response create(const crow::request &req, std::string id);
+        static crow::response remove(const crow::request &req, std::string id);
 };
 
 struct UserController
 {
-        static crow::json::wvalue read(std::string id);
-        static crow::json::wvalue patch(std::string id);
-        static crow::json::wvalue create(std::string id);
-        static bool remove(std::string id);
+        static crow::response read(std::string id);
+        static crow::response patch(const crow::request &req, std::string id);
+        static crow::response create(const crow::request &req, std::string id);
+        static crow::response remove(const crow::request &req, std::string id);
 };
 
 struct AdminController
 {
-        static crow::json::wvalue read(std::string id);
-        static crow::json::wvalue patch(std::string id);
-        static crow::json::wvalue create(std::string id);
-        static bool remove(std::string id);
+        static crow::response read(std::string id);
+        static crow::response patch(const crow::request &req, std::string id);
+        static crow::response create(const crow::request &req, std::string id);
+        static crow::response remove(const crow::request &req, std::string id);
 };
 
 struct TourController
 {
-        static crow::json::wvalue read(std::string id);
-        static crow::json::wvalue patch(std::string id);
-        static crow::json::wvalue create(std::string id);
-        static bool remove(std::string id);
+        static crow::response read(std::string id);
+        static crow::response patch(const crow::request &req, std::string id);
+        static crow::response create(const crow::request &req, std::string id);
+        static crow::response remove(const crow::request &req, std::string id);
+};
+
+struct SouvenirController
+{
+        static crow::response read(std::string id);
+        static crow::response patch(const crow::request &req, std::string id);
+        static crow::response create(const crow::request &req, std::string id);
+        static crow::response remove(const crow::request &req, std::string id);
 };
 
 #endif

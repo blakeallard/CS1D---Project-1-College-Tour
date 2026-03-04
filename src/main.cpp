@@ -15,6 +15,7 @@ int main()
     register_crud_routes<UserController>(app, "User/");
     register_crud_routes<AdminController>(app, "Admin/");
     register_crud_routes<TourController>(app, "Tour/");
+    register_crud_routes<SouvenirController>(app, "Souvenir/");
 
     CROW_ROUTE(app, "/")(
         []()

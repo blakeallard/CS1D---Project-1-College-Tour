@@ -2,7 +2,7 @@
 #include <sstream>
 using namespace std;
 
-crow::json::wvalue UserController::read(std::string id)
+crow::response UserController::read(std::string id)
 {
     // Get value, then store it in a json then return the json
     crow::json::wvalue result;
@@ -35,12 +35,12 @@ crow::json::wvalue UserController::read(std::string id)
     }
     */
 
-    return result;
+    return crow::response(result);
 }
 
-crow::json::wvalue UserController::patch(std::string id)
+crow::response UserController::patch(const crow::request &req, std::string id)
 {
-    crow::json::wvalue result;
+    crow::response result;
 
     /* TODO refactor
     double amount = std::stod(id);
@@ -51,16 +51,17 @@ crow::json::wvalue UserController::patch(std::string id)
     return result;
 }
 
-bool UserController::remove(std::string id)
+crow::response UserController::remove(const crow::request &req, std::string id)
 {
+    crow::response result;
     // return success
-    return 1;
+    return result;
 }
 
-crow::json::wvalue UserController::create(std::string id)
+crow::response UserController::create(const crow::request &req, std::string id)
 {
 
-    crow::json::wvalue result;
+    crow::response result;
 
     /* TODO refactor
     std::stringstream ss(id);

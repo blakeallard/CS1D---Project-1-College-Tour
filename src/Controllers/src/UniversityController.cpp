@@ -3,7 +3,7 @@
 #include <Queries.h>
 using namespace std;
 
-crow::json::wvalue UniversityController::read(std::string id)
+crow::response UniversityController::read(std::string id)
 {
     std::cout << "ID received: '" << id << "'" << std::endl;
     crow::json::wvalue result;
@@ -56,23 +56,26 @@ crow::json::wvalue UniversityController::read(std::string id)
         }
     }
 
-    return result;
+    return crow::response(result);
 }
 
-crow::json::wvalue UniversityController::patch(std::string id)
+crow::response UniversityController::patch(const crow::request &req,
+                                           std::string id)
 {
-    crow::json::wvalue result;
+    crow::response result;
     return result;
 }
 
-bool UniversityController::remove(std::string id)
+crow::response UniversityController::remove(const crow::request &req, std::string id)
 {
     // return success
-    return 1;
+    crow::response result;
+    return result;
 }
 
-crow::json::wvalue UniversityController::create(std::string id)
+crow::response UniversityController::create(const crow::request &req,
+                                            std::string id)
 {
-    crow::json::wvalue result;
+    crow::response result;
     return result;
 }

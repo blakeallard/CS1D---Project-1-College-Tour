@@ -1,28 +1,29 @@
 #include <Controllers.h>
 using namespace std;
 
-crow::json::wvalue TourController::read(std::string id)
+crow::response TourController::read(std::string id)
 {
     // Get value, then store it in a json then return the json
     crow::json::wvalue result;
     result["value"] = 1;
-    return result;
+    return crow::response(result);
 }
 
-crow::json::wvalue TourController::patch(std::string id)
+crow::response TourController::patch(const crow::request &req, std::string id)
 {
-    crow::json::wvalue result;
+    crow::response result;
     return result;
 }
 
-bool TourController::remove(std::string id)
+crow::response TourController::remove(const crow::request &req, std::string id)
 {
     // return success
-    return 1;
+    crow::response result;
+    return result;
 }
 
-crow::json::wvalue TourController::create(std::string id)
+crow::response TourController::create(const crow::request &req, std::string id)
 {
-    crow::json::wvalue result;
+    crow::response result;
     return result;
 }

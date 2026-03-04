@@ -37,27 +37,27 @@ void register_crud_routes(crow::SimpleApp &app, const std::string &basePath)
 
     app.route_dynamic("/api/" + basePath + "<string>")
         .methods(crow::HTTPMethod::POST)(
-            [](std::string id)
+            [](const crow::request &req, std::string id)
             {
                 std::string url = decodeURL(id);
-                return Controller::create(id);
+                return Controller::create(req, url);
             });
 
     app.route_dynamic("/api/" + basePath + "<string>")
-        .methods(crow::HTTPMethod::PATCH)(
-            [](std::string id)
+        .methods(crow::HTTPMethod::Patch)(
+            [](const crow::request &req, std::string id)
             {
                 std::string url = decodeURL(id);
-                return Controller::patch(id);
+                return Controller::patch(req, url);
             });
 
     app.route_dynamic("/api/" + basePath + "<string>")
         .methods("DELETE"_method)( // MSVC Oddity does not allow
                                    // ::DELETE To be taken
-            [](std::string id)
+            [](const crow::request &req, std::string id)
             {
                 std::string url = decodeURL(id);
-                return Controller::remove(id);
+                return Controller::remove(req, url);
             });
 }
 
