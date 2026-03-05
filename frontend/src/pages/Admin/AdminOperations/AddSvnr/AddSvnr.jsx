@@ -1,6 +1,7 @@
+import BackButton from "@components/BackButton/BackButton"
+import HomeButton from "@components/HomeButton/HomeButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import HomeButton from "../../../../components/HomeButton/HomeButton";
 import "./AddSvnr.css";
 
 export default function AddSvnr() {
@@ -51,6 +52,7 @@ export default function AddSvnr() {
     return (
         <>
             <HomeButton />
+            <BackButton />
 
             <header data-aos="zoom-in" data-aos-duration="600">
                 <h1>Add Souvenir</h1>

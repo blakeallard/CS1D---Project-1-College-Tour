@@ -1,7 +1,8 @@
+import BackButton from "@components/BackButton/BackButton"
+import HomeButton from "@components/HomeButton/HomeButton";
+import "./EditSvnr.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import HomeButton from "../../../../components/HomeButton/HomeButton";
-import "./EditSvnr.css";
 
 export default function EditSvnr() {
     const [schools, setSchools] = useState([]);
@@ -70,6 +71,8 @@ export default function EditSvnr() {
     return (
         <>
             <HomeButton />
+            <BackButton />
+
 
             <header data-aos="zoom-in" data-aos-duration="600">
                 <h1>Edit Souvenir</h1>

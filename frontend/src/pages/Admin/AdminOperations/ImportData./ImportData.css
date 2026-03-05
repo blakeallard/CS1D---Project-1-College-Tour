@@ -1,0 +1,26 @@
+.import-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: auto;
+}
+
+.import-form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.import-form input {
+    margin-top: 0.5rem;
+}
+
+.import-form button {
+    padding: 0.6rem;
+    cursor: pointer;
+}
+
+.status {
+    font-weight: bold;
+}

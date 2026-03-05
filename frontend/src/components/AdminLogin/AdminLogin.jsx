@@ -12,6 +12,7 @@ import axios from "axios";
  * If successful, navigates user to Admin page. Otherwise, clears
  * form and shows login error.
  */
+
 export default function AdminLogin({ handleAdminClicked }) {
     /** Stores method to force route to Admin page */
     let navigate = useNavigate();
@@ -40,26 +41,29 @@ export default function AdminLogin({ handleAdminClicked }) {
      * Upon success, navigate to Admin page.
      * Upon failure, clear form and show error.
      */
-    const handleSubmit = () => {
-        if(username == exampleUN && password == examplePW) {
-            // window.alert("Success!!!!");
-            navigate("/admin")
-        } else {
-            // window.alert("Wth dude u aint an admin");
-        }
-        // Clear username & password inputs
-        setUsername("");
-        setPassword("");
+
+    const handleSubmit = async () => {
+    try {
+        const response = await axios.post("/api/User/admin", {
+            username: username,
+            password: password
+        });
+
+        const token = response.data.token;
+
+        // Save login token
+        localStorage.setItem("adminToken", token);
+
+        navigate("/admin");
+
+    } catch (err) {
+        window.alert("Wrong Credentials");
+        console.error(err);
     }
 
-    // API Call for username/password credentials.
-    // Used for validating user input
-    // useEffect(() => {
-    //     axios.get("")
-    //         .then(response => {
-    //             console.log(response.data);
-    //         })
-    // }, []);
+    setUsername("");
+    setPassword("");
+};
 
     return (
         <div id="admin_login-window" data-aos="zoom-in" data-aos-duration="400">
