@@ -1,5 +1,7 @@
+#include "crow/http_response.h"
 #include <Controllers.h>
 #include <DatabaseTypes.h>
+#include <Helpers.h>
 #include <Queries.h>
 using namespace std;
 
@@ -66,7 +68,8 @@ crow::response UniversityController::patch(const crow::request &req,
     return result;
 }
 
-crow::response UniversityController::remove(const crow::request &req, std::string id)
+crow::response UniversityController::remove(const crow::request &req,
+                                            std::string id)
 {
     // return success
     crow::response result;
@@ -76,6 +79,21 @@ crow::response UniversityController::remove(const crow::request &req, std::strin
 crow::response UniversityController::create(const crow::request &req,
                                             std::string id)
 {
-    crow::response result;
-    return result;
+    try
+    {
+        if (id == "import")
+        {
+            Helpers::getDatabaseFromRequest(req);
+
+            Helpers::mergeDatabases("Databases/souvenirs.db",
+                                    "Databases/uploaded.db", "souvenirs",
+                                    "item");
+        }
+    }
+    catch (std::runtime_error e)
+    {
+        std::cerr << e.what() << std::endl;
+        return crow::response(400);
+    }
+    return crow::response(200, "");
 }

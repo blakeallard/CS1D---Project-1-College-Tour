@@ -5,6 +5,7 @@ void ABSDatabase::ConnectToDB(const std::string &file)
 {
     // Open generic database
     int result = sqlite3_open(file.c_str(), &generic_db);
+    sqlite3_busy_timeout(generic_db, 5000);
     if (result != SQLITE_OK)
     {
         CloseDB();

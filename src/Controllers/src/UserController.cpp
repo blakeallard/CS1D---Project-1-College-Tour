@@ -1,3 +1,4 @@
+#include "Queries.h"
 #include <Controllers.h>
 #include <sstream>
 using namespace std;
@@ -61,37 +62,36 @@ crow::response UserController::remove(const crow::request &req, std::string id)
 crow::response UserController::create(const crow::request &req, std::string id)
 {
 
-    crow::response result;
+    auto body = crow::json::load(req.body);
 
-    /* TODO refactor
-    std::stringstream ss(id);
-    std::string campus;
-    std::string item;
-    std::string priceStr;
-    std::string quantityStr;
-
-    std::getline(ss, campus, ',');
-    std::getline(ss, item, ',');
-    std::getline(ss, priceStr, ',');
-    std::getline(ss, quantityStr, ',');
-
-    double price = std::stod(priceStr);
-    int quantity = std::stoi(quantityStr);
-    double total = price * quantity;
-
-    if (wallet.DeductFunds(campus, total))
+    if (id == "admin")
     {
-        purchases.AddItem(campus, item, price, quantity);
-        result["success"] = true;
-        result["balances"] = wallet.GetBalance();
+        QueryData::QueryResult credentials =
+            QueryData::selectRows("users.db", "users", {"username", "password"},
+                                  {"username"}, {"admin"});
+
+        string username = body["username"].s();
+        string password = body["password"].s();
+        string dbUsername;
+        string dbPassword;
+        if (!credentials.empty())
+        {
+
+            dbUsername = get<string>(credentials[0].at("username"));
+            dbPassword = get<string>(credentials[0].at("password"));
+        }
+
+        if (username == dbUsername && password == dbPassword)
+        {
+            crow::json::wvalue res;
+            res["token"] = "admin-session-token";
+            return crow::response(res);
+        }
+        else
+        {
+            return crow::response(401);
+        }
     }
 
-    else
-    {
-        result["success"] = false;
-        result["error"] = "Insufficient funds";
-    }
-    */
-
-    return result;
+    return crow::response(200);
 }
