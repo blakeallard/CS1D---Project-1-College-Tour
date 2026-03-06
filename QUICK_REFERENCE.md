@@ -36,11 +36,11 @@ void findOptimalTourRecursive(...) {
 ```
 
 ## Results
-✅ Shows 11 campuses (only those with distance data)
-✅ Calculates optimal routes recursively
-✅ Displays correct numeric distances
-✅ Complete route tables
-✅ Meets project requirements
+Shows 11 campuses (only those with distance data)
+Calculates optimal routes recursively
+Displays correct numeric distances
+Complete route tables
+Meets project requirements
 
 ## How to Test
 ```bash
@@ -65,5 +65,5 @@ Expected: Valid JSON with numeric distance (not infinity).
 - `QUICK_REFERENCE.md` - This file
 
 ---
-Status: ✅ FIXED
+Status: FIXED
 Date: March 3, 2026
