@@ -42,4 +42,12 @@ struct SouvenirController
         static crow::response remove(const crow::request &req, std::string id);
 };
 
+struct PurchaseController
+{
+        static crow::response read(std::string id);
+        static crow::response patch(const crow::request &req, std::string id);
+        static crow::response create(const crow::request &req, std::string id);
+        static crow::response remove(const crow::request &req, std::string id);
+};
+
 #endif
