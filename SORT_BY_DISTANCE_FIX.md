@@ -42,7 +42,7 @@ Step 4: Calculate totalDistance:
 
 ### Key Differences
 
-| Aspect | ❌ Old (Chaining) | ✅ New (Sorted) |
+| Aspect | Old (Chaining) | New (Sorted) |
 |--------|------------------|----------------|
 | **Sort by** | Distance from current position | Distance from START only |
 | **Algorithm** | Greedy nearest-neighbor | Simple sort |
@@ -85,13 +85,13 @@ TourResult TourPlanner::calculateSortedByDistanceTour(
 ```
 
 **Key Points:**
-- ✅ Sorts by distance from START
-- ✅ O(n log n) time complexity
-- ✅ Deterministic (stable sort)
-- ✅ No chaining
-- ✅ No recursion
-- ✅ No TSP
-- ✅ No `numeric_limits::max()`
+- Sorts by distance from START
+- O(n log n) time complexity
+- Deterministic (stable sort)
+- No chaining
+- No recursion
+- No TSP
+- No `numeric_limits::max()`
 
 ## Testing & Verification
 
@@ -117,8 +117,8 @@ ASU → UCI (375) → UCLA (51) → Oregon (849) → Northwestern (2,151)
 Total: 3,426 miles
 ```
 
-✅ **Campuses are ordered by distance from ASU**
-✅ **NOT chained by nearest-neighbor**
+**Campuses are ordered by distance from ASU**
+**NOT chained by nearest-neighbor**
 
 ### Test 2: Saddleback Tour
 
@@ -140,8 +140,8 @@ Saddleback → UCLA (66) → ASU (397) → Northwestern (1,756)
 Total: 2,219 miles
 ```
 
-✅ **Campuses are ordered by distance from Saddleback**
-✅ **Deterministic and simple**
+**Campuses are ordered by distance from Saddleback**
+**Deterministic and simple**
 
 ## Comparison: Old vs New
 
@@ -202,11 +202,11 @@ Frontend remains unchanged - still sends selected campuses to backend.
 
 ## Algorithm Properties
 
-✅ **Time Complexity:** O(n log n) for sorting  
-✅ **Space Complexity:** O(n) for storing campus distances  
-✅ **Deterministic:** Same input → same output  
-✅ **Simple:** No recursion, no TSP, no permutations  
-✅ **Correct:** Matches project requirements exactly  
+**Time Complexity:** O(n log n) for sorting  
+**Space Complexity:** O(n) for storing campus distances  
+**Deterministic:** Same input → same output  
+**Simple:** No recursion, no TSP, no permutations  
+**Correct:** Matches project requirements exactly  
 
 ## Deployment
 
@@ -234,15 +234,15 @@ curl -X POST http://localhost:18080/api/Tour/custom \
 
 Expected: Campuses ordered by distance from ASU, not by chaining.
 
-## Status: ✅ FIXED
+## Status: FIXED
 
 ASU and Saddleback tours now:
-- ✅ Sort campuses by distance from START only
-- ✅ Do NOT use greedy chaining
-- ✅ Do NOT use nearest-neighbor from current position
-- ✅ Simple O(n log n) algorithm
-- ✅ Deterministic behavior
-- ✅ Correct as per requirements
+- Sort campuses by distance from START only
+- Do NOT use greedy chaining
+- Do NOT use nearest-neighbor from current position
+- Simple O(n log n) algorithm
+- Deterministic behavior
+- Correct as per requirements
 
 ---
 
