@@ -1,14 +1,14 @@
-# 🔧 Critical Fixes - Login & Tour Algorithm
+# Critical Fixes - Login & Tour Algorithm
 
 ## Date: March 3, 2026
 
 ---
 
-## 🐛 Issue #1: Tour Algorithm Not Finding Optimal Routes
+## Issue #1: Tour Algorithm Not Finding Optimal Routes
 
 ### **Problem Identified:**
 The tour algorithm was producing completely illogical routes:
-- Example: Saddleback → UCI (16mi) → UCLA (51mi) → **Pacific (333mi)** → **Oregon (517mi)** → **ASU (1343mi)** → **Wisconsin (1684mi)** → Northwestern (145mi) ❌
+- Example: Saddleback → UCI (16mi) → UCLA (51mi) → **Pacific (333mi)** → **Oregon (517mi)** → **ASU (1343mi)** → **Wisconsin (1684mi)** → Northwestern (145mi)
 
 This is NOT nearest-neighbor behavior!
 
@@ -17,7 +17,7 @@ The algorithm had a **redundant and incorrect check** in the main loop:
 
 ```cpp
 // BUGGY CODE (line 72):
-if (visited.find(campus) == visited.end())  // ❌ Checking visited set
+if (visited.find(campus) == visited.end())  // Checking visited set
 {
     double dist = QueryData::distance(currentCampus, campus);
     // ...
@@ -33,7 +33,7 @@ if (visited.find(campus) == visited.end())  // ❌ Checking visited set
 ### **Fix Applied:**
 ```cpp
 // FIXED CODE:
-for (const auto &campus : remainingCampuses)  // ✅ Only unvisited campuses
+for (const auto &campus : remainingCampuses)  // Only unvisited campuses
 {
     double dist = QueryData::distance(currentCampus, campus);
     if (dist >= 0 && dist < minDistance)  // Find minimum
@@ -69,13 +69,13 @@ for (const auto &campus : remainingCampuses)  // ✅ Only unvisited campuses
 - Cannot be improved without changing algorithm (e.g., to use spatial indexing)
 
 ### **Result:**
-✅ Tours now follow nearest-neighbor correctly
-✅ Distances are minimized at each step
-✅ Algorithm behavior matches specification
+Tours now follow nearest-neighbor correctly
+Distances are minimized at each step
+Algorithm behavior matches specification
 
 ---
 
-## 🐛 Issue #2: Login Credentials Not Working
+## Issue #2: Login Credentials Not Working
 
 ### **Problem Identified:**
 Admin login failing with correct credentials (admin/admin123), showing "Invalid credentials" error.
@@ -133,9 +133,9 @@ std::cerr << "[AdminController] ERROR: Invalid JSON received" << std::endl;
 - Production would use bcrypt hashing + JWT tokens
 
 ### **Result:**
-✅ Login now works with admin/admin123
-✅ Debug logging helps troubleshooting
-✅ No collision with souvenir endpoints
+Login now works with admin/admin123
+Debug logging helps troubleshooting
+No collision with souvenir endpoints
 
 ---
 
@@ -144,7 +144,7 @@ std::cerr << "[AdminController] ERROR: Invalid JSON received" << std::endl;
 ### Tour Algorithm:
 | Metric | Before | After | Improvement |
 |--------|--------|-------|-------------|
-| Correctness | ❌ Broken | ✅ Working | Fixed |
+| Correctness | Broken | Working | Fixed |
 | Time Complexity | O(n²) + overhead | O(n²) optimized | Cleaner |
 | Database Queries | n² + n (unused) | n² only | -n queries |
 | Code Readability | Confusing | Clear | Better |
@@ -179,21 +179,21 @@ std::sort(campusDistances.begin(), campusDistances.end(),
 
 ---
 
-## 🧪 Testing Performed
+## Testing Performed
 
 ### Tour Algorithm:
-- ✅ Saddleback tour: Visits all 11 campuses in nearest-neighbor order
-- ✅ ASU tour: Selects N nearest from ASU, then optimal route through them
-- ✅ UCI tour: Visits all 13 campuses optimally
-- ✅ Custom tour: User selection works, optimal routing applied
+- Saddleback tour: Visits all 11 campuses in nearest-neighbor order
+- ASU tour: Selects N nearest from ASU, then optimal route through them
+- UCI tour: Visits all 13 campuses optimally
+- Custom tour: User selection works, optimal routing applied
 
 ### Login System:
-- ✅ Correct credentials (admin/admin123): SUCCESS
-- ✅ Wrong username: FAILURE with message
-- ✅ Wrong password: FAILURE with message  
-- ✅ Empty fields: Validation error on frontend
-- ✅ Session storage: Persists across page navigation
-- ✅ Logout: Clears session properly
+- Correct credentials (admin/admin123): SUCCESS
+- Wrong username: FAILURE with message
+- Wrong password: FAILURE with message  
+- Empty fields: Validation error on frontend
+- Session storage: Persists across page navigation
+- Logout: Clears session properly
 
 ---
 
@@ -253,18 +253,18 @@ killall execBinary
 ## 📋 What Changed (File List)
 
 ### Backend:
-- ✅ `src/Database/src/TourPlanner.cpp` - Fixed nearest-neighbor algorithm
-- ✅ `src/Controllers/src/AdminController.cpp` - Fixed login validation
+- `src/Database/src/TourPlanner.cpp` - Fixed nearest-neighbor algorithm
+- `src/Controllers/src/AdminController.cpp` - Fixed login validation
 
 ### Frontend:
 - No changes needed (logic was correct)
 
 ### Documentation:
-- ✅ Created FIXES.md (this file)
+- Created FIXES.md (this file)
 
 ---
 
-## ⚠️ Known Limitations
+## Known Limitations
 
 1. **TSP Not Optimal:**
    - Nearest-neighbor is O(n²) but doesn't guarantee optimal solution
@@ -283,7 +283,7 @@ killall execBinary
 
 ---
 
-## ✅ Verification Checklist
+## Verification Checklist
 
 - [x] Tour algorithm produces nearest-neighbor routes
 - [x] Login works with correct credentials  
@@ -297,7 +297,7 @@ killall execBinary
 
 ---
 
-**Status:** ✅ ALL ISSUES RESOLVED
+**Status:** ALL ISSUES RESOLVED
 
 **Tested:** March 3, 2026
 
