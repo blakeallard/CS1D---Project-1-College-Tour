@@ -8,6 +8,7 @@ export default function ImportData() {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [status, setStatus] = useState("");
+    const [importType, setImportType] = useState("schools");
 
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
@@ -18,7 +19,8 @@ export default function ImportData() {
 
         if (!selectedFile) {
             alert("Please select a file first.");
-            return; }
+            return;
+        }
 
         const formData = new FormData();
         formData.append("file", selectedFile);
@@ -26,7 +28,13 @@ export default function ImportData() {
         try {
             setStatus("Uploading...");
 
-            await axios.post("/api/University/import", formData, {
+            // Decide which API to call
+            const endpoint =
+                importType === "schools"
+                    ? "/api/University/import"
+                    : "/api/Souvenir/import";
+
+            await axios.post(endpoint, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -53,12 +61,32 @@ export default function ImportData() {
             <main data-aos="zoom-in" data-aos-duration="600">
                 <form onSubmit={handleImport} className="import-form">
 
+                    {/* Import Type Selection */}
+                    <div className="import-type">
+                        <label>
+                            <input
+                                type="radio"
+                                value="schools"
+                                checked={importType === "schools"}
+                                onChange={() => setImportType("schools")}
+                            />
+                            Import Schools
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                value="souvenirs"
+                                checked={importType === "souvenirs"}
+                                onChange={() => setImportType("souvenirs")}
+                            />
+                            Import Souvenirs
+                        </label>
+                    </div>
+
                     <label>
-                        Select Database/File:
-                        <input
-                            type="file"
-                            onChange={handleFileChange}
-                        />
+                        Select File:
+                        <input type="file" onChange={handleFileChange} />
                     </label>
 
                     <button type="submit">
