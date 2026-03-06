@@ -179,27 +179,27 @@ sqlite3 users.db "SELECT user_id, SUM(price * quantity) as total FROM user_purch
 
 ## Expected Results
 
-### ✅ Tour Calculation
+### Tour Calculation
 - Optimal route displayed
 - Distances shown between stops
 - Total distance calculated
 
-### ✅ Souvenir Display
+### Souvenir Display
 - All souvenirs loaded for each campus
 - Prices displayed correctly
 - Quantity inputs functional
 
-### ✅ Purchase Totals
+### Purchase Totals
 - Campus totals calculated correctly
 - Grand total updates dynamically
 - Purchase button enabled when items selected
 
-### ✅ Save to Database
+### Save to Database
 - Purchases inserted into user_purchases table
 - Correct user_id, campus, item, price, quantity
 - Timestamp automatically added
 
-### ✅ Algorithm Verification
+### Algorithm Verification
 - Logs show distance comparisons
 - Nearest neighbor confirmed at each step
 - Verification PASSED message displayed
@@ -242,10 +242,10 @@ cmake --build build
 
 ## Success Indicators
 
-- ✅ No console errors
-- ✅ Tour route displays correctly
-- ✅ Souvenirs load for each campus
-- ✅ Totals calculate accurately
-- ✅ Purchase saves successfully
-- ✅ Backend logs show verification PASSED
-- ✅ Database contains purchase records
+- No console errors
+- Tour route displays correctly
+- Souvenirs load for each campus
+- Totals calculate accurately
+- Purchase saves successfully
+- Backend logs show verification PASSED
+- Database contains purchase records
