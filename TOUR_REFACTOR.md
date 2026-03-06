@@ -66,13 +66,13 @@ TourResult TourPlanner::calculateGreedyTour(
 - `frontend/src/pages/Tours/TourOptions/SaddlebackStart/SaddlebackStart.jsx`
 
 **Changes:**
-- ✅ Removed "visit all campuses" behavior
-- ✅ Added checkbox list for campus selection
-- ✅ Changed button text from "Calculating optimal tour..." to "Generating route..."
-- ✅ Fixed starting campus display
-- ✅ Only sends selected campuses to backend
-- ✅ Validates at least one campus selected
-- ✅ Filters out starting campus from selection list
+- Removed "visit all campuses" behavior
+- Added checkbox list for campus selection
+- Changed button text from "Calculating optimal tour..." to "Generating route..."
+- Fixed starting campus display
+- Only sends selected campuses to backend
+- Validates at least one campus selected
+- Filters out starting campus from selection list
 
 **New UI Elements:**
 ```jsx
@@ -139,37 +139,37 @@ All styling matches existing minimalist dark theme.
 
 ## Key Requirements Met
 
-✅ **Fixed starting campus**
+**Fixed starting campus**
 - ASU Tour → "Arizona State University"
 - Saddleback Tour → "Saddleback College"
 
-✅ **Campus selection**
+**Campus selection**
 - Checkbox list of all available campuses
 - User selects any subset
 - Starting campus excluded from list
 
-✅ **Removed over-engineering**
+**Removed over-engineering**
 - No factorial TSP for simple tours
 - No numeric_limits::max()
 - No "visit all campuses" automatic behavior
 - No random selection
 
-✅ **Greedy algorithm**
+**Greedy algorithm**
 - Simple, deterministic
 - Efficient O(n²)
 - Picks nearest unvisited campus
 
-✅ **Updated messaging**
+**Updated messaging**
 - "Generating route..." instead of "Calculating optimal tour..."
 - "Select campuses to visit" instead of "Visit all campuses"
 - Clear starting campus indication
 
-✅ **Validation**
+**Validation**
 - Empty selection returns starting campus only
 - Missing distances handled gracefully
 - Error messages for invalid requests
 
-✅ **Response format**
+**Response format**
 ```json
 {
   "success": true,
@@ -205,7 +205,7 @@ curl -X POST http://localhost:18080/api/Tour/custom \
 3. Nearest: Saddleback (16 miles from UCI)
 4. Nearest: UCLA (66 miles from Saddleback)
 
-✅ Deterministic, efficient, no TSP
+Deterministic, efficient, no TSP
 
 ### Test 2: Saddleback Tour with 3 Campuses
 ```bash
@@ -226,7 +226,7 @@ curl -X POST http://localhost:18080/api/Tour/custom \
 }
 ```
 
-✅ Fixed start, greedy routing, valid distances
+Fixed start, greedy routing, valid distances
 
 ### Test 3: Custom Tour Still Optimal
 ```bash
@@ -246,7 +246,7 @@ curl -X POST http://localhost:18080/api/Tour/custom \
 }
 ```
 
-✅ Custom Tour still uses optimal recursive algorithm
+Custom Tour still uses optimal recursive algorithm
 
 ## Behavioral Changes
 
@@ -330,16 +330,16 @@ lsof -ti :18080 | xargs kill -9
 4. Click "Generate Tour"
 5. Verify route displays with valid distances
 
-## Status: ✅ COMPLETE
+## Status: COMPLETE
 
 The ASU and Saddleback tours now:
-- ✅ Allow campus selection via checkboxes
-- ✅ Use simple greedy nearest-neighbor algorithm
-- ✅ Have fixed starting campuses
-- ✅ Show "Generating route..." instead of "Calculating optimal..."
-- ✅ Return deterministic results
-- ✅ Handle edge cases gracefully
-- ✅ Match existing UI theme
+- Allow campus selection via checkboxes
+- Use simple greedy nearest-neighbor algorithm
+- Have fixed starting campuses
+- Show "Generating route..." instead of "Calculating optimal..."
+- Return deterministic results
+- Handle edge cases gracefully
+- Match existing UI theme
 
 The Custom Tour still uses the optimal recursive algorithm for maximum flexibility.
 
