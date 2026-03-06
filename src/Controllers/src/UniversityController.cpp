@@ -13,9 +13,8 @@ crow::response UniversityController::read(std::string id)
     if (id == "all")
     {
 
-        QueryData::QueryResult campuses = QueryData::selectRowsWithQuery(
-            "souvenirs.db",
-            "SELECT DISTINCT college FROM souvenirs ORDER BY college");
+        QueryData::QueryResult campuses =
+            QueryData::selectRows("distances.db", "colleges", {"college"});
 
         int i = 0;
         // For rows in the campuses return
@@ -85,9 +84,13 @@ crow::response UniversityController::create(const crow::request &req,
         {
             Helpers::getDatabaseFromRequest(req);
 
-            Helpers::mergeDatabases("Databases/souvenirs.db",
-                                    "Databases/uploaded.db", "souvenirs",
-                                    "item");
+            Helpers::mergeDatabases("Databases/distances.db",
+                                    "Databases/uploaded.db", "distances",
+                                    "distances");
+            Helpers::getDatabaseFromRequest(req);
+            Helpers::mergeDatabases(
+                "Databases/distances.db", "Databases/uploaded.db", "colleges",
+                "distances", true, {}, {}, "college", "starting_college");
         }
     }
     catch (std::runtime_error e)

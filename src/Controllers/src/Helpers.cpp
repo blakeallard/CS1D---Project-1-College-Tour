@@ -1,9 +1,11 @@
+#include "Helpers.h"
 #include "AbsDatabase.h"
 #include "crow/multipart.h"
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <vector>
 using namespace std;
 
 namespace Helpers
@@ -32,8 +34,16 @@ bool getDatabaseFromRequest(crow::request req)
 }
 
 bool mergeDatabases(const std::string &mainDBName, const std::string &otherFile,
-                    const std::string &table, const std::string &uniqueColumn)
+                    const std::string &mergeIntoTable,
+                    const std::string &mergeFromTable, const bool isUnique,
+                    const std::vector<std::string> &mergeIntoColumns,
+                    const std::vector<std::string> &mergeFromColumns,
+                    const std::string &uniqueIntoColumn,
+                    const std::string &uniqueFromColumn)
 {
+    if (mergeFromColumns.size() != mergeIntoColumns.size())
+        throw std::runtime_error("Code column sizes do not match");
+
     ABSDatabase mainDB(mainDBName);
     sqlite3 *db = mainDB.get();
 
@@ -53,13 +63,59 @@ bool mergeDatabases(const std::string &mainDBName, const std::string &otherFile,
         }
 
         {
-            // Build SQL dynamically
-            std::string sql =
-                "INSERT INTO main." + table + " SELECT * FROM other." + table +
-                " WHERE NOT EXISTS ("
-                " SELECT 1 FROM main." +
-                table + " WHERE main." + table + "." + uniqueColumn +
-                " = other." + table + "." + uniqueColumn + ");";
+            std::stringstream ss;
+
+            if (isUnique)
+                ss << "INSERT OR IGNORE INTO main." << mergeIntoTable << " ("
+                   << uniqueIntoColumn << ")" << " SELECT " << uniqueFromColumn
+                   << " FROM other." << mergeFromTable << ";";
+            else
+            {
+
+                ss << "INSERT INTO main." << mergeIntoTable;
+
+                if (!mergeIntoColumns.empty())
+                {
+                    ss << " (";
+                    for (size_t i = 0; i < mergeIntoColumns.size(); ++i)
+                    {
+                        ss << mergeIntoColumns[i];
+
+                        if (i < mergeIntoColumns.size() - 1)
+                            ss << ", ";
+                    }
+                    ss << ")";
+                }
+
+                ss << " SELECT ";
+
+                if (!mergeFromColumns.empty())
+                {
+                    for (size_t i = 0; i < mergeFromColumns.size(); ++i)
+                    {
+                        ss << mergeFromColumns[i];
+
+                        if (i < mergeFromColumns.size() - 1)
+                            ss << ", ";
+                    }
+                }
+                else
+                    ss << "*";
+
+                ss << " FROM other." << mergeFromTable;
+
+                if (!uniqueIntoColumn.empty())
+                    ss << " WHERE NOT EXISTS ("
+                          " SELECT 1 FROM main."
+                       << mergeIntoTable << " WHERE main." << mergeIntoTable
+                       << "." << uniqueIntoColumn << " = other."
+                       << mergeFromTable << "." << uniqueFromColumn << ")";
+
+                ss << ";";
+            }
+
+            std::string sql = ss.str();
+            cout << sql << endl;
 
             Statement merge(db, sql);
             merge.execute();
@@ -76,6 +132,7 @@ bool mergeDatabases(const std::string &mainDBName, const std::string &otherFile,
             Statement detach(db, "DETACH DATABASE other;");
             detach.execute();
         }
+
         std::filesystem::path file = "Databases/uploaded.db";
 
         if (std::filesystem::remove(file))

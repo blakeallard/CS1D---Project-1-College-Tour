@@ -1,6 +1,7 @@
 #include "Controllers.h"
 #include "Queries.h"
 #include "crow/json.h"
+#include <Helpers.h>
 #include <iostream>
 #include <stdexcept>
 
@@ -37,6 +38,7 @@ crow::response SouvenirController::patch(const crow::request &req,
                                          std::string id)
 {
     auto body = crow::json::load(req.body);
+
     if (!body)
         return crow::response(400);
 
@@ -63,17 +65,26 @@ crow::response SouvenirController::create(const crow::request &req,
                                           std::string id)
 {
     auto body = crow::json::load(req.body);
-    if (!body)
-        return crow::response(400);
 
     try
     {
-        std::string newName = body["name"].s();
-        double newPrice     = body["price"].d();
+        if (id == "import")
+        {
+            Helpers::getDatabaseFromRequest(req);
 
-        QueryData::insertRow("souvenirs.db", "souvenirs",
-                             {"college", "item", "price"},
-                             {id, newName, newPrice});
+            Helpers::mergeDatabases("Databases/souvenirs.db",
+                                    "Databases/uploaded.db", "souvenirs",
+                                    "souvenirs", false, {}, {}, "item", "item");
+        }
+        else
+        {
+            std::string newName = body["name"].s();
+            double newPrice     = body["price"].d();
+
+            QueryData::insertRow("souvenirs.db", "souvenirs",
+                                 {"college", "item", "price"},
+                                 {id, newName, newPrice});
+        }
     }
     catch (std::runtime_error e)
     {

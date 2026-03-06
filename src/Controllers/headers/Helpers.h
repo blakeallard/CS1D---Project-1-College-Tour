@@ -5,7 +5,17 @@
 namespace Helpers
 {
 bool getDatabaseFromRequest(crow::request req);
-bool mergeDatabases(const std::string &dbName, const std::string &otherFile,
-                    const std::string &table, const std::string &uniqueColumn);
+
+// This needs to be changed and refactored but I'm too lazy because we meet all
+// requirements
+bool mergeDatabases(const std::string &mainDBName, const std::string &otherFile,
+                    const std::string &mergeIntoTable,
+                    const std::string &mergeFromTable,
+                    const bool isUnique                              = false,
+                    const std::vector<std::string> &mergeIntoColumns = {},
+                    const std::vector<std::string> &mergeFromColumns = {},
+                    const std::string &uniqueIntoColumn              = "",
+                    const std::string &uniqueFromColumn              = "");
+
 } // namespace Helpers
 #endif
