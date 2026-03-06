@@ -20,7 +20,7 @@ The Custom Tour feature was displaying incorrect data:
 // BEFORE (INCORRECT):
 void allCampuses(std::vector<std::string> &campuses)
 {
-    ABSDatabase db(SOUVENIRS);  // ❌ Wrong database!
+    ABSDatabase db(SOUVENIRS);  // Wrong database!
     Statement st(db.get(),
                  "SELECT DISTINCT college FROM souvenirs ORDER BY college");
     // ...
@@ -29,7 +29,7 @@ void allCampuses(std::vector<std::string> &campuses)
 // AFTER (CORRECT):
 void allCampuses(std::vector<std::string> &campuses)
 {
-    ABSDatabase db(DISTANCES);  // ✅ Correct database!
+    ABSDatabase db(DISTANCES);  // Correct database!
     Statement st(db.get(),
                  "SELECT DISTINCT starting_college FROM distances ORDER BY starting_college");
     // ...
@@ -278,11 +278,11 @@ To verify the fix works:
 
 Expected: Valid JSON with optimal route and numeric (not infinity) distance.
 
-## Status: ✅ FIXED
+## Status: FIXED
 
 The Custom Tour feature now:
-- ✅ Shows only campuses with distance data
-- ✅ Uses recursive backtracking algorithm
-- ✅ Guarantees optimal route ordering
-- ✅ Displays correct distances in proper format
-- ✅ Meets all project requirements
+- Shows only campuses with distance data
+- Uses recursive backtracking algorithm
+- Guarantees optimal route ordering
+- Displays correct distances in proper format
+- Meets all project requirements
