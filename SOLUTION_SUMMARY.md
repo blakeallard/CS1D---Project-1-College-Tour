@@ -111,7 +111,7 @@ curl -X POST http://localhost:18080/api/Tour/custom \
   ]
 }
 ```
-✅ Valid numeric distance, complete route
+Valid numeric distance, complete route
 
 ### Test 2: Matching Screenshot
 ```bash
@@ -142,7 +142,7 @@ curl -X POST http://localhost:18080/api/Tour/custom \
   ]
 }
 ```
-✅ Optimal route calculated
+Optimal route calculated
 
 ## Files Modified
 
@@ -189,32 +189,32 @@ lsof -ti :18080 | xargs kill -9
 
 ## Expected Behavior (Fixed)
 
-✅ **Campus List:** Shows only 11 campuses with distance data
-✅ **Tour Generation:** Calculates optimal route using recursive algorithm
-✅ **Display:** Shows numeric distance (not scientific notation)
-✅ **Route Table:** Displays complete ordered list of stops
-✅ **Distances:** Shows distance from previous campus for each stop
-✅ **Formatting:** Clean, readable output matching existing UI theme
+**Campus List:** Shows only 11 campuses with distance data
+**Tour Generation:** Calculates optimal route using recursive algorithm
+**Display:** Shows numeric distance (not scientific notation)
+**Route Table:** Displays complete ordered list of stops
+**Distances:** Shows distance from previous campus for each stop
+**Formatting:** Clean, readable output matching existing UI theme
 
 ## What Was NOT Changed
 
-✅ **Frontend UI:** No styling or layout modifications
-✅ **API Routes:** All endpoints remain the same
-✅ **Database Schema:** No database structure changes
-✅ **Other Features:** Saddleback, UCI, ASU tours unchanged
-✅ **Controller Structure:** CRUD pattern maintained
+**Frontend UI:** No styling or layout modifications
+**API Routes:** All endpoints remain the same
+**Database Schema:** No database structure changes
+**Other Features:** Saddleback, UCI, ASU tours unchanged
+**Controller Structure:** CRUD pattern maintained
 
 ## Project Requirements Met
 
-✅ **Recursive Algorithm:** Uses call stack and backtracking
-✅ **Optimal Solution:** Evaluates all permutations
-✅ **Custom Tours:** User can select any campuses to visit
-✅ **Efficient Routing:** Calculates shortest total distance
-✅ **Valid Data:** Only shows campuses with complete distance data
-✅ **Clean Architecture:** Modular, maintainable code
-✅ **Error Handling:** Graceful handling of edge cases
+**Recursive Algorithm:** Uses call stack and backtracking
+**Optimal Solution:** Evaluates all permutations
+**Custom Tours:** User can select any campuses to visit
+**Efficient Routing:** Calculates shortest total distance
+**Valid Data:** Only shows campuses with complete distance data
+**Clean Architecture:** Modular, maintainable code
+**Error Handling:** Graceful handling of edge cases
 
-## Status: ✅ COMPLETE
+## Status: COMPLETE
 
 The Custom Tour feature is now fully functional with:
 - Correct data sources
@@ -232,4 +232,4 @@ The Custom Tour feature is now fully functional with:
 
 **Fixed:** March 3, 2026
 **Tested:** March 3, 2026
-**Status:** Production Ready ✅
+**Status:** Production Ready
