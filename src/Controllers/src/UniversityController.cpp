@@ -12,33 +12,46 @@ crow::response UniversityController::read(std::string id)
 
     if (id == "all")
     {
-
+        // Return all campuses from distances database (these have valid distance data)
         QueryData::QueryResult campuses = QueryData::selectRowsWithQuery(
-            "souvenirs.db",
-            "SELECT DISTINCT college FROM souvenirs ORDER BY college");
+            "distances.db",
+            "SELECT DISTINCT starting_college as college FROM distances ORDER BY starting_college");
 
         int i = 0;
-        // For rows in the campuses return
         for (const auto &row : campuses)
         {
-            // We get the campus name by specifying the row.at(column) then
-            // converting it to a string
             string campusName             = get<string>(row.at("college"));
             result["campuses"][i]["name"] = campusName;
 
             QueryData::QueryResult distances =
-                // Get distances, where starting and ending college are
-                // saddleback and the campus we're iterating
                 QueryData::selectRows("distances.db", "distances", {"distance"},
                                       {"starting_college", "ending_college"},
                                       {"Saddleback College", campusName});
 
-            // If not using an iterator must check for empty
             if (!distances.empty())
                 result["campuses"][i]["distance"] =
                     std::get<double>(distances[0].at("distance"));
             else
                 result["campuses"][i]["distance"] = -1;
+            i++;
+        }
+    }
+    else if (id.rfind("from-", 0) == 0)
+    {
+        // Handle "from-{campusName}" - return campuses reachable from specified campus
+        string startCampus = id.substr(5); // Remove "from-" prefix
+        
+        QueryData::QueryResult campuses = QueryData::selectRows(
+            "distances.db", "distances", {"ending_college", "distance"},
+            {"starting_college"}, {startCampus});
+
+        int i = 0;
+        for (const auto &row : campuses)
+        {
+            string campusName = get<string>(row.at("ending_college"));
+            double dist = get<double>(row.at("distance"));
+            result["campuses"][i]["name"] = campusName;
+            result["campuses"][i]["distance"] = dist;
             i++;
         }
     }

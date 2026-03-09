@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide
+# Quick Start Guide
 
 ## Get Your Application Running in 3 Steps
 
@@ -22,7 +22,7 @@ cd ..
 ./build/execBinary
 ```
 
-That's it! 🎉
+That's it!
 
 ---
 
@@ -151,22 +151,22 @@ CS1D---Project-1-College-Tour/
 
 ## What's Working
 
-✅ **Tour Planning**
+**Tour Planning**
 - All 4 tour types functional
 - Optimal route calculation
 - Distance tracking
 
-✅ **Admin System**
+**Admin System**
 - Login authentication
 - Add/Edit/Delete souvenirs
 - Session management
 
-✅ **Campus Info**
+**Campus Info**
 - View all campuses
 - See souvenirs and prices
 - Distance from Saddleback
 
-✅ **UI/UX**
+**UI/UX**
 - Loading states
 - Error handling
 - Success messages
@@ -177,18 +177,15 @@ CS1D---Project-1-College-Tour/
 ## Next Steps
 
 1. **Try all features** - Tour planning, campus info, admin operations
-2. **Check the documentation** - See BACKEND_INTEGRATION.md for details
-3. **Test the APIs** - Use curl commands above
-4. **Customize** - Add your own campuses/souvenirs via admin panel
+2. **Test the APIs** - Use curl commands above
+3. **Customize** - Add your own campuses/souvenirs via admin panel
 
 ---
 
 ## Need Help?
 
-1. Check `IMPLEMENTATION_SUMMARY.md` - High-level overview
-2. Check `BACKEND_INTEGRATION.md` - Detailed technical docs
-3. Check browser console - Frontend errors
-4. Check terminal output - Backend errors
+1. Check browser console - Frontend errors
+2. Check terminal output - Backend errors
 
 ---
 
@@ -201,4 +198,4 @@ Password: admin123
 
 ---
 
-**Enjoy your fully integrated College Tour application! 🎓🚌**
+**Enjoy your fully integrated College Tour application!**
