@@ -28,7 +28,7 @@ crow::response TourController::remove(const crow::request &req, std::string id)
 crow::response TourController::create(const crow::request &req, std::string id)
 {
     // POST /api/Tour/calculate - Calculate optimal tour route
-    if (id == "calculate")
+    if (id == "calculate" || id == "custom")
     {
         try
         {
