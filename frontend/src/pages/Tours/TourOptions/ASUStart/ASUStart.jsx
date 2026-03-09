@@ -19,20 +19,15 @@ export default function ASUStart() {
     const [purchases, setPurchases] = useState({});  // {campusName: {itemName: quantity}}
     const [savingPurchases, setSavingPurchases] = useState(false);
 
-    // Load campuses on component mount from existing API
+    // Load campuses reachable from ASU (with valid distance data)
     useEffect(() => {
         const fetchCampuses = async () => {
             try {
                 setLoading(true);
-                // Use existing University API endpoint
-                const response = await axios.get("/api/University/all");
+                // Fetch only campuses that have distance data from ASU
+                const response = await axios.get("/api/University/from-Arizona State University");
                 
-                // Filter out Arizona State University (starting point)
-                const filteredCampuses = response.data.campuses.filter(
-                    campus => campus.name !== "Arizona State University"
-                );
-                
-                setCampuses(filteredCampuses);
+                setCampuses(response.data.campuses || []);
                 setError("");
             } catch (err) {
                 console.error("Error fetching campuses:", err);
