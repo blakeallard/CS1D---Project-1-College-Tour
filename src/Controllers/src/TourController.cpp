@@ -33,14 +33,14 @@ crow::response TourController::create(const crow::request &req, std::string id)
         try
         {
             auto jsonData = crow::json::load(req.body);
-            
+
             if (!jsonData)
             {
                 return crow::response(400, "Invalid JSON");
             }
-            
+
             string startCampus = jsonData["startCampus"].s();
-            
+
             // Get selected campuses array
             vector<string> selectedCampuses;
             if (jsonData.has("selectedCampuses"))
@@ -50,16 +50,16 @@ crow::response TourController::create(const crow::request &req, std::string id)
                     selectedCampuses.push_back(campus.s());
                 }
             }
-            
+
             // Calculate optimal tour using recursive backtracking
             TourResult tour = TourPlanner::calculateOptimalTour(startCampus, selectedCampuses);
-            
+
             // Build JSON response
             crow::json::wvalue response;
             response["success"] = true;
             response["totalDistance"] = tour.totalDistance;
             response["campusCount"] = (int)tour.stops.size();
-            
+
             // Add route stops
             int i = 0;
             for (const auto &stop : tour.stops)
@@ -68,7 +68,7 @@ crow::response TourController::create(const crow::request &req, std::string id)
                 response["route"][i]["distanceFromPrevious"] = stop.distanceFromPrevious;
                 i++;
             }
-            
+
             return crow::response(200, response);
         }
         catch (const exception &e)
@@ -77,7 +77,7 @@ crow::response TourController::create(const crow::request &req, std::string id)
             return crow::response(500, "Internal server error");
         }
     }
-    
+
     crow::response result;
     return result;
 }

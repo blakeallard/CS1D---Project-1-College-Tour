@@ -1,6 +1,5 @@
 #include "crow/http_response.h"
 #include <Controllers.h>
-#include <DatabaseTypes.h>
 #include <Helpers.h>
 #include <Queries.h>
 using namespace std;

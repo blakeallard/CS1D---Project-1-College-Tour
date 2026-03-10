@@ -6,6 +6,7 @@ set(ABS_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/headers/AbsDatabase.h
         ${CMAKE_CURRENT_SOURCE_DIR}/headers/Queries.h
         ${CMAKE_CURRENT_SOURCE_DIR}/headers/TourPlanner.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/headers/LinkedHeapTree.h
 )
 
 add_library(AbsDatabase STATIC ${ABS_SOURCES})

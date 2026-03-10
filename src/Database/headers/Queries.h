@@ -1,6 +1,6 @@
 #ifndef QUERIES_H
 #define QUERIES_H
-#include <DatabaseTypes.h>
+#include <string>
 #include <unordered_map>
 #include <variant>
 #include <vector>
@@ -79,13 +79,6 @@ QueryResult selectRowsWithQuery(const std::string &dbName,
 
 // A custom query for things like insert, update and delete
 bool customExecuteQuery(const std::string &dbName, const std::string &query);
-
-// Helper function to get distance between two campuses
-double distance(const std::string &campus1, const std::string &campus2);
-
-// Helper function to get all distances from a campus
-void allDistances(const std::string &campus, 
-                  std::unordered_map<std::string, double> &distances);
 
 }; // namespace QueryData
 

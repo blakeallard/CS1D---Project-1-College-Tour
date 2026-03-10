@@ -1,9 +1,7 @@
 #include <AbsDatabase.h>
-#include <DatabaseTypes.h>
 #include <Queries.h>
 #include <iostream>
 #include <sstream>
-#include <stdexcept>
 #include <unordered_map>
 #include <vector>
 
@@ -273,38 +271,6 @@ bool customExecuteQuery(const std::string &dbName, const std::string &query)
     Statement st(db.get(), query);
     st.execute();
     return true;
-}
-
-// Helper function to get distance between two campuses
-double distance(const std::string &campus1, const std::string &campus2)
-{
-    QueryResult result = selectRows("distances.db", "distances", {"distance"},
-                                   {"starting_college", "ending_college"},
-                                   {campus1, campus2});
-    
-    if (!result.empty())
-    {
-        return std::get<double>(result[0].at("distance"));
-    }
-    
-    return -1.0; // No distance found
-}
-
-// Helper function to get all distances from a campus
-void allDistances(const std::string &campus, 
-                  std::unordered_map<std::string, double> &distances)
-{
-    QueryResult results = selectRows("distances.db", "distances", 
-                                    {"ending_college", "distance"},
-                                    {"starting_college"},
-                                    {campus});
-    
-    for (const auto &row : results)
-    {
-        std::string endingCampus = std::get<std::string>(row.at("ending_college"));
-        double dist = std::get<double>(row.at("distance"));
-        distances[endingCampus] = dist;
-    }
 }
 
 } // namespace QueryData
