@@ -2,19 +2,15 @@
 #include <Queries.h>
 #include <TourPlanner.h>
 #include <algorithm>
-#include <iomanip>
-#include <iostream>
 #include <map>
 #include <string>
 #include <unordered_map>
-#include <variant>
 #include <vector>
 using namespace std;
 
-// Helper function to get all distances from a campus and fills a 2d array
-void getAllDistances(const vector<string> campusNames,
-                     vector<vector<double>> &matrix,
-                     map<string, int> &campusIndex)
+void TourPlanner::getAllDistances(const vector<string> campusNames,
+                                  vector<vector<double>> &matrix,
+                                  map<string, int> &campusIndex)
 {
 
     for (int i = 0; i < campusNames.size(); i++)
@@ -46,9 +42,9 @@ void getAllDistances(const vector<string> campusNames,
     }
 }
 
-// simple greedy closest neighbour algorithm
-void visit(const int current, const vector<vector<double>> &distances,
-           vector<bool> &visited, vector<int> &route)
+void TourPlanner::visit(const int current,
+                        const vector<vector<double>> &distances,
+                        vector<bool> &visited, vector<int> &route)
 {
     route.push_back(current);
     visited[current] = true;
@@ -76,7 +72,7 @@ void visit(const int current, const vector<vector<double>> &distances,
 // Looks at every pair of distances and looks at what it would be like if they
 // swapped. If the distance is less, then we swap for real. Works for local
 // optimizations
-void twoOpt(vector<int> &route, const vector<vector<double>> &dist)
+void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
 {
     bool improved = true;
 
@@ -108,7 +104,6 @@ void twoOpt(vector<int> &route, const vector<vector<double>> &dist)
     }
 }
 
-// Calculates the optimal tour using a 2d matrix and a linked heap tree
 TourResult TourPlanner::calculateOptimalTour(
     const std::string &startCampus,
     const std::vector<std::string> &campusesToVisit)
