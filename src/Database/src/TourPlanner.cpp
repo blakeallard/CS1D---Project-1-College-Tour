@@ -68,10 +68,6 @@ void TourPlanner::visit(const int current,
     visit(next, distances, visited, route);
 }
 
-// Simple short look ahead optimization
-// Looks at every pair of distances and looks at what it would be like if they
-// swapped. If the distance is less, then we swap for real. Works for local
-// optimizations
 void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
 {
     bool improved = true;
