@@ -2,7 +2,6 @@
 #define TOUR_PLANNER_H
 
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 /**
@@ -26,17 +25,6 @@ struct TourResult
 class TourPlanner
 {
     private:
-        /**
-         * @brief Helper function to get all distances from a campus
-         *
-         * @param campus Starting campus
-         * @param allCampuses List of all available campuses
-         * @return Map of campus names to distances
-         */
-        static std::unordered_map<std::string, double>
-        getDistancesFromCampus(const std::string &campus,
-                               const std::vector<std::string> &allCampuses);
-
     public:
         static TourResult
         calculateOptimalTour(const std::string &startCampus,

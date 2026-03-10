@@ -1,6 +1,7 @@
 #include <LinkedHeapTree.h>
 #include <Queries.h>
 #include <TourPlanner.h>
+#include <algorithm>
 #include <iomanip>
 #include <iostream>
 #include <map>
@@ -10,97 +11,111 @@
 #include <vector>
 using namespace std;
 
-// Helper function to get all distances from a campus
+// Helper function to get all distances from a campus and fills a 2d array
 void getAllDistances(const vector<string> campusNames,
                      vector<vector<double>> &matrix,
                      map<string, int> &campusIndex)
 {
-    int N = campusNames.size();
 
-    // Fill the 2d array
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < campusNames.size(); i++)
     {
+        // Query every college one by one
         QueryData::QueryResult allDistances = QueryData::selectRows(
             "distances.db", "distances",
             {"starting_college", "ending_college", "distance"},
             {"starting_college"}, {campusNames[i]});
+
+        // every query returns the rows in database, we go through every row
         for (auto &row : allDistances)
         {
             string start_college = get<string>(row.at("starting_college"));
             string end_college   = get<string>(row.at("ending_college"));
             double distance      = get<double>(row.at("distance"));
 
+            // if the campuses are in this row we add the distance to the matrix
             if (campusIndex.find(start_college) != campusIndex.end() &&
                 campusIndex.find(end_college) != campusIndex.end())
             {
                 int i = campusIndex[start_college];
                 int j = campusIndex[end_college];
 
-                // cout << "Added college: " << start_college << "," <<
-                // end_college
-                //      << "," << distance << endl;
                 matrix[i][j] = distance;
                 matrix[j][i] = distance;
             }
         }
     }
-
-    /*
-    cout << "MATRIX TEST:\n";
-    cout << setw(50) << "";
-    cout << "|";
-    for (int i = 0; i < campusNames.size(); i++)
-    {
-        cout << campusNames[i] << "|";
-    }
-
-    cout << endl;
-
-    for (int row = 0; row < campusNames.size(); row++)
-    {
-        cout << setw(50) << left << campusNames[row] << "|";
-        for (int col = 0; col < N; col++)
-        {
-            cout << setw(campusNames[col].size()) << left << matrix[row][col];
-            cout << "|";
-        }
-        cout << endl;
-    }
-    */
 }
 
+// simple greedy closest neighbour algorithm
 void visit(const int current, const vector<vector<double>> &distances,
            vector<bool> &visited, vector<int> &route)
 {
-    visited[current] = true;
     route.push_back(current);
+    visited[current] = true;
 
     LinkedHeapTree<double, int> heap;
 
+    // If we have visited something, it is not part of the new heap
     for (int i = 0; i < visited.size(); i++)
     {
         if (!visited[i])
             heap.insert(distances[current][i], i);
     }
 
+    // base case
     if (heap.empty())
         return;
 
-    heap.prettyPrint(heap.min());
+    // The next one we go to is the top of the min heap
     int next = heap.removeMin();
-
-    // cout << "Travel to " << next << endl;
 
     visit(next, distances, visited, route);
 }
 
+// Simple short look ahead optimization
+// Looks at every pair of distances and looks at what it would be like if they
+// swapped. If the distance is less, then we swap for real. Works for local
+// optimizations
+void twoOpt(vector<int> &route, const vector<vector<double>> &dist)
+{
+    bool improved = true;
+
+    while (improved)
+    {
+        improved = false;
+
+        for (int i = 1; i < route.size() - 2; i++)
+        {
+            for (int j = i + 1; j < route.size() - 1; j++)
+            {
+                int A = route[i - 1];
+                int B = route[i];
+                int C = route[j];
+                int D = route[j + 1];
+
+                double current = dist[A][B] + dist[C][D];
+
+                double proposed = dist[A][C] + dist[B][D];
+
+                if (proposed < current)
+                {
+                    reverse(route.begin() + i, route.begin() + j + 1);
+
+                    improved = true;
+                }
+            }
+        }
+    }
+}
+
+// Calculates the optimal tour using a 2d matrix and a linked heap tree
 TourResult TourPlanner::calculateOptimalTour(
     const std::string &startCampus,
     const std::vector<std::string> &campusesToVisit)
 {
 
+    // Getting all the campuses to visit
     vector<string> campuses;
-    campuses.resize(1);
     campuses.push_back(startCampus);
     for (int i = 0; i < campusesToVisit.size(); i++)
     {
@@ -108,6 +123,7 @@ TourResult TourPlanner::calculateOptimalTour(
     }
     int N = campuses.size();
 
+    // Setting up for calculations
     // Associates all strings with index values
     map<string, int> campusIndex;
     int nextIndex = 0;
@@ -117,23 +133,36 @@ TourResult TourPlanner::calculateOptimalTour(
         nextIndex++;
     }
 
-    vector<int> route(N, 0);
+    // sets up needed vectors
+    vector<int> route;
     vector<bool> visited(N, 0);
     vector<vector<double>> allDistancesMatrix(N, std::vector<double>(N, 0));
 
     getAllDistances(campuses, allDistancesMatrix, campusIndex);
+    // beggining of the recursive loop, populates route using a greedy algorithm
     visit(0, allDistancesMatrix, visited, route);
+    // somewhat optimizes greedy algo with local optimizations
+    twoOpt(route, allDistancesMatrix);
+    // Technically can still not be the truest best path but that's an np hard
+    // problem and we just in a intro data structs class
 
-    cout << "ROUTE:\n";
-    for (int i = 0; i < route.size(); i++)
+    // Setting up route to the spec
+    double total = 0;
+    TourResult results;
+    TourStop stop1;
+    stop1.campus               = startCampus;
+    stop1.distanceFromPrevious = 0;
+    results.stops.push_back(stop1);
+
+    for (int i = 1; i < route.size(); i++)
     {
-        for (int j = 0; j < campuses.size(); j++)
-        {
-            if (campusIndex[campuses[j]] == route[i])
-                cout << campuses[j] << ",";
-        }
+        TourStop stop;
+        stop.campus               = campuses[route[i]];
+        stop.distanceFromPrevious = allDistancesMatrix[route[i]][route[i - 1]];
+        total += allDistancesMatrix[route[i]][route[i - 1]];
+        results.stops.push_back(stop);
     }
-    cout << "\nROUTE END:\n";
+    results.totalDistance = total;
 
-    return TourResult();
+    return results;
 }
