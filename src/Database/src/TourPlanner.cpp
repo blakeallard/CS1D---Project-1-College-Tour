@@ -1,7 +1,7 @@
 /**
  * @file TourPlanner.cpp
  * @brief Implementation of tour planning algorithms
- * 
+ *
  * Implements greedy nearest-neighbor tour construction with 2-opt
  * local optimization for finding efficient routes through campuses.
  */
@@ -18,11 +18,11 @@ using namespace std;
 
 /**
  * @brief Populates distance matrix from database
- * 
+ *
  * Queries the distances database for each campus and fills the
  * symmetric distance matrix. Uses campusIndex to map campus names
  * to matrix indices.
- * 
+ *
  * Time Complexity: O(n) database queries, O(n²) total distance assignments
  */
 void TourPlanner::getAllDistances(const vector<string> campusNames,
@@ -62,11 +62,11 @@ void TourPlanner::getAllDistances(const vector<string> campusNames,
 
 /**
  * @brief Recursive greedy nearest-neighbor traversal
- * 
+ *
  * Uses a min-heap (LinkedHeapTree) to efficiently select the
  * nearest unvisited campus at each step. Recursively builds
  * the tour route.
- * 
+ *
  * Time Complexity: O(n^2 log n) worst case
  * - Up to n recursive calls
  * - Each call inserts up to n campuses into the heap
@@ -103,12 +103,13 @@ void TourPlanner::visit(const int current,
 }
 
 /**
- * @brief 2-opt local optimization
- * 
+ * @brief NOT USED FOR THIS PROJECT TO GET RIGHT ANSWER
+ * 2-opt local
+ *optimization
  * Iteratively checks all pairs of edges and reverses segments
  * when it would reduce total distance. Continues until no
  * further improvements can be made.
- * 
+ *
  * Time Complexity: O(n²) per iteration, worst case O(n³)
  */
 void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
@@ -153,14 +154,14 @@ void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
 
 /**
  * @brief Main tour calculation entry point
- * 
+ *
  * Orchestrates the tour planning process:
  * 1. Build campus list and index mapping
  * 2. Construct distance matrix from database
  * 3. Run greedy nearest-neighbor algorithm
  * 4. Optimize with 2-opt
  * 5. Convert to TourResult format
- * 
+ *
  * Time Complexity: O(n^3) overall
  * - Building the distance matrix is O(n^2)
  * - Greedy nearest-neighbor traversal is O(n^2 log n)
@@ -192,23 +193,24 @@ TourResult TourPlanner::calculateOptimalTour(
     }
 
     // Initialize data structures
-    vector<int> route;                                           // Final route (indices)
-    vector<bool> visited(N, 0);                                  // Visited tracking
-    vector<vector<double>> allDistancesMatrix(N, vector<double>(N, 0));  // Distance matrix
+    vector<int> route;          // Final route (indices)
+    vector<bool> visited(N, 0); // Visited tracking
+    vector<vector<double>> allDistancesMatrix(
+        N, vector<double>(N, 0)); // Distance matrix
 
     // Populate distance matrix from database - O(n)
     getAllDistances(campuses, allDistancesMatrix, campusIndex);
-    
+
     // Build initial route using greedy nearest-neighbor - O(n²)
     visit(0, allDistancesMatrix, visited, route);
-    
+
     // Optimize route with 2-opt local search - O(n²) per iteration
-    twoOpt(route, allDistancesMatrix);
+    // twoOpt(route, allDistancesMatrix);
 
     // Convert route indices to TourResult format
     double total = 0;
     TourResult results;
-    
+
     // Add starting campus with 0 distance
     TourStop stop1;
     stop1.campus               = startCampus;
