@@ -3,6 +3,16 @@
 #include <crow.h>
 #include <string>
 
+/**
+ * @brief Decodes a URL-encoded string (percent-encoding).
+ * * Scans the input string for '%' characters followed by two hexadecimal
+ * digits and converts them back into their original ASCII character
+ * representation.
+ * * @param id The URL-encoded string to be processed.
+ * @return A new std::string containing the decoded plain-text data.
+ * @note If a '%' is not followed by two valid hex digits, the characters are
+ * treated as literal text.
+ */
 std::string decodeURL(std::string id)
 {
     std::string decoded;
@@ -20,12 +30,32 @@ std::string decodeURL(std::string id)
     return decoded;
 }
 
+/**
+ * @brief Automatically registers CRUD API endpoints for a given controller.
+ * * Maps standard HTTP methods to static methods within the provided Controller
+ * class. All routes are prefixed with `/api/` and include a trailing dynamic
+ * string ID.
+ * *
+ * * ### Controller Requirements
+ * The `Controller` template type must implement the following static methods:
+ * - `static crow::response create(const crow::request&, std::string)`
+ * - `static crow::response read(std::string)`
+ * - `static crow::response patch(const crow::request&, std::string)`
+ * - `static crow::response remove(const crow::request&, std::string)`
+ * * ### Endpoint Mapping
+ * | Method | Action  | Controller Method |
+ * | :----- | :------ | :---------------- |
+ * | GET    | Read    | Controller::read   |
+ * | POST   | Create  | Controller::create |
+ * | PATCH  | Update  | Controller::patch  |
+ * | DELETE | Delete  | Controller::remove |
+ * * @tparam Controller A class/struct defining the logic for each HTTP action.
+ * @param app Reference to the Crow application instance.
+ * @param basePath The resource name used in the URL (e.g., "users/").
+ */
 template <typename Controller>
 void register_crud_routes(crow::SimpleApp &app, const std::string &basePath)
 {
-
-    /* Create API path, then set same path different method, then set the
-     * lambda for the controller template to return a json to the caller */
 
     app.route_dynamic("/api/" + basePath + "<string>")
         .methods(crow::HTTPMethod::GET)(
@@ -62,14 +92,3 @@ void register_crud_routes(crow::SimpleApp &app, const std::string &basePath)
 }
 
 #endif
-
-/*
- * Different Methods with the same path
-| Method | What It Does
-| ------ | --------------
-| GET    | Read data
-| POST   | Create data
-| PUT    | Replace -- will not use for now
-| PATCH  | Partial update
-| DELETE | Delete
-*/
