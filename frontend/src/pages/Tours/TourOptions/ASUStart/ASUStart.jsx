@@ -3,35 +3,37 @@ import axios from "axios";
 import HomeButton from "../../../../components/HomeButton/HomeButton";
 import "./ASUStart.css";
 
-/** Tour that starts from ASU */
+/**
+ * Tour that starts from Arizona State University
+ * Uses number input to automatically select N nearest campuses
+ */
 export default function ASUStart() {
     const [name, setName] = useState("");
-    const [campuses, setCampuses] = useState([]);
-    const [selectedCampuses, setSelectedCampuses] = useState({});
+    const [numberOfCampuses, setNumberOfCampuses] = useState(3);
+    const [maxCampuses, setMaxCampuses] = useState(11);
     const [loading, setLoading] = useState(true);
     const [calculating, setCalculating] = useState(false);
     const [error, setError] = useState("");
     const [tourResult, setTourResult] = useState(null);
     
     // Souvenir state
-    const [souvenirs, setSouvenirs] = useState({});  // {campusName: [{name, price}, ...]}
+    const [souvenirs, setSouvenirs] = useState({});
     const [loadingSouvenirs, setLoadingSouvenirs] = useState(false);
-    const [purchases, setPurchases] = useState({});  // {campusName: {itemName: quantity}}
+    const [purchases, setPurchases] = useState({});
     const [savingPurchases, setSavingPurchases] = useState(false);
 
-    // Load campuses reachable from ASU (with valid distance data)
+    // Load max available campuses
     useEffect(() => {
         const fetchCampuses = async () => {
             try {
                 setLoading(true);
-                // Fetch only campuses that have distance data from ASU
                 const response = await axios.get("/api/University/from-Arizona State University");
-                
-                setCampuses(response.data.campuses || []);
+                const campuses = response.data.campuses || [];
+                setMaxCampuses(campuses.length + 1); // +1 for ASU itself
                 setError("");
             } catch (err) {
                 console.error("Error fetching campuses:", err);
-                setError("Failed to load campuses. Please try again.");
+                setError("Failed to load campus data. Please try again.");
             } finally {
                 setLoading(false);
             }
@@ -65,19 +67,6 @@ export default function ASUStart() {
         }
     }, [tourResult]);
 
-    const handleChange = (e) => {
-        const { name: fieldName, type, checked, value } = e.target;
-        
-        if (type === 'checkbox') {
-            setSelectedCampuses(prev => ({
-                ...prev,
-                [fieldName]: checked
-            }));
-        } else {
-            setName(value);
-        }
-    };
-
     const handleQuantityChange = (campus, itemName, quantity) => {
         setPurchases(prev => ({
             ...prev,
@@ -91,16 +80,13 @@ export default function ASUStart() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Validation
         if (!name.trim()) {
             setError("Please enter your name");
             return;
         }
         
-        const selected = Object.keys(selectedCampuses).filter(key => selectedCampuses[key]);
-        
-        if (selected.length === 0) {
-            setError("Please select at least one campus");
+        if (numberOfCampuses < 1 || numberOfCampuses > maxCampuses) {
+            setError(`Please enter a number between 1 and ${maxCampuses}`);
             return;
         }
 
@@ -110,14 +96,13 @@ export default function ASUStart() {
             setTourResult(null);
             setPurchases({});
             
-            // Call backend to calculate optimal tour
-            const response = await axios.post("/api/Tour/calculate", {
+            // Call backend to calculate tour with N nearest campuses
+            const response = await axios.post("/api/Tour/calculate-n", {
                 startCampus: "Arizona State University",
-                selectedCampuses: selected
+                numberOfCampuses: numberOfCampuses
             });
             
             if (response.data.success) {
-                // Display tour result
                 setTourResult(response.data);
             }
         } catch (err) {
@@ -132,13 +117,11 @@ export default function ASUStart() {
         try {
             setSavingPurchases(true);
             
-            // Build purchases array
             const purchaseItems = [];
             for (const campus in purchases) {
                 for (const itemName in purchases[campus]) {
                     const quantity = purchases[campus][itemName];
                     if (quantity > 0) {
-                        // Find price
                         const souvenir = souvenirs[campus]?.find(s => s.name === itemName);
                         if (souvenir) {
                             purchaseItems.push({
@@ -164,11 +147,10 @@ export default function ASUStart() {
             
             alert(`Purchases saved successfully! Total: $${calculateGrandTotal().toFixed(2)}`);
             
-            // Store in localStorage
             const registration = {
                 name,
                 tourType: "ASU Tour",
-                selectedCampuses: Object.keys(selectedCampuses).filter(k => selectedCampuses[k]),
+                numberOfCampuses,
                 tourResult,
                 purchases: purchaseItems,
                 date: new Date().toISOString()
@@ -190,7 +172,7 @@ export default function ASUStart() {
     
     const handleReset = () => {
         setName("");
-        setSelectedCampuses({});
+        setNumberOfCampuses(3);
         setTourResult(null);
         setPurchases({});
         setSouvenirs({});
@@ -238,34 +220,32 @@ export default function ASUStart() {
                                     type="text"
                                     name="name"
                                     value={name}
-                                    onChange={handleChange}
+                                    onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter your name"
                                     disabled={calculating}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label>Select Campuses to Visit:</label>
+                                <label htmlFor="numCampuses">Number of Colleges to Visit:</label>
                                 {loading ? (
-                                    <p>Loading campuses...</p>
+                                    <p>Loading...</p>
                                 ) : (
-                                    <div className="checkbox-group">
-                                        {campuses.map((campus, index) => (
-                                            <div key={index} className="checkbox-item">
-                                                <input
-                                                    type="checkbox"
-                                                    id={`campus-${index}`}
-                                                    name={campus.name}
-                                                    checked={selectedCampuses[campus.name] || false}
-                                                    onChange={handleChange}
-                                                    disabled={calculating}
-                                                />
-                                                <label htmlFor={`campus-${index}`}>
-                                                    {campus.name}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    <>
+                                        <input
+                                            id="numCampuses"
+                                            type="number"
+                                            min="1"
+                                            max={maxCampuses}
+                                            value={numberOfCampuses}
+                                            onChange={(e) => setNumberOfCampuses(parseInt(e.target.value) || 1)}
+                                            disabled={calculating}
+                                            className="number-input"
+                                        />
+                                        <p className="hint-text">
+                                            (1 to {maxCampuses} campuses available, including ASU)
+                                        </p>
+                                    </>
                                 )}
                             </div>
 
@@ -308,7 +288,6 @@ export default function ASUStart() {
                             </ol>
                         </div>
                         
-                        {/* Souvenir Purchase Section */}
                         <div className="souvenir-section">
                             <h2>Purchase Souvenirs</h2>
                             {error && <div className="error-message">{error}</div>}

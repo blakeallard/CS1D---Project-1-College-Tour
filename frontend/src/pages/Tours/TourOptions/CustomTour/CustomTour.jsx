@@ -28,7 +28,14 @@ export default function CustomTour() {
             try {
                 setLoading(true);
                 const response = await axios.get("/api/University/all");
-                setAllCampuses(response.data.campuses || []);
+                const campuses = response.data.campuses || [];
+                
+                // Filter for unique campuses only
+                const uniqueCampuses = campuses.filter((campus, index, self) => 
+                    index === self.findIndex(c => c.name === campus.name)
+                );
+                
+                setAllCampuses(uniqueCampuses);
                 setError("");
             } catch (err) {
                 console.error("Error fetching campuses:", err);
@@ -52,7 +59,14 @@ export default function CustomTour() {
             try {
                 setLoadingReachable(true);
                 const response = await axios.get(`/api/University/from-${startCampus}`);
-                setReachableCampuses(response.data.campuses || []);
+                const campuses = response.data.campuses || [];
+                
+                // Filter for unique campuses only
+                const uniqueCampuses = campuses.filter((campus, index, self) => 
+                    index === self.findIndex(c => c.name === campus.name)
+                );
+                
+                setReachableCampuses(uniqueCampuses);
                 setSelectedCampuses({});  // Clear selections when start changes
                 setError("");
             } catch (err) {
@@ -288,8 +302,8 @@ export default function CustomTour() {
                                         className="campus-select"
                                     >
                                         <option value="">-- Choose a starting campus --</option>
-                                        {allCampuses.map((campus, index) => (
-                                            <option key={index} value={campus.name}>
+                                        {allCampuses.map((campus) => (
+                                            <option key={campus.name} value={campus.name}>
                                                 {campus.name}
                                             </option>
                                         ))}
@@ -307,17 +321,17 @@ export default function CustomTour() {
                                     <p className="hint-text">No campuses available from this starting point</p>
                                 ) : (
                                     <div className="checkbox-group">
-                                        {reachableCampuses.map((campus, index) => (
-                                            <div key={index} className="checkbox-item">
+                                        {reachableCampuses.map((campus) => (
+                                            <div key={campus.name} className="checkbox-item">
                                                 <input
                                                     type="checkbox"
-                                                    id={`campus-${index}`}
+                                                    id={`campus-${campus.name}`}
                                                     name={campus.name}
                                                     checked={selectedCampuses[campus.name] || false}
                                                     onChange={handleChange}
                                                     disabled={calculating}
                                                 />
-                                                <label htmlFor={`campus-${index}`}>
+                                                <label htmlFor={`campus-${campus.name}`}>
                                                     {campus.name}
                                                 </label>
                                             </div>

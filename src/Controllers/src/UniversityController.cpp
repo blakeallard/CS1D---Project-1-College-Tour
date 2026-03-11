@@ -1,9 +1,44 @@
+/**
+ * @file UniversityController.cpp
+ * @brief REST API controller for university/campus operations
+ * 
+ * Handles HTTP requests for retrieving campus information,
+ * distances between campuses, and souvenir data. Also handles
+ * administrative data imports.
+ * 
+ * @see Controllers.h
+ */
+
 #include "crow/http_response.h"
 #include <Controllers.h>
 #include <Helpers.h>
 #include <Queries.h>
 using namespace std;
 
+/**
+ * @brief Handles GET requests for university/campus data
+ * 
+ * Supports multiple query types based on the id parameter:
+ * 
+ * 1. "all" - Returns all campuses with distances from Saddleback College
+ *    GET /api/University/all
+ *    Response: { campuses: [{name, distance}, ...] }
+ * 
+ * 2. "from-{campusName}" - Returns campuses reachable from specified campus
+ *    GET /api/University/from-Arizona%20State%20University
+ *    Response: { campuses: [{name, distance}, ...] }
+ * 
+ * 3. "{campusName}" - Returns souvenirs for a specific campus
+ *    GET /api/University/UCLA
+ *    Response: { souvenirs: [{item, price}, ...] }
+ * 
+ * @param id Query type or campus name
+ * @return JSON response with campus or souvenir data
+ * 
+ * Time Complexity: O(n) where n is number of results
+ * - Database query: O(n)
+ * - JSON construction: O(n)
+ */
 crow::response UniversityController::read(std::string id)
 {
     std::cout << "ID received: '" << id << "'" << std::endl;
@@ -11,6 +46,7 @@ crow::response UniversityController::read(std::string id)
 
     if (id == "all")
     {
+        // Retrieve all campuses from the colleges table
         QueryData::QueryResult campuses =
             QueryData::selectRows("distances.db", "colleges", {"college"});
 
@@ -20,6 +56,7 @@ crow::response UniversityController::read(std::string id)
             string campusName             = get<string>(row.at("college"));
             result["campuses"][i]["name"] = campusName;
 
+            // Get distance from Saddleback College to this campus
             QueryData::QueryResult distances =
                 QueryData::selectRows("distances.db", "distances", {"distance"},
                                       {"starting_college", "ending_college"},
@@ -35,8 +72,8 @@ crow::response UniversityController::read(std::string id)
     }
     else if (id.rfind("from-", 0) == 0)
     {
-        // Handle "from-{campusName}" - return campuses reachable from specified campus
-        string startCampus = id.substr(5); // Remove "from-" prefix
+        // Return campuses reachable from specified starting campus
+        string startCampus = id.substr(5);
 
         QueryData::QueryResult campuses = QueryData::selectRows(
             "distances.db", "distances", {"ending_college", "distance"},
@@ -54,7 +91,7 @@ crow::response UniversityController::read(std::string id)
     }
     else
     {
-
+        // Return souvenirs for a specific campus
         QueryData::QueryResult souvenirs = QueryData::selectRows(
             "souvenirs.db", "souvenirs", {"item", "price"}, {"college"}, {id});
 
@@ -71,6 +108,15 @@ crow::response UniversityController::read(std::string id)
     return crow::response(result);
 }
 
+/**
+ * @brief Handles PATCH requests for university data updates
+ * 
+ * Placeholder for future update functionality.
+ * 
+ * @param req HTTP request object
+ * @param id Resource identifier
+ * @return Empty response
+ */
 crow::response UniversityController::patch(const crow::request &req,
                                            std::string id)
 {
@@ -78,14 +124,41 @@ crow::response UniversityController::patch(const crow::request &req,
     return result;
 }
 
+/**
+ * @brief Handles DELETE requests for university data removal
+ * 
+ * Placeholder for future deletion functionality.
+ * 
+ * @param req HTTP request object
+ * @param id Resource identifier
+ * @return Empty response
+ */
 crow::response UniversityController::remove(const crow::request &req,
                                             std::string id)
 {
-    // return success
     crow::response result;
     return result;
 }
 
+/**
+ * @brief Handles POST requests for university data creation/import
+ * 
+ * Supports administrative data import functionality:
+ * 
+ * POST /api/University/import
+ * - Imports new campus and distance data from uploaded file
+ * - Merges data into existing distances.db and colleges table
+ * - Used by administrators to add new campuses during runtime
+ * 
+ * @param req HTTP request object containing upload data
+ * @param id Action identifier ("import")
+ * @return HTTP 200 on success, HTTP 400 on error
+ * 
+ * @note Requires administrator authentication (handled by frontend)
+ * 
+ * @see Helpers::getDatabaseFromRequest
+ * @see Helpers::mergeDatabases
+ */
 crow::response UniversityController::create(const crow::request &req,
                                             std::string id)
 {
@@ -93,11 +166,15 @@ crow::response UniversityController::create(const crow::request &req,
     {
         if (id == "import")
         {
+            // Extract uploaded database file from request
             Helpers::getDatabaseFromRequest(req);
 
+            // Merge distances table
             Helpers::mergeDatabases("Databases/distances.db",
                                     "Databases/uploaded.db", "distances",
                                     "distances");
+            
+            // Merge colleges table (extracts unique colleges from distances)
             Helpers::getDatabaseFromRequest(req);
             Helpers::mergeDatabases(
                 "Databases/distances.db", "Databases/uploaded.db", "colleges",

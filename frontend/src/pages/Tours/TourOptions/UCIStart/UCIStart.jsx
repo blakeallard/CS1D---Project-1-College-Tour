@@ -3,11 +3,14 @@ import axios from "axios";
 import HomeButton from "../../../../components/HomeButton/HomeButton";
 import "./UCIStart.css";
 
-/** Tour that starts from UCI */
+/**
+ * Tour that starts from University of California, Irvine
+ * Uses number input to automatically select N nearest campuses
+ */
 export default function UCIStart() {
     const [name, setName] = useState("");
-    const [campuses, setCampuses] = useState([]);
-    const [selectedCampuses, setSelectedCampuses] = useState({});
+    const [numberOfCampuses, setNumberOfCampuses] = useState(3);
+    const [maxCampuses, setMaxCampuses] = useState(11);
     const [loading, setLoading] = useState(true);
     const [calculating, setCalculating] = useState(false);
     const [error, setError] = useState("");
@@ -19,19 +22,18 @@ export default function UCIStart() {
     const [purchases, setPurchases] = useState({});
     const [savingPurchases, setSavingPurchases] = useState(false);
 
-    // Load campuses reachable from UCI (with valid distance data)
+    // Load max available campuses
     useEffect(() => {
         const fetchCampuses = async () => {
             try {
                 setLoading(true);
-                // Fetch only campuses that have distance data from UCI
                 const response = await axios.get("/api/University/from-University of California, Irvine (UCI)");
-                
-                setCampuses(response.data.campuses || []);
+                const campuses = response.data.campuses || [];
+                setMaxCampuses(campuses.length + 1); // +1 for UCI itself
                 setError("");
             } catch (err) {
                 console.error("Error fetching campuses:", err);
-                setError("Failed to load campuses. Please try again.");
+                setError("Failed to load campus data. Please try again.");
             } finally {
                 setLoading(false);
             }
@@ -65,19 +67,6 @@ export default function UCIStart() {
         }
     }, [tourResult]);
 
-    const handleChange = (e) => {
-        const { name: fieldName, type, checked, value } = e.target;
-        
-        if (type === 'checkbox') {
-            setSelectedCampuses(prev => ({
-                ...prev,
-                [fieldName]: checked
-            }));
-        } else {
-            setName(value);
-        }
-    };
-
     const handleQuantityChange = (campus, itemName, quantity) => {
         setPurchases(prev => ({
             ...prev,
@@ -96,10 +85,8 @@ export default function UCIStart() {
             return;
         }
         
-        const selected = Object.keys(selectedCampuses).filter(key => selectedCampuses[key]);
-        
-        if (selected.length === 0) {
-            setError("Please select at least one campus");
+        if (numberOfCampuses < 1 || numberOfCampuses > maxCampuses) {
+            setError(`Please enter a number between 1 and ${maxCampuses}`);
             return;
         }
 
@@ -109,9 +96,10 @@ export default function UCIStart() {
             setTourResult(null);
             setPurchases({});
             
-            const response = await axios.post("/api/Tour/calculate", {
+            // Call backend to calculate tour with N nearest campuses
+            const response = await axios.post("/api/Tour/calculate-n", {
                 startCampus: "University of California, Irvine (UCI)",
-                selectedCampuses: selected
+                numberOfCampuses: numberOfCampuses
             });
             
             if (response.data.success) {
@@ -162,7 +150,7 @@ export default function UCIStart() {
             const registration = {
                 name,
                 tourType: "UCI Tour",
-                selectedCampuses: Object.keys(selectedCampuses).filter(k => selectedCampuses[k]),
+                numberOfCampuses,
                 tourResult,
                 purchases: purchaseItems,
                 date: new Date().toISOString()
@@ -184,7 +172,7 @@ export default function UCIStart() {
     
     const handleReset = () => {
         setName("");
-        setSelectedCampuses({});
+        setNumberOfCampuses(3);
         setTourResult(null);
         setPurchases({});
         setSouvenirs({});
@@ -232,34 +220,32 @@ export default function UCIStart() {
                                     type="text"
                                     name="name"
                                     value={name}
-                                    onChange={handleChange}
+                                    onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter your name"
                                     disabled={calculating}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label>Select Campuses to Visit:</label>
+                                <label htmlFor="numCampuses">Number of Colleges to Visit:</label>
                                 {loading ? (
-                                    <p>Loading campuses...</p>
+                                    <p>Loading...</p>
                                 ) : (
-                                    <div className="checkbox-group">
-                                        {campuses.map((campus, index) => (
-                                            <div key={index} className="checkbox-item">
-                                                <input
-                                                    type="checkbox"
-                                                    id={`campus-${index}`}
-                                                    name={campus.name}
-                                                    checked={selectedCampuses[campus.name] || false}
-                                                    onChange={handleChange}
-                                                    disabled={calculating}
-                                                />
-                                                <label htmlFor={`campus-${index}`}>
-                                                    {campus.name}
-                                                </label>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    <>
+                                        <input
+                                            id="numCampuses"
+                                            type="number"
+                                            min="1"
+                                            max={maxCampuses}
+                                            value={numberOfCampuses}
+                                            onChange={(e) => setNumberOfCampuses(parseInt(e.target.value) || 1)}
+                                            disabled={calculating}
+                                            className="number-input"
+                                        />
+                                        <p className="hint-text">
+                                            (1 to {maxCampuses} campuses available, including UCI)
+                                        </p>
+                                    </>
                                 )}
                             </div>
 

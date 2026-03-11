@@ -97,8 +97,17 @@ export default function Campuses() {
         axios.get("/api/University/all")
             // Set campuses var to hold response data of all campuses
             .then(response => {
-                const allCampuses = response.data.campuses;
-                handleCampuses(allCampuses);
+                const allCampuses = response.data.campuses || [];
+                
+                // Filter out Saddleback College (distance to itself is meaningless)
+                // and ensure unique campuses only (filter duplicates by name)
+                const filteredCampuses = allCampuses
+                    .filter(campus => campus.name !== "Saddleback College")
+                    .filter((campus, index, self) => 
+                        index === self.findIndex(c => c.name === campus.name)
+                    );
+                
+                handleCampuses(filteredCampuses);
             });
     }, []);
 
@@ -122,9 +131,9 @@ export default function Campuses() {
                     <tbody>
                         {/* Map all campuses to <td> elements, each item containing
                         unique campus data */}
-                        {campuses.map((campus, i) => {
+                        {campuses.map((campus) => {
                             return (
-                                <tr key={i}>
+                                <tr key={campus.name}>
                                     <td className="svnr-hover">
                                         {/* If campus name clicked, toggle svnrClicked and set campusName to selected campus */}
                                         <button className={"souvenir_link"} onClick={() => {

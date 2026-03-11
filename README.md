@@ -1,170 +1,106 @@
-# College Tour - CS Group Project
+# College Tour - CS1D Group Project
 
-A C++ application designed to help prospective college students plan their college campus visits and purchase traditional souvenirs.
+A full-stack application designed to help prospective college students plan efficient campus visits and purchase traditional souvenirs.
 
-## Project Overview
+## Tech Stack
 
-This software manages data for at least 15 college campuses (starting with 11) and their traditional souvenirs (up to 7 per campus). The program allows users to plan efficient campus tours and purchase souvenirs while tracking expenses.
+- **Backend**: C++ with Crow HTTP Framework
+- **Frontend**: React/TypeScript with Vite
+- **Database**: SQLite (persistent storage)
+- **Build System**: CMake
 
----
-## Building The Project
+## Quick Start
+
+### Build & Run
+
 ```bash
+# Clone the repository
 git clone https://github.com/blakeallard/CS1D---Project-1-College-Tour.git
 cd CS1D---Project-1-College-Tour
-#Build
+
+# Build backend
 cmake . -B build
-#Compile with your system or
 cmake --build build
 
+# Build frontend
+cd frontend && npm install && npm run build && cd ..
+
+# Run the application
+./build/execBinary
 ```
 
-- NOTE: MSVC will spit out a bunch of warnings while compiling, they're okay to ignore
+Access the application at `http://localhost:18080`
 
----
-## Core Features
+## Features
 
-### 1. Display Information
-- List all college campuses with distances from Saddleback College
-- Display traditional souvenirs and prices for any selected campus
+### Tour Planning
+- **Saddleback Tour**: Start at Saddleback College, visit N nearest campuses
+- **ASU Tour**: Start at Arizona State University, visit N nearest campuses
+- **UCI Tour**: Start at UC Irvine, visit N nearest campuses
+- **Custom Tour**: Select your own starting campus and destinations
 
-### 2. Trip Planning Options
+### Souvenir System
+- Browse souvenirs at each campus
+- Purchase multiple items with quantity tracking
+- View spending per campus and grand total
+- Persistent purchase history
 
-#### Standard Tour (11 Campuses)
-- Start at Saddleback College
-- Visit all 11 campuses in most efficient order (recursive nearest-neighbor algorithm)
-- Display total distance traveled
-
-#### ASU Custom Tour
-- Start at Arizona State University
-- Specify number of campuses to visit
-- Visit campuses using nearest-neighbor selection
-- Purchase souvenirs at each stop
-- Track spending per campus and grand total
-
-#### Fully Custom Tour
-- Select starting campus
-- Choose which campuses to visit
-- Automatic efficient route planning
-- Purchase souvenirs with expense tracking
-
-#### UCI Tour (13 Campuses)
-- Start at University of California, Irvine
-- Visit all 13 campuses
-- Display total distance and enable souvenir purchases
-
-### 3. Souvenir Purchase System
-- Buy multiple souvenirs at each campus
-- Track quantity purchased per campus
-- Display spending per campus and grand total
-
-### 4. Administrator Features (Password Protected)
-- Add new campuses from input file
+### Administrator Features (Password Protected)
+- Import new campuses from database files
 - Modify souvenir prices
-- Add new souvenirs
-- Delete existing souvenirs
+- Add/delete souvenirs
 
-## Technical Requirements
+## Project Documentation
 
-### Data Structures
-- Must use multiple C++ data structures (minimum 3 for full credit)
-- Support for at least 15 campuses
-- Up to 7 souvenirs per campus
-- **Persistent data storage** between executions
+| Document | Description |
+|----------|-------------|
+| [Data Structures](docs/DATA_STRUCTURES.md) | All data structures used with descriptions |
+| [Big-O Analysis](docs/BIG_O_ANALYSIS.md) | Time complexity analysis for key algorithms |
+| [Program Flow](docs/PROGRAM_FLOW.md) | System architecture and data flow diagrams |
 
-### UML Diagrams Required
-- 3 Use Case diagrams
-- 3 Activity diagrams
-- 1 Class diagram
+## Project Structure
 
-### Documentation
-- 10+ Agile stories (description, tasks, test scenarios, story points)
-- Big-Oh analysis for at least 3 methods
-- Doxygen automated documentation
-- Data structures identification
+```
+CS1D---Project-1-College-Tour/
+├── src/
+│   ├── main.cpp                 # Application entry point
+│   ├── RouteRegister.h          # API route definitions
+│   ├── Controllers/             # REST API controllers
+│   │   ├── headers/
+│   │   └── src/
+│   └── Database/                # Database operations & algorithms
+│       ├── headers/
+│       └── src/
+├── frontend/                    # React frontend
+│   └── src/
+│       ├── pages/               # Page components
+│       └── components/          # Reusable components
+├── Databases/                   # SQLite database files
+│   ├── distances.db             # Campus distances
+│   ├── souvenirs.db             # Souvenir data
+│   └── users.db                 # User/admin data
+├── vendor/                      # Third-party libraries
+│   ├── crow/                    # Crow HTTP framework
+│   └── sqlite3/                 # SQLite library
+└── docs/                        # Project documentation
+```
 
-### Development Tools
-- **Version Control:** GitHub (private team repository)
-- **GUI Framework:** (Team choice)
-- **Documentation:** Doxygen
-- **Agile Management:** (e.g., Twilio or similar)
-- **Optional:** Continuous Integration (3 points extra credit)
+## API Endpoints
 
-## Agile/Scrum Process
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/University/all` | Get all campuses with distances |
+| GET | `/api/University/from-{campus}` | Get campuses reachable from start |
+| GET | `/api/Souvenir/{campus}` | Get souvenirs for a campus |
+| POST | `/api/Tour/calculate` | Calculate custom tour route |
+| POST | `/api/Tour/calculate-n` | Calculate N-nearest campus tour |
+| POST | `/api/Purchase/save` | Save purchase records |
+| POST | `/api/User/admin` | Admin authentication |
 
-### Team Roles
-- **Scrum Master:** Document all meetings
-- **Product Owner:** Maintain backlog
+## Team
 
-### Required Artifacts
-- Agile stories
-- Scrum log
-- Retrospective
-- Coding standards
-- Team rules
+CS1D Data Structures & Algorithms - Spring 2026
 
-## Project Schedule
+## License
 
-| Milestone | Date | Points |
-|-----------|------|--------|
-| Team Partner Submission | January 27 | -3 if late |
-| First Checkpoint | February 16 | 3 |
-| Second Checkpoint | February 25 | 3 |
-| Final Checkpoint/Demo | March 11 | - |
-
-**No late projects accepted**
-
-## Grading Rubric
-
-| Category | Points |
-|----------|--------|
-| Checkpoint 1 | 3 |
-| Checkpoint 2 | 3 |
-| Meet Requirements | 75 |
-| Coding Style/Style Guide | 2 |
-| Multiple C++ Data Structures | 3 (1 per structure) |
-| User Interface | 2 |
-| Adherence to Scrum/Team Rules | 5 |
-| UML Diagrams | 3 |
-| Doxygen Documentation | 1 |
-| Big-Oh Analysis | 3 (1 per method) |
-| **Total** | **100** |
-| Continuous Integration (Extra Credit) | 3 |
-| **Maximum** | **103** |
-
-## Final Demonstration (20 minutes)
-
-### Requirements
-- All team members present
-- Demonstrate all project requirements
-- Show Doxygen and Agile management tool
-- Each member identifies their contributions
-- Submit teammate assessments via email
-
-### Submission Artifacts
-- Source code
-- Agile stories
-- Scrum log
-- Retrospective
-- Coding standards
-- Team rules
-- UML diagrams (class, use cases, activity)
-- Data structures documentation
-- Doxygen report
-- Big-Oh analysis
-
-## Quality Standards
-
-- **Readable, user-friendly interface**
-- **Robust error handling** for invalid input
-- **Clean code** following team coding standards
-- **Persistent data** across program executions
-
-## Team Information
-
-**Partners must be submitted by January 27th** (3-point penalty if late)
-
-Note: Individual team members may receive different grades based on contributions.
-
----
-
-**Due Date:** March 11th | **No late submissions accepted**
+Educational project - Saddleback College

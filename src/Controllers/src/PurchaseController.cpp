@@ -1,10 +1,47 @@
+/**
+ * @file PurchaseController.cpp
+ * @brief REST API controller for souvenir purchase operations
+ * 
+ * Handles HTTP requests for saving and retrieving souvenir
+ * purchases made during campus tours. Provides data persistence
+ * for purchase history.
+ * 
+ * @see Controllers.h
+ */
+
 #include "Controllers.h"
 #include "Queries.h"
 #include <iostream>
 
+/**
+ * @brief Handles GET requests for purchase history
+ * 
+ * Retrieves all purchase records for a specific user.
+ * 
+ * GET /api/Purchase/{userId}
+ * 
+ * Response:
+ * @code
+ * [
+ *   {
+ *     "id": 1,
+ *     "campus": "UCLA",
+ *     "item": "T-Shirt",
+ *     "price": 25.99,
+ *     "quantity": 2,
+ *     "purchaseDate": "2026-03-08"
+ *   },
+ *   ...
+ * ]
+ * @endcode
+ * 
+ * @param id User ID as string (will be converted to integer)
+ * @return JSON array of purchase records
+ * 
+ * Time Complexity: O(n) where n is number of purchases
+ */
 crow::response PurchaseController::read(std::string id)
 {
-    // GET /api/Purchase/{userId} - Get user's purchase history
     try
     {
         int userId = std::stoi(id);
@@ -35,9 +72,44 @@ crow::response PurchaseController::read(std::string id)
     }
 }
 
+/**
+ * @brief Handles POST requests for saving purchases
+ * 
+ * Saves souvenir purchases made during a tour to the database.
+ * Each purchase includes campus, item, price, and quantity.
+ * 
+ * POST /api/Purchase/save
+ * 
+ * Request Body:
+ * @code
+ * {
+ *   "tourName": "Saddleback Tour",
+ *   "purchases": [
+ *     {"campus": "UCLA", "item": "T-Shirt", "price": 25.99, "quantity": 2},
+ *     {"campus": "USC", "item": "Coffee Mug", "price": 12.50, "quantity": 1}
+ *   ]
+ * }
+ * @endcode
+ * 
+ * Response:
+ * @code
+ * {
+ *   "success": true,
+ *   "message": "Purchases saved successfully"
+ * }
+ * @endcode
+ * 
+ * @param req HTTP request object containing purchase data
+ * @param id Action identifier (must be "save")
+ * @return JSON response with success status
+ * 
+ * @note Currently uses user_id = 1 (guest user)
+ * @note Future: user_id should come from authentication
+ * 
+ * Time Complexity: O(n) where n is number of purchase items
+ */
 crow::response PurchaseController::create(const crow::request &req, std::string id)
 {
-    // POST /api/Purchase/save - Save tour purchases
     if (id == "save")
     {
         try
@@ -49,13 +121,12 @@ crow::response PurchaseController::create(const crow::request &req, std::string 
                 return crow::response(400, "Invalid JSON");
             }
             
-            // For now, use user_id = 1 (guest user)
-            // In a real app, this would come from authentication
+            // Guest user ID (future: from authentication)
             int userId = 1;
             
             std::string tourName = jsonData["tourName"].s();
             
-            // Process each purchase item
+            // Insert each purchase record
             if (jsonData.has("purchases"))
             {
                 for (const auto &purchase : jsonData["purchases"])
@@ -65,7 +136,6 @@ crow::response PurchaseController::create(const crow::request &req, std::string 
                     double price = purchase["price"].d();
                     int quantity = purchase["quantity"].i();
                     
-                    // Insert purchase record
                     QueryData::insertRow(
                         "users.db",
                         "user_purchases",
@@ -91,11 +161,29 @@ crow::response PurchaseController::create(const crow::request &req, std::string 
     return crow::response(400, "Invalid endpoint");
 }
 
+/**
+ * @brief Handles PATCH requests for purchase updates
+ * 
+ * Not implemented - purchases are immutable records.
+ * 
+ * @param req HTTP request object
+ * @param id Purchase identifier
+ * @return HTTP 501 Not Implemented
+ */
 crow::response PurchaseController::patch(const crow::request &req, std::string id)
 {
     return crow::response(501, "Not implemented");
 }
 
+/**
+ * @brief Handles DELETE requests for purchase removal
+ * 
+ * Not implemented - purchases are immutable records.
+ * 
+ * @param req HTTP request object
+ * @param id Purchase identifier
+ * @return HTTP 501 Not Implemented
+ */
 crow::response PurchaseController::remove(const crow::request &req, std::string id)
 {
     return crow::response(501, "Not implemented");
