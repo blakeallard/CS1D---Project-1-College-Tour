@@ -18,6 +18,16 @@
 #include <vector>
 
 /**
+ * @namespace QueryData
+ * @brief High-level wrapper for SQLite CRUD operations.
+ * * Provides a simplified interface for common database interactions,
+ * automatically handling statement preparation, parameter binding, and result
+ * set mapping.
+ */
+namespace QueryData
+{
+
+/**
  * @typedef SQLiteValue
  * @brief A variant representing data types storable in a SQLite cell.
  */
@@ -34,16 +44,6 @@ using Row = std::unordered_map<std::string, SQLiteValue>;
  * @brief A collection of rows returned by a SELECT query.
  */
 using QueryResult = std::vector<Row>;
-
-/**
- * @namespace QueryData
- * @brief High-level wrapper for SQLite CRUD operations.
- * * Provides a simplified interface for common database interactions,
- * automatically handling statement preparation, parameter binding, and result
- * set mapping.
- */
-namespace QueryData
-{
 
 /**
  * @brief Inserts a new row into a database table
