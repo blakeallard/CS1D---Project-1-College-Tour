@@ -1,0 +1,24 @@
+digraph "QueryData::selectRows"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="QueryData::selectRows",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Selects rows from a database table."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="TourController::create",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$struct_tour_controller.html#adf7f1689e7cf70c54f480dca14ed082f",tooltip="Handles POST requests for tour calculations."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="UserController::create",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$struct_user_controller.html#ac07f482d97b9d64491f21244c996b1fc",tooltip="Handles POST requests for user creation/actions."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="TourPlanner::getAllDistances",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_tour_planner.html#ad1db6fe9f361820319ed00e2af2e55fa",tooltip="Populates a distance matrix from database queries."];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="TourPlanner::calculateOptimalTour",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_tour_planner.html#a0466540d07a69a9e8231f85aae5622fc",tooltip="Calculates the optimal tour visiting specified campuses."];
+  Node5 -> Node2 [id="edge5_Node000005_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node6 [id="edge6_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="PurchaseController\l::read",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$struct_purchase_controller.html#a1ff37d4191c9007a571336c45de7fb64",tooltip="Handles GET requests for purchase history."];
+  Node1 -> Node7 [id="edge7_Node000001_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="SouvenirController\l::read",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$struct_souvenir_controller.html#a2c45d8c6caabfd5b5c976deeadfb6061",tooltip="Handles GET requests for souvenir data."];
+  Node1 -> Node8 [id="edge8_Node000001_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="UniversityController\l::read",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$struct_university_controller.html#ac1cd76683a94913a5c20c91d5b0a56e5",tooltip="Handles GET requests for university data."];
+}
