@@ -1,0 +1,199 @@
+\doxysection{Statement Class Reference}
+\hypertarget{class_statement}{}\label{class_statement}\index{Statement@{Statement}}
+
+
+Manages the lifecycle of a prepared SQLite SQL statement. This class handles parameter binding, execution, and column data retrieval.  
+
+
+
+
+{\ttfamily \+\#include $<$Abs\+Database.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+sqlite3\+\_\+stmt \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_statement_ad2bebf567f36299391181b349ab9bcb0}{get\+Statement}} ()
+\item 
+\doxymbox{\hyperlink{class_statement_a7fb0eea4e9e73c9e5dfd15b5fb6dffc3}{Statement}} (sqlite3 \texorpdfstring{$\ast$}{*}db, const std::\+string \&sql)
+\begin{DoxyCompactList}\small\item\em Constructs and prepares a new SQL statement. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_statement_ac206245b176efec58846a08e2617f626}{create\+Statement}} (sqlite3 \texorpdfstring{$\ast$}{*}db, const std::\+string \&sql)
+\begin{DoxyCompactList}\small\item\em Compiles the SQL text into a prepared statement. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_statement_a57fdfef84b5f92d83850f6467b46012a}{\texorpdfstring{$\sim$}{\string~}\+Statement}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Finalizes the prepared statement to prevent memory leaks. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_statement_a442a1e524d2fc1b9c2feeed05eccedc0}{step}} ()
+\begin{DoxyCompactList}\small\item\em Executes the statement and checks if a row of data is returned. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_statement_a5c7f3929053bd917018decd23df84e36}{execute}} ()
+\begin{DoxyCompactList}\small\item\em Executes a statement that does not return data (e.\+g., INSERT, UPDATE). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Parameter Binding}\par
+{\em Methods to bind values to \textquotesingle{}?\textquotesingle{} or named parameters in the SQL query. }\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_statement_a76b1447570d7bd5d65002bd543ffd2c3}{bind}} (int index, int value)
+\item 
+void \doxymbox{\hyperlink{class_statement_a368003adf5c265741782128873bea7d5}{bind}} (int index, double value)
+\item 
+void \doxymbox{\hyperlink{class_statement_adf561639b0ccfb170acf29ae2f4f4e5f}{bind}} (int index, const std::\+string \&value)
+\item 
+void \doxymbox{\hyperlink{class_statement_a89570accfd56256a5d68c241bf214e0a}{bind}} (int index)
+\item 
+void \doxymbox{\hyperlink{class_statement_a25806077d657552401afcb6759d55332}{bind}} (int index, \doxymbox{\hyperlink{_abs_database_8h_a37bd9e88fccabc1c6335c403ccd4a8ba}{SQLite\+Value}} value)
+\begin{DoxyCompactList}\small\item\em Binds a variant \doxylink{_abs_database_8h_a37bd9e88fccabc1c6335c403ccd4a8ba}{SQLite\+Value} to the parameter at index. Automatically determines the correct SQLite bind function to call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Data Retrieval}\par
+{\em Methods to extract values from the current row after calling \doxylink{class_statement_a442a1e524d2fc1b9c2feeed05eccedc0}{step()}. }\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_statement_abc5919ad74148c2a6c87be714a69f87f}{get\+Int}} (int col)
+\item 
+std::\+string \doxymbox{\hyperlink{class_statement_a7bc9bedc2633ccb13bea31e8519217ef}{get\+Text}} (int col)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+Manages the lifecycle of a prepared SQLite SQL statement. This class handles parameter binding, execution, and column data retrieval. 
+
+\label{doc-constructors}
+\Hypertarget{class_statement_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_statement_a7fb0eea4e9e73c9e5dfd15b5fb6dffc3}\index{Statement@{Statement}!Statement@{Statement}}
+\index{Statement@{Statement}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{Statement()}{Statement()}}
+{\footnotesize\ttfamily \label{class_statement_a7fb0eea4e9e73c9e5dfd15b5fb6dffc3} 
+Statement::\+\+Statement (\begin{DoxyParamCaption}\item[{sqlite3 \texorpdfstring{$\ast$}{*}}]{db}{, }\item[{const std::\+string \&}]{sql}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs and prepares a new SQL statement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & Pointer to the active sqlite3 database connection. \\
+\hline
+{\em sql} & The SQL query string to prepare. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_statement_a57fdfef84b5f92d83850f6467b46012a}\index{Statement@{Statement}!````~Statement@{\texorpdfstring{$\sim$}{\string~}Statement}}
+\index{````~Statement@{\texorpdfstring{$\sim$}{\string~}Statement}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Statement()}{\string~Statement()}}
+{\footnotesize\ttfamily \label{class_statement_a57fdfef84b5f92d83850f6467b46012a} 
+Statement::\+\texorpdfstring{$\sim$}{\string~}\+Statement (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. Finalizes the prepared statement to prevent memory leaks. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_statement_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_statement_a89570accfd56256a5d68c241bf214e0a}\index{Statement@{Statement}!bind@{bind}}
+\index{bind@{bind}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily \label{class_statement_a89570accfd56256a5d68c241bf214e0a} 
+void Statement::\+bind (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Binds a NULL value to the parameter at index. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_statement_adf561639b0ccfb170acf29ae2f4f4e5f}\index{Statement@{Statement}!bind@{bind}}
+\index{bind@{bind}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily \label{class_statement_adf561639b0ccfb170acf29ae2f4f4e5f} 
+void Statement::\+bind (\begin{DoxyParamCaption}\item[{int}]{index}{, }\item[{const std::\+string \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_statement_a368003adf5c265741782128873bea7d5}\index{Statement@{Statement}!bind@{bind}}
+\index{bind@{bind}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily \label{class_statement_a368003adf5c265741782128873bea7d5} 
+void Statement::\+bind (\begin{DoxyParamCaption}\item[{int}]{index}{, }\item[{double}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_statement_a76b1447570d7bd5d65002bd543ffd2c3}\index{Statement@{Statement}!bind@{bind}}
+\index{bind@{bind}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily \label{class_statement_a76b1447570d7bd5d65002bd543ffd2c3} 
+void Statement::\+bind (\begin{DoxyParamCaption}\item[{int}]{index}{, }\item[{int}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_statement_a25806077d657552401afcb6759d55332}\index{Statement@{Statement}!bind@{bind}}
+\index{bind@{bind}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily \label{class_statement_a25806077d657552401afcb6759d55332} 
+void Statement::\+bind (\begin{DoxyParamCaption}\item[{int}]{index}{, }\item[{\doxymbox{\hyperlink{_abs_database_8h_a37bd9e88fccabc1c6335c403ccd4a8ba}{SQLite\+Value}}}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binds a variant \doxylink{_abs_database_8h_a37bd9e88fccabc1c6335c403ccd4a8ba}{SQLite\+Value} to the parameter at index. Automatically determines the correct SQLite bind function to call. 
+
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}\Hypertarget{class_statement_ac206245b176efec58846a08e2617f626}\index{Statement@{Statement}!createStatement@{createStatement}}
+\index{createStatement@{createStatement}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{createStatement()}{createStatement()}}
+{\footnotesize\ttfamily \label{class_statement_ac206245b176efec58846a08e2617f626} 
+void Statement::\+create\+Statement (\begin{DoxyParamCaption}\item[{sqlite3 \texorpdfstring{$\ast$}{*}}]{db}{, }\item[{const std::\+string \&}]{sql}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compiles the SQL text into a prepared statement. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & If the SQL fails to compile. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_statement_a5c7f3929053bd917018decd23df84e36}\index{Statement@{Statement}!execute@{execute}}
+\index{execute@{execute}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_statement_a5c7f3929053bd917018decd23df84e36} 
+void Statement::\+execute (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Executes a statement that does not return data (e.\+g., INSERT, UPDATE). 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & If execution does not result in SQLITE\+\_\+\+DONE. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_statement_abc5919ad74148c2a6c87be714a69f87f}\index{Statement@{Statement}!getInt@{getInt}}
+\index{getInt@{getInt}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{getInt()}{getInt()}}
+{\footnotesize\ttfamily \label{class_statement_abc5919ad74148c2a6c87be714a69f87f} 
+int Statement::\+get\+Int (\begin{DoxyParamCaption}\item[{int}]{col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_statement_ad2bebf567f36299391181b349ab9bcb0}\index{Statement@{Statement}!getStatement@{getStatement}}
+\index{getStatement@{getStatement}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{getStatement()}{getStatement()}}
+{\footnotesize\ttfamily \label{class_statement_ad2bebf567f36299391181b349ab9bcb0} 
+sqlite3\+\_\+stmt \texorpdfstring{$\ast$}{*} Statement::\+get\+Statement (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The raw sqlite3\+\_\+stmt pointer. 
+\end{DoxyReturn}
+\Hypertarget{class_statement_a7bc9bedc2633ccb13bea31e8519217ef}\index{Statement@{Statement}!getText@{getText}}
+\index{getText@{getText}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{getText()}{getText()}}
+{\footnotesize\ttfamily \label{class_statement_a7bc9bedc2633ccb13bea31e8519217ef} 
+std::\+string Statement::\+get\+Text (\begin{DoxyParamCaption}\item[{int}]{col}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_statement_a442a1e524d2fc1b9c2feeed05eccedc0}\index{Statement@{Statement}!step@{step}}
+\index{step@{step}!Statement@{Statement}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily \label{class_statement_a442a1e524d2fc1b9c2feeed05eccedc0} 
+bool Statement::\+step (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Executes the statement and checks if a row of data is returned. 
+
+\begin{DoxyReturn}{Returns}
+true if a row is available (SQLITE\+\_\+\+ROW), false otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Database/\+headers/\+\doxymbox{\hyperlink{_abs_database_8h}{Abs\+Database.\+h}}\end{DoxyCompactItemize}

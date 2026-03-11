@@ -1,8 +1,6 @@
 #include "Controllers.h"
-#include "Queries.h"
 #include "RouteRegister.h"
 #include <crow.h>
-#include <stdexcept>
 #include <string>
 
 int main()

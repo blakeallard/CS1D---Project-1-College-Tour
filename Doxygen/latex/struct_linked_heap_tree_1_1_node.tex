@@ -1,0 +1,104 @@
+\doxysection{Linked\+Heap\+Tree\texorpdfstring{$<$}{<} Key, Value \texorpdfstring{$>$}{>}::\+Node Struct Reference}
+\hypertarget{struct_linked_heap_tree_1_1_node}{}\label{struct_linked_heap_tree_1_1_node}\index{LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}}
+
+
+Tree node containing entry and tree pointers.  
+
+
+
+
+{\ttfamily \+\#include $<$Linked\+Heap\+Tree.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}{Node}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializes all pointers to null. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ad54e8a41fde7d93d7a28471b9622e468}{entry}}
+\begin{DoxyCompactList}\small\item\em Pointer to contained entry. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_a3cb64c03834f16e394132c4004ed124a}{parent}}
+\begin{DoxyCompactList}\small\item\em Pointer to parent node (null for root). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_a5706f47b693bb425d9b6d1f98aa0e00a}{left}}
+\begin{DoxyCompactList}\small\item\em Pointer to left child. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_a1ab3f6d26d26819df04a426b0999f355}{right}}
+\begin{DoxyCompactList}\small\item\em Pointer to right child. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Key, typename Value$>$\newline
+struct Linked\+Heap\+Tree$<$ Key, Value $>$::\+\+Node}
+Tree node containing entry and tree pointers. 
+
+Stores pointers to parent and children for tree traversal. 
+
+\label{doc-constructors}
+\Hypertarget{struct_linked_heap_tree_1_1_node_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}\index{LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}!Node@{Node}}
+\index{Node@{Node}!LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Node::\+\+Node (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializes all pointers to null. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_linked_heap_tree_1_1_node_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_linked_heap_tree_1_1_node_ad54e8a41fde7d93d7a28471b9622e468}\index{LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}!entry@{entry}}
+\index{entry@{entry}!LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}}
+\doxysubsubsection{\texorpdfstring{entry}{entry}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_node_ad54e8a41fde7d93d7a28471b9622e468} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}}\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Node::\+entry}
+
+
+
+Pointer to contained entry. 
+
+\Hypertarget{struct_linked_heap_tree_1_1_node_a5706f47b693bb425d9b6d1f98aa0e00a}\index{LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}!left@{left}}
+\index{left@{left}!LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}}
+\doxysubsubsection{\texorpdfstring{left}{left}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_node_a5706f47b693bb425d9b6d1f98aa0e00a} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}{Node}}\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Node::\+left}
+
+
+
+Pointer to left child. 
+
+\Hypertarget{struct_linked_heap_tree_1_1_node_a3cb64c03834f16e394132c4004ed124a}\index{LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}!parent@{parent}}
+\index{parent@{parent}!LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_node_a3cb64c03834f16e394132c4004ed124a} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}{Node}}\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Node::\+parent}
+
+
+
+Pointer to parent node (null for root). 
+
+\Hypertarget{struct_linked_heap_tree_1_1_node_a1ab3f6d26d26819df04a426b0999f355}\index{LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}!right@{right}}
+\index{right@{right}!LinkedHeapTree$<$ Key, Value $>$::Node@{LinkedHeapTree$<$ Key, Value $>$::Node}}
+\doxysubsubsection{\texorpdfstring{right}{right}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_node_a1ab3f6d26d26819df04a426b0999f355} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node_ae8d8d6799037abbd5a971d8a37a909ca}{Node}}\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Node::\+right}
+
+
+
+Pointer to right child. 
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Database/\+headers/\+\doxymbox{\hyperlink{_linked_heap_tree_8h}{Linked\+Heap\+Tree.\+h}}\end{DoxyCompactItemize}

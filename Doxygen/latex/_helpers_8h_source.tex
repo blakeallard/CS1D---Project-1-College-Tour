@@ -1,0 +1,29 @@
+\doxysection{Helpers.\+h}
+\hypertarget{_helpers_8h_source}{}\label{_helpers_8h_source}\index{src/Controllers/headers/Helpers.h@{src/Controllers/headers/Helpers.h}}
+\doxymbox{\hyperlink{_helpers_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ HELPERS\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ HELPERS\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}crow/http\_request.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespace_helpers}{Helpers}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{namespace_helpers_addb87b4c4f03cf0cd2ece86e062fc113}{getDatabaseFromRequest}}(crow::request\ req);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{mergeDatabases}}(\textcolor{keyword}{const}\ std::string\ \&mainDBName,\ \textcolor{keyword}{const}\ std::string\ \&otherFile,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&mergeIntoTable,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&mergeFromTable,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isUnique\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&mergeIntoColumns\ =\ \{\},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&mergeFromColumns\ =\ \{\},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&uniqueIntoColumn\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&uniqueFromColumn\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \}\ \textcolor{comment}{//\ namespace\ Helpers}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

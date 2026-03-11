@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CS1D Project: SouvenirController Struct Reference</title>
+<title>CS1D Group Project: SouvenirController Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CS1D Project
+   <div id="projectname">CS1D Group Project
    </div>
   </td>
  </tr>
@@ -116,8 +116,6 @@ Static Public Member Functions</h2></td></tr>
 <li>PATCH /api/Souvenir/update - Update souvenir price (admin)</li>
 <li>DELETE /api/Souvenir/delete - Delete souvenir (admin) </li>
 </ul>
-
-<p class="definition">Definition at line <a class="el" href="_controllers_8h_source.html#l00210">210</a> of file <a class="el" href="_controllers_8h_source.html">Controllers.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a2f0b62bdbe840ce927b25468126d8d46" name="a2f0b62bdbe840ce927b25468126d8d46"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f0b62bdbe840ce927b25468126d8d46">&#9670;&#160;</a></span>create()</h2>
@@ -178,13 +176,6 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>HTTP 200 on success, HTTP 400 on error</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Requires administrator authentication for import </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_souvenir_controller_8cpp_source.html#l00138">138</a> of file <a class="el" href="_souvenir_controller_8cpp_source.html">SouvenirController.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="struct_souvenir_controller_a2f0b62bdbe840ce927b25468126d8d46_cgraph.png" border="0" usemap="#astruct_souvenir_controller_a2f0b62bdbe840ce927b25468126d8d46_cgraph" loading="lazy" alt=""/></div>
-</div>
-
 </div>
 </div>
 <a id="abbc911858688d0cb86efe4b3d1435c48" name="abbc911858688d0cb86efe4b3d1435c48"></a>
@@ -218,7 +209,7 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">req</td><td>The HTTP request object with update data </td></tr>
-    <tr><td class="paramname">id</td><td><a class="el" href="struct_souvenir.html">Souvenir</a> or action identifier </td></tr>
+    <tr><td class="paramname">id</td><td>Souvenir or action identifier </td></tr>
   </table>
   </dd>
 </dl>
@@ -239,13 +230,6 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>HTTP 200 on success, HTTP 400 on error</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Requires administrator authentication (handled by frontend) </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_souvenir_controller_8cpp_source.html#l00090">90</a> of file <a class="el" href="_souvenir_controller_8cpp_source.html">SouvenirController.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="struct_souvenir_controller_abbc911858688d0cb86efe4b3d1435c48_cgraph.png" border="0" usemap="#astruct_souvenir_controller_abbc911858688d0cb86efe4b3d1435c48_cgraph" loading="lazy" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -296,13 +280,6 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>JSON array of souvenirs with names and prices</dd></dl>
 <p>Time Complexity: O(n) where n is number of souvenirs for the campus </p>
 
-<p class="definition">Definition at line <a class="el" href="_souvenir_controller_8cpp_source.html#l00039">39</a> of file <a class="el" href="_souvenir_controller_8cpp_source.html">SouvenirController.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="struct_souvenir_controller_a2c45d8c6caabfd5b5c976deeadfb6061_cgraph.png" border="0" usemap="#astruct_souvenir_controller_a2c45d8c6caabfd5b5c976deeadfb6061_cgraph" loading="lazy" alt=""/></div>
-</div>
-
 </div>
 </div>
 <a id="a03ebf5e42958ea4a2dfc270acd5b2fca" name="a03ebf5e42958ea4a2dfc270acd5b2fca"></a>
@@ -337,7 +314,7 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">req</td><td>The HTTP request object </td></tr>
-    <tr><td class="paramname">id</td><td><a class="el" href="struct_souvenir.html">Souvenir</a> identifier </td></tr>
+    <tr><td class="paramname">id</td><td>Souvenir identifier </td></tr>
   </table>
   </dd>
 </dl>
@@ -354,18 +331,11 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>HTTP 200 on success, HTTP 400 on error</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Requires administrator authentication (handled by frontend) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_souvenir_controller_8cpp_source.html#l00188">188</a> of file <a class="el" href="_souvenir_controller_8cpp_source.html">SouvenirController.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="struct_souvenir_controller_a03ebf5e42958ea4a2dfc270acd5b2fca_cgraph.png" border="0" usemap="#astruct_souvenir_controller_a03ebf5e42958ea4a2dfc270acd5b2fca_cgraph" loading="lazy" alt=""/></div>
-</div>
-
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
 <li>src/Controllers/headers/<a class="el" href="_controllers_8h_source.html">Controllers.h</a></li>
-<li>src/Controllers/src/<a class="el" href="_souvenir_controller_8cpp_source.html">SouvenirController.cpp</a></li>
+<li>src/Controllers/src/<a class="el" href="_souvenir_controller_8cpp.html">SouvenirController.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

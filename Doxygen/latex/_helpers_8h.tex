@@ -1,0 +1,34 @@
+\doxysection{src/\+\+Controllers/\+headers/\+\+Helpers.h File Reference}
+\hypertarget{_helpers_8h}{}\label{_helpers_8h}\index{src/Controllers/headers/Helpers.h@{src/Controllers/headers/Helpers.h}}
+
+
+Utility functions for data import and database operations.  
+
+
+{\ttfamily \+\#include "{}crow/\+http\+\_\+request.\+h"{}}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespace_helpers}{Helpers}}
+\begin{DoxyCompactList}\small\item\em Utility functions for administrative operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespace_helpers_addb87b4c4f03cf0cd2ece86e062fc113}{Helpers::\+get\+Database\+From\+Request}} (crow::\+request req)
+\begin{DoxyCompactList}\small\item\em Extracts and saves database file from HTTP request. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{Helpers::\+merge\+Databases}} (const std::\+string \&main\+DBName, const std::\+string \&other\+File, const std::\+string \&merge\+Into\+Table, const std::\+string \&merge\+From\+Table, const bool is\+Unique=false, const std::\+vector$<$ std::\+string $>$ \&merge\+Into\+Columns=\{\}, const std::\+vector$<$ std::\+string $>$ \&merge\+From\+Columns=\{\}, const std::\+string \&unique\+Into\+Column="{}"{}, const std::\+string \&unique\+From\+Column="{}"{})
+\begin{DoxyCompactList}\small\item\em Merges data from one database into another. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility functions for data import and database operations. 
+
+This file provides helper functions for administrative operations including file uploads and database merging for campus/\+souvenir imports.
+
+\begin{DoxyAuthor}{Author}
+CS1D Group Project 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 2026 
+\end{DoxyDate}

@@ -5,10 +5,6 @@ var searchData=
   ['position_2',['Position',['../class_linked_heap_tree_1_1_position.html',1,'LinkedHeapTree&lt; Key, Value &gt;::Position'],['../class_linked_heap_tree_1_1_position.html#a457728ab2f5e9994df085d853259aaec',1,'LinkedHeapTree::Position::Position()'],['../class_linked_heap_tree_1_1_position.html#a6d031b71477e32a3f98b920af4abda8d',1,'LinkedHeapTree::Position::Position(Entry *e)']]],
   ['positionlist_3',['PositionList',['../class_linked_heap_tree.html#a49c902442755a01130a08649c29d9adc',1,'LinkedHeapTree']]],
   ['prettyprint_4',['prettyPrint',['../class_linked_heap_tree.html#a0e6a18a2e993f786014804e4ad082a73',1,'LinkedHeapTree']]],
-  ['price_5',['price',['../struct_souvenir.html#a2991e814ee69fba3a86d90b7ea48cb2b',1,'Souvenir::price'],['../struct_purchase.html#a1af391fd35e41679fbcaac6b5894292a',1,'Purchase::price'],['../struct_purchased_item.html#ab65e3daab83002a74b08b9f813c8ea95',1,'PurchasedItem::price']]],
-  ['purchase_6',['Purchase',['../struct_purchase.html',1,'']]],
-  ['purchase_5fdate_7',['purchase_date',['../struct_purchase.html#a0388ddd6f3a2d6b0eaaa12432cab5767',1,'Purchase']]],
-  ['purchasecontroller_8',['PurchaseController',['../struct_purchase_controller.html',1,'']]],
-  ['purchasecontroller_2ecpp_9',['PurchaseController.cpp',['../_purchase_controller_8cpp.html',1,'']]],
-  ['purchaseditem_10',['PurchasedItem',['../struct_purchased_item.html',1,'']]]
+  ['purchasecontroller_5',['PurchaseController',['../struct_purchase_controller.html',1,'']]],
+  ['purchasecontroller_2ecpp_6',['PurchaseController.cpp',['../_purchase_controller_8cpp.html',1,'']]]
 ];

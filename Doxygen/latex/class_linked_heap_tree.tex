@@ -1,0 +1,375 @@
+\doxysection{Linked\+Heap\+Tree\texorpdfstring{$<$}{<} Key, Value \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_linked_heap_tree}{}\label{class_linked_heap_tree}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+
+
+Min-\/heap priority queue using linked binary tree.  
+
+
+
+
+{\ttfamily \+\#include $<$Linked\+Heap\+Tree.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}}
+\begin{DoxyCompactList}\small\item\em Stores a key-\/value pair in the heap. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Node}}
+\begin{DoxyCompactList}\small\item\em Tree node containing entry and tree pointers. \end{DoxyCompactList}\item 
+class \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}}
+\begin{DoxyCompactList}\small\item\em Handle for accessing and manipulating heap entries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std::\+list$<$ \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} $>$ \doxymbox{\hyperlink{class_linked_heap_tree_a49c902442755a01130a08649c29d9adc}{Position\+List}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_aae0ddca037c9eed8107458bfcf24ac3b}{Linked\+Heap\+Tree}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor creates empty heap. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_linked_heap_tree_a49c9a153800a647ce7ab4042396ee943}{size}} () const
+\begin{DoxyCompactList}\small\item\em Returns number of elements in heap. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_linked_heap_tree_a51d3439e739cd6e6d1566c5d21bbc551}{empty}} () const
+\begin{DoxyCompactList}\small\item\em Checks if heap is empty. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree_aedb2a99996930a575f324cc21f3620b0}{insert}} (Key k, Value v)
+\begin{DoxyCompactList}\small\item\em Inserts a new key-\/value pair into the heap. \end{DoxyCompactList}\item 
+Value \doxymbox{\hyperlink{class_linked_heap_tree_a28a489254b20a0216f75230fae1cf43b}{remove}} (const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&original\+Pos)
+\begin{DoxyCompactList}\small\item\em Removes entry at specified position. \end{DoxyCompactList}\item 
+Value \doxymbox{\hyperlink{class_linked_heap_tree_a6458031a563f580af6e6be9febf1f478}{remove\+Min}} ()
+\begin{DoxyCompactList}\small\item\em Removes and returns the minimum element. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree_a1901f9047530e223a4a3487f82accddf}{replace\+Key}} (const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&p, Key new\+Key)
+\begin{DoxyCompactList}\small\item\em Updates the key of an entry and restores heap property. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree_a04cc5c12a4092b719a266b46d8e81f72}{min}} () const
+\begin{DoxyCompactList}\small\item\em Returns position of the minimum element (root). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_linked_heap_tree_a0e6a18a2e993f786014804e4ad082a73}{pretty\+Print}} (const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&rt, std::\+string prefix="{}"{}, bool is\+Left=true)
+\begin{DoxyCompactList}\small\item\em Prints the heap structure to console. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_linked_heap_tree_ac34312020460aa314d145153b4b15886}{swap}} (const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&p1, const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&p2)
+\begin{DoxyCompactList}\small\item\em Swaps entries between two positions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree_a364826c0714aed6e6c7c8bb8689dc034}{find\+Node}} (int index)
+\begin{DoxyCompactList}\small\item\em Finds node at given index using bit manipulation. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_linked_heap_tree_a689c528db1bc171212708c80e875d43a}{up\+Heap\+Bubble}} (const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&current\+Pos)
+\begin{DoxyCompactList}\small\item\em Bubbles an entry up to restore heap property. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_linked_heap_tree_aecace06f623c5804bdedbadc291e672f}{down\+Heap\+Bubble}} (const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&current\+Pos)
+\begin{DoxyCompactList}\small\item\em Bubbles an entry down to restore heap property. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Key, typename Value$>$\newline
+class Linked\+Heap\+Tree$<$ Key, Value $>$}
+Min-\/heap priority queue using linked binary tree. 
+
+A min-\/heap implementation where the element with the smallest key is always at the root. Uses a linked tree structure instead of array-\/based storage, allowing for position-\/based operations.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Key} & Comparable type for heap ordering (e.\+g., double for distances) \\
+\hline
+{\em Value} & Data type stored with each key (e.\+g., int for campus index)\\
+\hline
+\end{DoxyTemplParams}
+Data Structure Analysis:\+
+\begin{DoxyItemize}
+\item Type:\+ Binary Min-\/\+Heap (complete binary tree)
+\item Storage:\+ Linked nodes with parent/\+child pointers
+\item Ordering:\+ Parent key \texorpdfstring{$<$}{<}= child keys (min-\/heap property)
+\end{DoxyItemize}
+
+Usage in \doxylink{class_tour_planner}{Tour\+Planner}:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\doxymbox{\hyperlink{class_linked_heap_tree_aae0ddca037c9eed8107458bfcf24ac3b}{LinkedHeapTree<double,\ int>}}\ heap;}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ campuses.size();\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!visited[i])}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ heap.\doxymbox{\hyperlink{class_linked_heap_tree_aedb2a99996930a575f324cc21f3620b0}{insert}}(distances[current][i],\ i);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ nearest\ =\ heap.\doxymbox{\hyperlink{class_linked_heap_tree_a6458031a563f580af6e6be9febf1f478}{removeMin}}();\ \ \textcolor{comment}{//\ Get\ closest\ campus\ index}}
+
+\end{DoxyCode}
+ 
+
+\label{doc-typedef-members}
+\Hypertarget{class_linked_heap_tree_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_linked_heap_tree_a49c902442755a01130a08649c29d9adc}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!PositionList@{PositionList}}
+\index{PositionList@{PositionList}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{PositionList}{PositionList}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a49c902442755a01130a08649c29d9adc} 
+template$<$typename Key, typename Value$>$ \\
+typedef std::\+list$<$\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}}$>$ \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position\+List}
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_linked_heap_tree_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_linked_heap_tree_aae0ddca037c9eed8107458bfcf24ac3b}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!LinkedHeapTree@{LinkedHeapTree}}
+\index{LinkedHeapTree@{LinkedHeapTree}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{LinkedHeapTree()}{LinkedHeapTree()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_aae0ddca037c9eed8107458bfcf24ac3b} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Linked\+Heap\+Tree (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor creates empty heap. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_linked_heap_tree_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_linked_heap_tree_aecace06f623c5804bdedbadc291e672f}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!downHeapBubble@{downHeapBubble}}
+\index{downHeapBubble@{downHeapBubble}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{downHeapBubble()}{downHeapBubble()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_aecace06f623c5804bdedbadc291e672f} 
+template$<$typename Key, typename Value$>$ \\
+void \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+down\+Heap\+Bubble (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&}]{current\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Bubbles an entry down to restore heap property. 
+
+Recursively swaps entry with smaller child while entry\textquotesingle{}s key is larger than that child\textquotesingle{}s key.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Pos} & \doxylink{class_linked_heap_tree_1_1_position}{Position} to bubble down\\
+\hline
+\end{DoxyParams}
+Time Complexity:\+ O(log n) -\/ at most tree height swaps \Hypertarget{class_linked_heap_tree_a51d3439e739cd6e6d1566c5d21bbc551}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!empty@{empty}}
+\index{empty@{empty}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a51d3439e739cd6e6d1566c5d21bbc551} 
+template$<$typename Key, typename Value$>$ \\
+bool \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if heap is empty. 
+
+\begin{DoxyReturn}{Returns}
+true if empty, false otherwise
+\end{DoxyReturn}
+Time Complexity:\+ O(1) \Hypertarget{class_linked_heap_tree_a364826c0714aed6e6c7c8bb8689dc034}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!findNode@{findNode}}
+\index{findNode@{findNode}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{findNode()}{findNode()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a364826c0714aed6e6c7c8bb8689dc034} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+find\+Node (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Finds node at given index using bit manipulation. 
+
+Uses the binary representation of the index to navigate the tree. Each bit (after the leading 1) represents a left (0) or right (1) decision.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & 1-\/based index of the node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the node at that index
+\end{DoxyReturn}
+Time Complexity:\+ O(log n) -\/ depth of tree
+
+Algorithm:\+
+\begin{DoxyItemize}
+\item Index 1 = root
+\item Index 2 = root-\/\texorpdfstring{$>$}{>}left, Index 3 = root-\/\texorpdfstring{$>$}{>}right
+\item For index i:\+ parent is at i/\+2
+\item Bit pattern determines path:\+ 0=left, 1=right 
+\end{DoxyItemize}\Hypertarget{class_linked_heap_tree_aedb2a99996930a575f324cc21f3620b0}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!insert@{insert}}
+\index{insert@{insert}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_aedb2a99996930a575f324cc21f3620b0} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+insert (\begin{DoxyParamCaption}\item[{Key}]{k}{, }\item[{Value}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inserts a new key-\/value pair into the heap. 
+
+Adds a new entry at the next available position (maintaining complete binary tree property), then bubbles up to restore heap property.
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & Key for ordering \\
+\hline
+{\em v} & Value to store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_linked_heap_tree_1_1_position}{Position} of the inserted entry
+\end{DoxyReturn}
+Time Complexity:\+ O(log n)
+\begin{DoxyItemize}
+\item Finding insertion point:\+ O(log n) using bit manipulation
+\item Up-\/heap bubble:\+ O(log n) swaps in worst case
+\end{DoxyItemize}
+
+Space Complexity:\+ O(1) additional \Hypertarget{class_linked_heap_tree_a04cc5c12a4092b719a266b46d8e81f72}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!min@{min}}
+\index{min@{min}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a04cc5c12a4092b719a266b46d8e81f72} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns position of the minimum element (root). 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_linked_heap_tree_1_1_position}{Position} of root entry
+\end{DoxyReturn}
+Time Complexity:\+ O(1) \Hypertarget{class_linked_heap_tree_a0e6a18a2e993f786014804e4ad082a73}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!prettyPrint@{prettyPrint}}
+\index{prettyPrint@{prettyPrint}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{prettyPrint()}{prettyPrint()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a0e6a18a2e993f786014804e4ad082a73} 
+template$<$typename Key, typename Value$>$ \\
+void \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+pretty\+Print (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&}]{rt}{, }\item[{std::\+string}]{prefix}{ = {\ttfamily "{}"{}}, }\item[{bool}]{is\+Left}{ = {\ttfamily true}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints the heap structure to console. 
+
+Uses inorder traversal to display tree structure with visual connection lines.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rt} & Starting position (usually root) \\
+\hline
+{\em prefix} & String prefix for indentation \\
+\hline
+{\em is\+Left} & Whether this is a left child \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_linked_heap_tree_a28a489254b20a0216f75230fae1cf43b}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!remove@{remove}}
+\index{remove@{remove}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a28a489254b20a0216f75230fae1cf43b} 
+template$<$typename Key, typename Value$>$ \\
+Value \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+remove (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&}]{original\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes entry at specified position. 
+
+Swaps the target entry with the last entry, removes the last node, then restores heap property via bubble operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Pos} & \doxylink{class_linked_heap_tree_1_1_position}{Position} of entry to remove \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Value of the removed entry
+\end{DoxyReturn}
+Time Complexity:\+ O(log n)
+\begin{DoxyItemize}
+\item Finding last node:\+ O(log n)
+\item Bubble operation:\+ O(log n)
+\end{DoxyItemize}
+
+Space Complexity:\+ O(1) additional \Hypertarget{class_linked_heap_tree_a6458031a563f580af6e6be9febf1f478}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!removeMin@{removeMin}}
+\index{removeMin@{removeMin}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{removeMin()}{removeMin()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a6458031a563f580af6e6be9febf1f478} 
+template$<$typename Key, typename Value$>$ \\
+Value \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+remove\+Min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes and returns the minimum element. 
+
+Convenience method that removes the root element (minimum key).
+
+\begin{DoxyReturn}{Returns}
+Value of the minimum element 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & if heap is empty\\
+\hline
+\end{DoxyExceptions}
+Time Complexity:\+ O(log n) -\/ delegated to \doxylink{class_linked_heap_tree_a28a489254b20a0216f75230fae1cf43b}{remove()} \Hypertarget{class_linked_heap_tree_a1901f9047530e223a4a3487f82accddf}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!replaceKey@{replaceKey}}
+\index{replaceKey@{replaceKey}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{replaceKey()}{replaceKey()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a1901f9047530e223a4a3487f82accddf} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+replace\+Key (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&}]{p}{, }\item[{Key}]{new\+Key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the key of an entry and restores heap property. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \doxylink{class_linked_heap_tree_1_1_position}{Position} of entry to update \\
+\hline
+{\em new\+Key} & New key value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_linked_heap_tree_1_1_position}{Position} of the entry (may have moved)
+\end{DoxyReturn}
+Time Complexity:\+ O(log n) for bubble operation \Hypertarget{class_linked_heap_tree_a49c9a153800a647ce7ab4042396ee943}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!size@{size}}
+\index{size@{size}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a49c9a153800a647ce7ab4042396ee943} 
+template$<$typename Key, typename Value$>$ \\
+int \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns number of elements in heap. 
+
+\begin{DoxyReturn}{Returns}
+Element count
+\end{DoxyReturn}
+Time Complexity:\+ O(1) \Hypertarget{class_linked_heap_tree_ac34312020460aa314d145153b4b15886}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!swap@{swap}}
+\index{swap@{swap}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_ac34312020460aa314d145153b4b15886} 
+template$<$typename Key, typename Value$>$ \\
+void \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+swap (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&}]{p1}{, }\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&}]{p2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Swaps entries between two positions. 
+
+Exchanges the entries of two nodes without changing the tree structure. Used during removal operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & First position \\
+\hline
+{\em p2} & Second position\\
+\hline
+\end{DoxyParams}
+Time Complexity:\+ O(1) \Hypertarget{class_linked_heap_tree_a689c528db1bc171212708c80e875d43a}\index{LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}!upHeapBubble@{upHeapBubble}}
+\index{upHeapBubble@{upHeapBubble}!LinkedHeapTree$<$ Key, Value $>$@{LinkedHeapTree$<$ Key, Value $>$}}
+\doxysubsubsection{\texorpdfstring{upHeapBubble()}{upHeapBubble()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_a689c528db1bc171212708c80e875d43a} 
+template$<$typename Key, typename Value$>$ \\
+void \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+up\+Heap\+Bubble (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Position}} \&}]{current\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Bubbles an entry up to restore heap property. 
+
+Recursively swaps entry with parent while entry\textquotesingle{}s key is smaller than parent\textquotesingle{}s key.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Pos} & \doxylink{class_linked_heap_tree_1_1_position}{Position} to bubble up\\
+\hline
+\end{DoxyParams}
+Time Complexity:\+ O(log n) -\/ at most tree height swaps 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Database/\+headers/\+\doxymbox{\hyperlink{_linked_heap_tree_8h}{Linked\+Heap\+Tree.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,317 @@
+\doxysection{Query\+Data Namespace Reference}
+\hypertarget{namespace_query_data}{}\label{namespace_query_data}\index{QueryData@{QueryData}}
+
+
+High-\/level wrapper for SQLite CRUD operations.  
+
+
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} = std::\+variant$<$int, double, std::\+string, std::\+nullptr\+\_\+t$>$
+\begin{DoxyCompactList}\small\item\em A variant representing data types storable in a SQLite cell. \end{DoxyCompactList}\item 
+using \doxymbox{\hyperlink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Row}} = std::\+unordered\+\_\+map$<$std::\+string, \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}}$>$
+\begin{DoxyCompactList}\small\item\em Represents a single database row as a map of Column Names to Values. \end{DoxyCompactList}\item 
+using \doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} = std::\+vector$<$\doxymbox{\hyperlink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Row}}$>$
+\begin{DoxyCompactList}\small\item\em A collection of rows returned by a SELECT query. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespace_query_data_a20e4c47bac415e0fe2b2e19be65a8170}{insert\+Row}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&values)
+\begin{DoxyCompactList}\small\item\em Inserts a new row into a database table. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_query_data_a01407fd8c540bc1d16adb80c69444216}{delete\+Row}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&where\+Columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&where\+Values)
+\begin{DoxyCompactList}\small\item\em Deletes rows from a database table matching criteria. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_query_data_ae764c361af294f2fd2f096c75bc12b22}{update\+Rows}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&where\+Columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&where\+Values, const std::\+vector$<$ std::\+string $>$ \&update\+Columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&update\+Values, const std::\+string \&math\+Value="{}"{})
+\begin{DoxyCompactList}\small\item\em Updates rows in a database table. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} \doxymbox{\hyperlink{namespace_query_data_a66394157819d568f34f5e79821fb29c0}{select\+Rows}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&columns, const std::\+vector$<$ std::\+string $>$ \&where\+Columns=\{\}, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&where\+Values=\{\})
+\begin{DoxyCompactList}\small\item\em Selects rows from a database table. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} \doxymbox{\hyperlink{namespace_query_data_a0bb87510b2d40ad84039bfe341101a12}{select\+Rows\+With\+Query}} (const std::\+string \&db\+Name, const std::\+string \&query)
+\begin{DoxyCompactList}\small\item\em Executes a custom SELECT query. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_query_data_a52ab0faa8bf198d41c4e2c1969a62d1c}{custom\+Execute\+Query}} (const std::\+string \&db\+Name, const std::\+string \&query)
+\begin{DoxyCompactList}\small\item\em Executes a custom non-\/\+SELECT query. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{namespace_query_data_aba6f1049223643ebc3b3a09e244dd812}{select\+Helper}} (\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} \&results, \doxymbox{\hyperlink{class_statement}{Statement}} \&st)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+High-\/level wrapper for SQLite CRUD operations. 
+
+
+\begin{DoxyItemize}
+\item Provides a simplified interface for common database interactions, automatically handling statement preparation, parameter binding, and result set mapping. 
+\end{DoxyItemize}
+
+\label{doc-typedef-members}
+\Hypertarget{namespace_query_data_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{namespace_query_data_a57256756cac086596df055ae12abc736}\index{QueryData@{QueryData}!QueryResult@{QueryResult}}
+\index{QueryResult@{QueryResult}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{QueryResult}{QueryResult}}
+{\footnotesize\ttfamily \label{namespace_query_data_a57256756cac086596df055ae12abc736} 
+using \doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Data::\+\+Query\+Result}} = std::\+vector$<$\doxymbox{\hyperlink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Row}}$>$}
+
+
+
+A collection of rows returned by a SELECT query. 
+
+\Hypertarget{namespace_query_data_af59311f651efab3125dc437835296dc5}\index{QueryData@{QueryData}!Row@{Row}}
+\index{Row@{Row}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{Row}{Row}}
+{\footnotesize\ttfamily \label{namespace_query_data_af59311f651efab3125dc437835296dc5} 
+using \doxymbox{\hyperlink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Query\+Data::\+\+Row}} = std::\+unordered\+\_\+map$<$std::\+string, \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}}$>$}
+
+
+
+Represents a single database row as a map of Column Names to Values. 
+
+\Hypertarget{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}\index{QueryData@{QueryData}!SQLiteValue@{SQLiteValue}}
+\index{SQLiteValue@{SQLiteValue}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{SQLiteValue}{SQLiteValue}}
+{\footnotesize\ttfamily \label{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313} 
+using \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{Query\+Data::\+\+SQLite\+Value}} = std::\+variant$<$int, double, std::\+string, std::\+nullptr\+\_\+t$>$}
+
+
+
+A variant representing data types storable in a SQLite cell. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{namespace_query_data_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespace_query_data_a52ab0faa8bf198d41c4e2c1969a62d1c}\index{QueryData@{QueryData}!customExecuteQuery@{customExecuteQuery}}
+\index{customExecuteQuery@{customExecuteQuery}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{customExecuteQuery()}{customExecuteQuery()}}
+{\footnotesize\ttfamily \label{namespace_query_data_a52ab0faa8bf198d41c4e2c1969a62d1c} 
+bool Query\+Data::\+custom\+Execute\+Query (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{db\+Name}{, }\item[{const std::\+string \&}]{query}{}\end{DoxyParamCaption})}
+
+
+
+Executes a custom non-\/\+SELECT query. 
+
+For INSERT, UPDATE, DELETE, or DDL statements not supported by the other functions. Use with caution.
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & Name/\+path of the database file \\
+\hline
+{\em query} & Complete SQL query string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if execution successful, false otherwise
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Query string is executed directly -\/ sanitize inputs 
+\end{DoxyWarning}
+\Hypertarget{namespace_query_data_a01407fd8c540bc1d16adb80c69444216}\index{QueryData@{QueryData}!deleteRow@{deleteRow}}
+\index{deleteRow@{deleteRow}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{deleteRow()}{deleteRow()}}
+{\footnotesize\ttfamily \label{namespace_query_data_a01407fd8c540bc1d16adb80c69444216} 
+bool Query\+Data::\+delete\+Row (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{db\+Name}{, }\item[{const std::\+string \&}]{table}{, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{where\+Columns}{, }\item[{const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&}]{where\+Values}{}\end{DoxyParamCaption})}
+
+
+
+Deletes rows from a database table matching criteria. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & Name/\+path of the database file \\
+\hline
+{\em table} & Name of the table to delete from \\
+\hline
+{\em where\+Columns} & Columns to match for deletion \\
+\hline
+{\em where\+Values} & Values to match in those columns \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if deletion successful, false otherwise
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+where\+Columns.\+size() == where\+Values.\+size()
+\end{DoxyPrecond}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\doxymbox{\hyperlink{namespace_query_data_a01407fd8c540bc1d16adb80c69444216}{QueryData::deleteRow}}(\textcolor{stringliteral}{"{}souvenirs.db"{}},\ \textcolor{stringliteral}{"{}souvenirs"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}college"{}},\ \textcolor{stringliteral}{"{}item"{}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}UCLA"{}},\ \textcolor{stringliteral}{"{}T-\/Shirt"{}}\});}
+
+\end{DoxyCode}
+
+
+Time Complexity:\+ O(n) where n is number of rows scanned \Hypertarget{namespace_query_data_a20e4c47bac415e0fe2b2e19be65a8170}\index{QueryData@{QueryData}!insertRow@{insertRow}}
+\index{insertRow@{insertRow}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{insertRow()}{insertRow()}}
+{\footnotesize\ttfamily \label{namespace_query_data_a20e4c47bac415e0fe2b2e19be65a8170} 
+bool Query\+Data::\+insert\+Row (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{db\+Name}{, }\item[{const std::\+string \&}]{table}{, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{columns}{, }\item[{const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&}]{values}{}\end{DoxyParamCaption})}
+
+
+
+Inserts a new row into a database table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & Name/\+path of the database file \\
+\hline
+{\em table} & Name of the table to insert into \\
+\hline
+{\em columns} & Vector of column names to populate \\
+\hline
+{\em values} & Vector of values corresponding to columns \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if insertion successful, false otherwise
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+columns.\+size() == values.\+size()
+\end{DoxyPrecond}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\doxymbox{\hyperlink{namespace_query_data_a20e4c47bac415e0fe2b2e19be65a8170}{QueryData::insertRow}}(\textcolor{stringliteral}{"{}souvenirs.db"{}},\ \textcolor{stringliteral}{"{}souvenirs"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}college"{}},\ \textcolor{stringliteral}{"{}item"{}},\ \textcolor{stringliteral}{"{}price"{}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}UCLA"{}},\ \textcolor{stringliteral}{"{}T-\/Shirt"{}},\ 25.99\});}
+
+\end{DoxyCode}
+
+
+Time Complexity:\+ O(1) for single row insertion \Hypertarget{namespace_query_data_aba6f1049223643ebc3b3a09e244dd812}\index{QueryData@{QueryData}!selectHelper@{selectHelper}}
+\index{selectHelper@{selectHelper}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{selectHelper()}{selectHelper()}}
+{\footnotesize\ttfamily \label{namespace_query_data_aba6f1049223643ebc3b3a09e244dd812} 
+void Query\+Data::\+select\+Helper (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} \&}]{results}{, }\item[{\doxymbox{\hyperlink{class_statement}{Statement}} \&}]{st}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespace_query_data_a66394157819d568f34f5e79821fb29c0}\index{QueryData@{QueryData}!selectRows@{selectRows}}
+\index{selectRows@{selectRows}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{selectRows()}{selectRows()}}
+{\footnotesize\ttfamily \label{namespace_query_data_a66394157819d568f34f5e79821fb29c0} 
+\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} Query\+Data::\+select\+Rows (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{db\+Name}{, }\item[{const std::\+string \&}]{table}{, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{columns}{, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{where\+Columns}{ = {\ttfamily \{\}}, }\item[{const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&}]{where\+Values}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})}
+
+
+
+Selects rows from a database table. 
+
+Retrieves data from specified columns, optionally filtered by WHERE conditions. Returns results as vector of row maps.
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & Name/\+path of the database file \\
+\hline
+{\em table} & Name of the table to query \\
+\hline
+{\em columns} & Columns to retrieve (empty for all) \\
+\hline
+{\em where\+Columns} & Optional columns for WHERE clause \\
+\hline
+{\em where\+Values} & Optional values for WHERE clause \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result} (vector of \doxylink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Row} maps)
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Get\ all\ souvenirs\ for\ a\ campus}}
+\DoxyCodeLine{\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{QueryResult}}\ results\ =\ \doxymbox{\hyperlink{namespace_query_data_a66394157819d568f34f5e79821fb29c0}{QueryData::selectRows}}(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}souvenirs.db"{}},\ \textcolor{stringliteral}{"{}souvenirs"{}},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}item"{}},\ \textcolor{stringliteral}{"{}price"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}college"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}UCLA"{}}\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Extract\ values\ from\ results}}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&row\ :\ results)\ \{}
+\DoxyCodeLine{\ \ \ \ std::string\ item\ =\ std::get<std::string>(row.at(\textcolor{stringliteral}{"{}item"{}}));}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ price\ =\ std::get<double>(row.at(\textcolor{stringliteral}{"{}price"{}}));}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Time Complexity:\+ O(n) where n is number of rows scanned \Hypertarget{namespace_query_data_a0bb87510b2d40ad84039bfe341101a12}\index{QueryData@{QueryData}!selectRowsWithQuery@{selectRowsWithQuery}}
+\index{selectRowsWithQuery@{selectRowsWithQuery}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{selectRowsWithQuery()}{selectRowsWithQuery()}}
+{\footnotesize\ttfamily \label{namespace_query_data_a0bb87510b2d40ad84039bfe341101a12} 
+\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} Query\+Data::\+select\+Rows\+With\+Query (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{db\+Name}{, }\item[{const std::\+string \&}]{query}{}\end{DoxyParamCaption})}
+
+
+
+Executes a custom SELECT query. 
+
+For complex queries not supported by \doxylink{namespace_query_data_a66394157819d568f34f5e79821fb29c0}{select\+Rows()}. Use with caution -\/ no parameter binding (SQL injection risk).
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & Name/\+path of the database file \\
+\hline
+{\em query} & Complete SQL SELECT query string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result} (vector of \doxylink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Row} maps)
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{QueryResult}}\ results\ =\ \doxymbox{\hyperlink{namespace_query_data_a0bb87510b2d40ad84039bfe341101a12}{QueryData::selectRowsWithQuery}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}distances.db"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SELECT\ DISTINCT\ starting\_college\ FROM\ distances\ ORDER\ BY}}
+\DoxyCodeLine{\textcolor{stringliteral}{starting\_college"{}});}
+
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Warning}
+Query string is executed directly -\/ sanitize inputs 
+\end{DoxyWarning}
+\Hypertarget{namespace_query_data_ae764c361af294f2fd2f096c75bc12b22}\index{QueryData@{QueryData}!updateRows@{updateRows}}
+\index{updateRows@{updateRows}!QueryData@{QueryData}}
+\doxysubsubsection{\texorpdfstring{updateRows()}{updateRows()}}
+{\footnotesize\ttfamily \label{namespace_query_data_ae764c361af294f2fd2f096c75bc12b22} 
+bool Query\+Data::\+update\+Rows (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{db\+Name}{, }\item[{const std::\+string \&}]{table}{, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{where\+Columns}{, }\item[{const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&}]{where\+Values}{, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{update\+Columns}{, }\item[{const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&}]{update\+Values}{, }\item[{const std::\+string \&}]{math\+Value}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Updates rows in a database table. 
+
+Supports two modes:\+
+\begin{DoxyEnumerate}
+\item Direct value update:\+ Set columns to new values
+\item Math operation:\+ Apply arithmetic to existing values
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em db\+Name} & Name/\+path of the database file \\
+\hline
+{\em table} & Name of the table to update \\
+\hline
+{\em where\+Columns} & Columns to match for selection \\
+\hline
+{\em where\+Values} & Values to match in those columns \\
+\hline
+{\em update\+Columns} & Columns to update \\
+\hline
+{\em update\+Values} & New values for those columns \\
+\hline
+{\em math\+Value} & Optional arithmetic operation (e.\+g., "{}+ 5.\+0"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if update successful, false otherwise
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Direct\ update}}
+\DoxyCodeLine{\doxymbox{\hyperlink{namespace_query_data_ae764c361af294f2fd2f096c75bc12b22}{QueryData::updateRows}}(\textcolor{stringliteral}{"{}souvenirs.db"{}},\ \textcolor{stringliteral}{"{}souvenirs"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}college"{}},\ \textcolor{stringliteral}{"{}item"{}}\},\ \{\textcolor{stringliteral}{"{}UCLA"{}},\ \textcolor{stringliteral}{"{}T-\/Shirt"{}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}price"{}}\},\ \{29.99\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Math\ operation\ (increase\ price\ by\ 5)}}
+\DoxyCodeLine{\doxymbox{\hyperlink{namespace_query_data_ae764c361af294f2fd2f096c75bc12b22}{QueryData::updateRows}}(\textcolor{stringliteral}{"{}souvenirs.db"{}},\ \textcolor{stringliteral}{"{}souvenirs"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}college"{}}\},\ \{\textcolor{stringliteral}{"{}UCLA"{}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}price"{}}\},\ \{\},\ \textcolor{stringliteral}{"{}+\ 5.0"{}});}
+
+\end{DoxyCode}
+
+
+Time Complexity:\+ O(n) where n is number of rows scanned 

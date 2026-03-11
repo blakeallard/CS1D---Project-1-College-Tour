@@ -1,8 +1,8 @@
 var _queries_8h =
 [
-    [ "QueryResult", "_queries_8h.html#a96e4db0db4c260757c79f5f28c0237ce", null ],
-    [ "Row", "_queries_8h.html#a91bbececc039e763e9d2a9d550ca83b6", null ],
-    [ "SQLiteValue", "_queries_8h.html#a37bd9e88fccabc1c6335c403ccd4a8ba", null ],
+    [ "QueryData::QueryResult", "namespace_query_data.html#a57256756cac086596df055ae12abc736", null ],
+    [ "QueryData::Row", "namespace_query_data.html#af59311f651efab3125dc437835296dc5", null ],
+    [ "QueryData::SQLiteValue", "namespace_query_data.html#a51a3fbb82394c5b2cfe2f6db27602313", null ],
     [ "QueryData::customExecuteQuery", "namespace_query_data.html#a52ab0faa8bf198d41c4e2c1969a62d1c", null ],
     [ "QueryData::deleteRow", "namespace_query_data.html#a01407fd8c540bc1d16adb80c69444216", null ],
     [ "QueryData::insertRow", "namespace_query_data.html#a20e4c47bac415e0fe2b2e19be65a8170", null ],

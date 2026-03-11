@@ -1,0 +1,129 @@
+\doxysection{Linked\+Heap\+Tree\texorpdfstring{$<$}{<} Key, Value \texorpdfstring{$>$}{>}::\+Entry Struct Reference}
+\hypertarget{struct_linked_heap_tree_1_1_entry}{}\label{struct_linked_heap_tree_1_1_entry}\index{LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}}
+
+
+Stores a key-\/value pair in the heap.  
+
+
+
+
+{\ttfamily \+\#include $<$Linked\+Heap\+Tree.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry_a148c9a00cd2e4eb00cac272d9cafb2d0}{Entry}} (Key a\+Key, Value a\+Value)
+\begin{DoxyCompactList}\small\item\em Constructs an entry with key and value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Key \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry_add1c6176573738cba7f7803f5ca53097}{key}}
+\begin{DoxyCompactList}\small\item\em Ordering key for heap property. \end{DoxyCompactList}\item 
+Value \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry_a392eb5ba1e9a60c9f61b887f64e0661c}{element}}
+\begin{DoxyCompactList}\small\item\em Stored value associated with key. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry_aa8448476a6ff064072e93a6be1bf03ab}{node}}
+\begin{DoxyCompactList}\small\item\em Pointer to containing node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std::\+ostream \& \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry_a6b2cbba54f1ebf8350bfecbc8cab8d64}{operator$<$$<$}} (std::\+ostream \&os, const \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry_a148c9a00cd2e4eb00cac272d9cafb2d0}{Entry}} \&e)
+\begin{DoxyCompactList}\small\item\em Stream output operator for \doxylink{struct_linked_heap_tree_1_1_entry}{Entry}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Key, typename Value$>$\newline
+struct Linked\+Heap\+Tree$<$ Key, Value $>$::\+\+Entry}
+Stores a key-\/value pair in the heap. 
+
+Each entry contains the ordering key, the stored value, and a pointer to its containing node. 
+
+\label{doc-constructors}
+\Hypertarget{struct_linked_heap_tree_1_1_entry_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_linked_heap_tree_1_1_entry_a148c9a00cd2e4eb00cac272d9cafb2d0}\index{LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}!Entry@{Entry}}
+\index{Entry@{Entry}!LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}}
+\doxysubsubsection{\texorpdfstring{Entry()}{Entry()}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_entry_a148c9a00cd2e4eb00cac272d9cafb2d0} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Entry::\+\+Entry (\begin{DoxyParamCaption}\item[{Key}]{a\+Key}{, }\item[{Value}]{a\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an entry with key and value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+Key} & The ordering key \\
+\hline
+{\em a\+Value} & The stored value \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-related-members}
+\Hypertarget{struct_linked_heap_tree_1_1_entry_doc-related-members}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{struct_linked_heap_tree_1_1_entry_a6b2cbba54f1ebf8350bfecbc8cab8d64}\index{LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_entry_a6b2cbba54f1ebf8350bfecbc8cab8d64} 
+template$<$typename Key, typename Value$>$ \\
+std::\+ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std::\+ostream \&}]{os}{, }\item[{const \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry_a148c9a00cd2e4eb00cac272d9cafb2d0}{Entry}} \&}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Stream output operator for \doxylink{struct_linked_heap_tree_1_1_entry}{Entry}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream \\
+\hline
+{\em e} & \doxylink{struct_linked_heap_tree_1_1_entry}{Entry} to output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to output stream 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_linked_heap_tree_1_1_entry_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_linked_heap_tree_1_1_entry_a392eb5ba1e9a60c9f61b887f64e0661c}\index{LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}!element@{element}}
+\index{element@{element}!LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}}
+\doxysubsubsection{\texorpdfstring{element}{element}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_entry_a392eb5ba1e9a60c9f61b887f64e0661c} 
+template$<$typename Key, typename Value$>$ \\
+Value \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Entry::\+element}
+
+
+
+Stored value associated with key. 
+
+\Hypertarget{struct_linked_heap_tree_1_1_entry_add1c6176573738cba7f7803f5ca53097}\index{LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}!key@{key}}
+\index{key@{key}!LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}}
+\doxysubsubsection{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_entry_add1c6176573738cba7f7803f5ca53097} 
+template$<$typename Key, typename Value$>$ \\
+Key \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Entry::\+key}
+
+
+
+Ordering key for heap property. 
+
+\Hypertarget{struct_linked_heap_tree_1_1_entry_aa8448476a6ff064072e93a6be1bf03ab}\index{LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}!node@{node}}
+\index{node@{node}!LinkedHeapTree$<$ Key, Value $>$::Entry@{LinkedHeapTree$<$ Key, Value $>$::Entry}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily \label{struct_linked_heap_tree_1_1_entry_aa8448476a6ff064072e93a6be1bf03ab} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Node}}\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Entry::\+node}
+
+
+
+Pointer to containing node. 
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Database/\+headers/\+\doxymbox{\hyperlink{_linked_heap_tree_8h}{Linked\+Heap\+Tree.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,22 @@
+\doxysection{src/\+\+Controllers/\+src/\+\+Helpers.cpp File Reference}
+\hypertarget{_helpers_8cpp}{}\label{_helpers_8cpp}\index{src/Controllers/src/Helpers.cpp@{src/Controllers/src/Helpers.cpp}}
+{\ttfamily \+\#include "{}Helpers.\+h"{}}\newline
+{\ttfamily \+\#include "{}Abs\+Database.\+h"{}}\newline
+{\ttfamily \+\#include "{}crow/\+multipart.\+h"{}}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$stdexcept$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespace_helpers}{Helpers}}
+\begin{DoxyCompactList}\small\item\em Utility functions for administrative operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespace_helpers_addb87b4c4f03cf0cd2ece86e062fc113}{Helpers::\+get\+Database\+From\+Request}} (crow::\+request req)
+\begin{DoxyCompactList}\small\item\em Extracts and saves database file from HTTP request. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{Helpers::\+merge\+Databases}} (const std::\+string \&main\+DBName, const std::\+string \&other\+File, const std::\+string \&merge\+Into\+Table, const std::\+string \&merge\+From\+Table, const bool is\+Unique=false, const std::\+vector$<$ std::\+string $>$ \&merge\+Into\+Columns=\{\}, const std::\+vector$<$ std::\+string $>$ \&merge\+From\+Columns=\{\}, const std::\+string \&unique\+Into\+Column="{}"{}, const std::\+string \&unique\+From\+Column="{}"{})
+\begin{DoxyCompactList}\small\item\em Merges data from one database into another. \end{DoxyCompactList}\end{DoxyCompactItemize}

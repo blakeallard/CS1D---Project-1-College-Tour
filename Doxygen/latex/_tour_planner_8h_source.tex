@@ -1,0 +1,49 @@
+\doxysection{Tour\+Planner.\+h}
+\hypertarget{_tour_planner_8h_source}{}\label{_tour_planner_8h_source}\index{src/Database/headers/TourPlanner.h@{src/Database/headers/TourPlanner.h}}
+\doxymbox{\hyperlink{_tour_planner_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ TOUR\_PLANNER\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TOUR\_PLANNER\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_tour_stop}{TourStop}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_tour_stop_ac72cf04b6ecc69b912f50754fe104ccb}{campus}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{struct_tour_stop_ab4fe13db7178dc9366d8c5e1d90c4002}{distanceFromPrevious}};\ }
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_tour_result}{TourResult}}}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::vector<TourStop>\ \doxymbox{\hyperlink{struct_tour_result_a14d6550fd8d63a30e786490e15bf5f8d}{stops}};\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{struct_tour_result_ad2fd966525df320416209be23bed2f6f}{totalDistance}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_tour_planner}{TourPlanner}}}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{struct_tour_result}{TourResult}}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_tour_planner_a0466540d07a69a9e8231f85aae5622fc}{calculateOptimalTour}}(\textcolor{keyword}{const}\ std::string\ \&startCampus,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&campusesToVisit);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_tour_planner_ad1db6fe9f361820319ed00e2af2e55fa}{getAllDistances}}(\textcolor{keyword}{const}\ std::vector<std::string>\ campusNames,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<double>>\ \&matrix,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::map<std::string,\ int>\ \&campusIndex);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_tour_planner_a1446be3bdf28c0126428c89550230c45}{visit}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ current,}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::vector<double>>\ \&distances,}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<bool>\ \&visited,\ std::vector<int>\ \&route);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_tour_planner_a643a19f043ed014316112a5e7605a184}{twoOpt}}(std::vector<int>\ \&route,}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::vector<double>>\ \&dist);}
+\DoxyCodeLine{00178\ \};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

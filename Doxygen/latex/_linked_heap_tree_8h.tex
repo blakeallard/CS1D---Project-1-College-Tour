@@ -1,0 +1,44 @@
+\doxysection{src/\+\+Database/\+headers/\+\+Linked\+Heap\+Tree.h File Reference}
+\hypertarget{_linked_heap_tree_8h}{}\label{_linked_heap_tree_8h}\index{src/Database/headers/LinkedHeapTree.h@{src/Database/headers/LinkedHeapTree.h}}
+
+
+Template-\/based min-\/heap implementation using linked tree structure.  
+
+
+{\ttfamily \+\#include $<$cstddef$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$list$>$}\newline
+{\ttfamily \+\#include $<$ostream$>$}\newline
+{\ttfamily \+\#include $<$queue$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree$<$ Key, Value $>$}}
+\begin{DoxyCompactList}\small\item\em Min-\/heap priority queue using linked binary tree. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Linked\+Heap\+Tree$<$ Key, Value $>$::\+\+Entry}}
+\begin{DoxyCompactList}\small\item\em Stores a key-\/value pair in the heap. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Linked\+Heap\+Tree$<$ Key, Value $>$::\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Tree node containing entry and tree pointers. \end{DoxyCompactList}\item 
+class \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position}{Linked\+Heap\+Tree$<$ Key, Value $>$::\+\+Position}}
+\begin{DoxyCompactList}\small\item\em Handle for accessing and manipulating heap entries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Template-\/based min-\/heap implementation using linked tree structure. 
+
+This file implements a min-\/heap priority queue using a linked binary tree structure. The heap is used by \doxylink{class_tour_planner}{Tour\+Planner} for efficient nearest-\/neighbor selection during tour path calculation.
+
+Key Features:\+
+\begin{DoxyItemize}
+\item Generic template supporting any key/\+value types
+\item O(log n) insert, remove, and key updates
+\item O(1) minimum access
+\item Position-\/based API for direct node manipulation
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+CS1D Group Project 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 2026 
+\end{DoxyDate}

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['visit_0',['visit',['../class_tour_planner.html#a1446be3bdf28c0126428c89550230c45',1,'TourPlanner']]]
+  ['_7eabsdatabase_0',['~ABSDatabase',['../class_a_b_s_database.html#a1ac32905ac33d748e932d737c1606960',1,'ABSDatabase']]],
+  ['_7estatement_1',['~Statement',['../class_statement.html#a57fdfef84b5f92d83850f6467b46012a',1,'Statement']]]
 ];

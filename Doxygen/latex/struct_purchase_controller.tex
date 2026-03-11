@@ -1,0 +1,219 @@
+\doxysection{Purchase\+Controller Struct Reference}
+\hypertarget{struct_purchase_controller}{}\label{struct_purchase_controller}\index{PurchaseController@{PurchaseController}}
+
+
+Handles souvenir purchase API endpoints.  
+
+
+
+
+{\ttfamily \+\#include $<$Controllers.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static crow::\+response \doxymbox{\hyperlink{struct_purchase_controller_a1ff37d4191c9007a571336c45de7fb64}{read}} (std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles GET requests for purchase history. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_purchase_controller_a7b3f7effcbac991af2db8fd0bd59bfcb}{patch}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles PATCH requests for purchase updates. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_purchase_controller_a9455c0f9b7b59b97ca2bc07ef541b2b8}{create}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles POST requests for saving purchases. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_purchase_controller_a0a78ae2de322b7cdbaac85ba911d7c77}{remove}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles DELETE requests for purchase removal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles souvenir purchase API endpoints. 
+
+Endpoints:\+
+\begin{DoxyItemize}
+\item POST /\+api/\+\+Purchase/\+save -\/ Save purchase records to database
+\item GET /\+api/\+\+Purchase/\+history -\/ Get purchase history for a user
+\end{DoxyItemize}
+
+Tracks souvenirs purchased at each campus during tours. 
+
+\label{doc-func-members}
+\Hypertarget{struct_purchase_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_purchase_controller_a9455c0f9b7b59b97ca2bc07ef541b2b8}\index{PurchaseController@{PurchaseController}!create@{create}}
+\index{create@{create}!PurchaseController@{PurchaseController}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{struct_purchase_controller_a9455c0f9b7b59b97ca2bc07ef541b2b8} 
+crow::\+response Purchase\+Controller::\+create (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles POST requests for saving purchases. 
+
+Body format:\+ \{ tour\+Name:\+ string, purchases:\+ \+[\{campus, item, price, quantity\}, ...]\+ \}
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object with purchase data \\
+\hline
+{\em id} & Action identifier (e.\+g., "{}save"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Saves souvenir purchases made during a tour to the database. Each purchase includes campus, item, price, and quantity.
+
+POST /\+api/\+\+Purchase/\+save
+
+Request Body:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}tourName"{}}:\ \textcolor{stringliteral}{"{}Saddleback\ Tour"{}},}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}purchases"{}}:\ [}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}campus"{}}:\ \textcolor{stringliteral}{"{}UCLA"{}},\ \textcolor{stringliteral}{"{}item"{}}:\ \textcolor{stringliteral}{"{}T-\/Shirt"{}},\ \textcolor{stringliteral}{"{}price"{}}:\ 25.99,\ \textcolor{stringliteral}{"{}quantity"{}}:\ 2\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}campus"{}}:\ \textcolor{stringliteral}{"{}USC"{}},\ \textcolor{stringliteral}{"{}item"{}}:\ \textcolor{stringliteral}{"{}Coffee\ Mug"{}},\ \textcolor{stringliteral}{"{}price"{}}:\ 12.50,\ \textcolor{stringliteral}{"{}quantity"{}}:\ 1\}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Response:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}message"{}}:\ \textcolor{stringliteral}{"{}Purchases\ saved\ successfully"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object containing purchase data \\
+\hline
+{\em id} & Action identifier (must be "{}save"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with success status
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Currently uses user\+\_\+id = 1 (guest user) 
+
+Future:\+ user\+\_\+id should come from authentication
+\end{DoxyNote}
+Time Complexity:\+ O(n) where n is number of purchase items \Hypertarget{struct_purchase_controller_a7b3f7effcbac991af2db8fd0bd59bfcb}\index{PurchaseController@{PurchaseController}!patch@{patch}}
+\index{patch@{patch}!PurchaseController@{PurchaseController}}
+\doxysubsubsection{\texorpdfstring{patch()}{patch()}}
+{\footnotesize\ttfamily \label{struct_purchase_controller_a7b3f7effcbac991af2db8fd0bd59bfcb} 
+crow::\+response Purchase\+Controller::\+patch (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles PATCH requests for purchase updates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Purchase identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Not implemented -\/ purchases are immutable records.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Purchase identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HTTP 501 Not Implemented 
+\end{DoxyReturn}
+\Hypertarget{struct_purchase_controller_a1ff37d4191c9007a571336c45de7fb64}\index{PurchaseController@{PurchaseController}!read@{read}}
+\index{read@{read}!PurchaseController@{PurchaseController}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{struct_purchase_controller_a1ff37d4191c9007a571336c45de7fb64} 
+crow::\+response Purchase\+Controller::\+read (\begin{DoxyParamCaption}\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles GET requests for purchase history. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & User identifier or action \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with purchase records
+\end{DoxyReturn}
+Retrieves all purchase records for a specific user.
+
+GET /\+api/\+\+Purchase/\+\{user\+Id\}
+
+Response:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}id"{}}:\ 1,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}campus"{}}:\ \textcolor{stringliteral}{"{}UCLA"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}item"{}}:\ \textcolor{stringliteral}{"{}T-\/Shirt"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}price"{}}:\ 25.99,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}quantity"{}}:\ 2,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}purchaseDate"{}}:\ \textcolor{stringliteral}{"{}2026-\/03-\/08"{}}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & User ID as string (will be converted to integer) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON array of purchase records
+\end{DoxyReturn}
+Time Complexity:\+ O(n) where n is number of purchases \Hypertarget{struct_purchase_controller_a0a78ae2de322b7cdbaac85ba911d7c77}\index{PurchaseController@{PurchaseController}!remove@{remove}}
+\index{remove@{remove}!PurchaseController@{PurchaseController}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{struct_purchase_controller_a0a78ae2de322b7cdbaac85ba911d7c77} 
+crow::\+response Purchase\+Controller::\+remove (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles DELETE requests for purchase removal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Purchase identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Not implemented -\/ purchases are immutable records.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Purchase identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HTTP 501 Not Implemented 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Controllers/\+headers/\+\doxymbox{\hyperlink{_controllers_8h}{Controllers.\+h}}\item 
+src/\+\+Controllers/\+src/\+\doxymbox{\hyperlink{_purchase_controller_8cpp}{Purchase\+Controller.\+cpp}}\end{DoxyCompactItemize}

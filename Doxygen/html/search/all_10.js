@@ -7,5 +7,5 @@ var searchData=
   ['replacekey_4',['replaceKey',['../class_linked_heap_tree.html#a1901f9047530e223a4a3487f82accddf',1,'LinkedHeapTree']]],
   ['right_5',['right',['../struct_linked_heap_tree_1_1_node.html#a1ab3f6d26d26819df04a426b0999f355',1,'LinkedHeapTree::Node::right'],['../class_linked_heap_tree_1_1_position.html#a36a9cd7d1b0357ad2985f0e520d898fc',1,'LinkedHeapTree::Position::right()']]],
   ['routeregister_2eh_6',['RouteRegister.h',['../_route_register_8h.html',1,'']]],
-  ['row_7',['Row',['../_queries_8h.html#a91bbececc039e763e9d2a9d550ca83b6',1,'Row:&#160;Queries.h'],['../_queries_8cpp.html#a91bbececc039e763e9d2a9d550ca83b6',1,'Row:&#160;Queries.cpp']]]
+  ['row_7',['Row',['../namespace_query_data.html#af59311f651efab3125dc437835296dc5',1,'QueryData::Row'],['../_queries_8cpp.html#a91bbececc039e763e9d2a9d550ca83b6',1,'Row:&#160;Queries.cpp']]]
 ];

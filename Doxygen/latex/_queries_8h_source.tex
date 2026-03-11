@@ -1,0 +1,52 @@
+\doxysection{Queries.\+h}
+\hypertarget{_queries_8h_source}{}\label{_queries_8h_source}\index{src/Database/headers/Queries.h@{src/Database/headers/Queries.h}}
+\doxymbox{\hyperlink{_queries_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ QUERIES\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ QUERIES\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <variant>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespace_query_data}{QueryData}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{using\ }\doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLiteValue}}\ =\ std::variant<int,\ double,\ std::string,\ std::nullptr\_t>;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }\doxymbox{\hyperlink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Row}}\ =\ std::unordered\_map<std::string,\ SQLiteValue>;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{using\ }\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{QueryResult}}\ =\ std::vector<Row>;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{namespace_query_data_a20e4c47bac415e0fe2b2e19be65a8170}{insertRow}}(\textcolor{keyword}{const}\ std::string\ \&dbName,\ \textcolor{keyword}{const}\ std::string\ \&table,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&columns,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SQLiteValue>\ \&values);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{namespace_query_data_a01407fd8c540bc1d16adb80c69444216}{deleteRow}}(\textcolor{keyword}{const}\ std::string\ \&dbName,\ \textcolor{keyword}{const}\ std::string\ \&table,}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&whereColumns,}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SQLiteValue>\ \&whereValues);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00125\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{namespace_query_data_ae764c361af294f2fd2f096c75bc12b22}{updateRows}}(\textcolor{keyword}{const}\ std::string\ \&dbName,\ \textcolor{keyword}{const}\ std::string\ \&table,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&whereColumns,}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SQLiteValue>\ \&whereValues,}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&updateColumns,}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SQLiteValue>\ \&updateValues,}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&mathValue\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00162\ \doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{QueryResult}}\ \doxymbox{\hyperlink{namespace_query_data_a66394157819d568f34f5e79821fb29c0}{selectRows}}(\textcolor{keyword}{const}\ std::string\ \&dbName,\ \textcolor{keyword}{const}\ std::string\ \&table,}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&columns,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\ \&whereColumns\ =\ \{\},}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<SQLiteValue>\ \&whereValues\ \ =\ \{\});}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00186\ \doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{QueryResult}}\ \doxymbox{\hyperlink{namespace_query_data_a0bb87510b2d40ad84039bfe341101a12}{selectRowsWithQuery}}(\textcolor{keyword}{const}\ std::string\ \&dbName,}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&query);}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{namespace_query_data_a52ab0faa8bf198d41c4e2c1969a62d1c}{customExecuteQuery}}(\textcolor{keyword}{const}\ std::string\ \&dbName,\ \textcolor{keyword}{const}\ std::string\ \&query);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \}\ \textcolor{comment}{//\ namespace\ QueryData}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

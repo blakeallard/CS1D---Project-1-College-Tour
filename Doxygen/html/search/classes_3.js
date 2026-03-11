@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linkedheaptree_0',['LinkedHeapTree',['../class_linked_heap_tree.html',1,'']]]
+  ['node_0',['Node',['../struct_linked_heap_tree_1_1_node.html',1,'LinkedHeapTree']]]
 ];

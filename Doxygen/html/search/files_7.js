@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['queries_2ecpp_0',['Queries.cpp',['../_queries_8cpp.html',1,'']]],
-  ['queries_2eh_1',['Queries.h',['../_queries_8h.html',1,'']]]
+  ['routeregister_2eh_0',['RouteRegister.h',['../_route_register_8h.html',1,'']]]
 ];

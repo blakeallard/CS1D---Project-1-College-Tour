@@ -1,0 +1,171 @@
+\doxysection{Admin\+Controller Struct Reference}
+\hypertarget{struct_admin_controller}{}\label{struct_admin_controller}\index{AdminController@{AdminController}}
+
+
+Handles administrator API endpoints.  
+
+
+
+
+{\ttfamily \+\#include $<$Controllers.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static crow::\+response \doxymbox{\hyperlink{struct_admin_controller_a6d5174a9cfac61a4b66ba1d279ad1e80}{read}} (std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles GET requests for admin operations. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_admin_controller_aeb80b5c77ad3a25c01f8e4e4e0a5a61d}{patch}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles PATCH requests for admin updates. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_admin_controller_abfdac111269c7c60edd8404619712e0c}{create}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles POST requests for admin actions. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_admin_controller_a1a8e59ae1d9d97915c770362b379165c}{remove}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles DELETE requests for admin deletions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles administrator API endpoints. 
+
+Provides password-\/protected administrative functions:\+
+\begin{DoxyItemize}
+\item Login/\+authentication
+\item Campus management
+\item Souvenir price modifications
+\item Data import operations 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{struct_admin_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_admin_controller_abfdac111269c7c60edd8404619712e0c}\index{AdminController@{AdminController}!create@{create}}
+\index{create@{create}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{struct_admin_controller_abfdac111269c7c60edd8404619712e0c} 
+crow::\+response Admin\+Controller::\+create (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles POST requests for admin actions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Action identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future admin action functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Action identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Admin login is handled by \doxylink{struct_user_controller_ac07f482d97b9d64491f21244c996b1fc}{User\+Controller::\+create} with id="{}admin"{} 
+\end{DoxyNote}
+\Hypertarget{struct_admin_controller_aeb80b5c77ad3a25c01f8e4e4e0a5a61d}\index{AdminController@{AdminController}!patch@{patch}}
+\index{patch@{patch}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{patch()}{patch()}}
+{\footnotesize\ttfamily \label{struct_admin_controller_aeb80b5c77ad3a25c01f8e4e4e0a5a61d} 
+crow::\+response Admin\+Controller::\+patch (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles PATCH requests for admin updates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Resource identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future admin update functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Resource identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response 
+\end{DoxyReturn}
+\Hypertarget{struct_admin_controller_a6d5174a9cfac61a4b66ba1d279ad1e80}\index{AdminController@{AdminController}!read@{read}}
+\index{read@{read}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{struct_admin_controller_a6d5174a9cfac61a4b66ba1d279ad1e80} 
+crow::\+response Admin\+Controller::\+read (\begin{DoxyParamCaption}\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles GET requests for admin operations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Action identifier (e.\+g., "{}login"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with authentication result or admin data
+\end{DoxyReturn}
+Placeholder for future admin data retrieval functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Action identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty JSON response 
+\end{DoxyReturn}
+\Hypertarget{struct_admin_controller_a1a8e59ae1d9d97915c770362b379165c}\index{AdminController@{AdminController}!remove@{remove}}
+\index{remove@{remove}!AdminController@{AdminController}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{struct_admin_controller_a1a8e59ae1d9d97915c770362b379165c} 
+crow::\+response Admin\+Controller::\+remove (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles DELETE requests for admin deletions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Resource identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future admin deletion functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Resource identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Controllers/\+headers/\+\doxymbox{\hyperlink{_controllers_8h}{Controllers.\+h}}\item 
+src/\+\+Controllers/\+src/\+\doxymbox{\hyperlink{_admin_controller_8cpp}{Admin\+Controller.\+cpp}}\end{DoxyCompactItemize}

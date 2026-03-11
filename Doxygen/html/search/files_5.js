@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_2ecpp_0',['main.cpp',['../main_8cpp.html',1,'']]]
+  ['purchasecontroller_2ecpp_0',['PurchaseController.cpp',['../_purchase_controller_8cpp.html',1,'']]]
 ];

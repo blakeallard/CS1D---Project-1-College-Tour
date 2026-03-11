@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CS1D Project: TourPlanner Class Reference</title>
+<title>CS1D Group Project: TourPlanner Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">CS1D Project
+   <div id="projectname">CS1D Group Project
    </div>
   </td>
  </tr>
@@ -127,8 +127,6 @@ Static Protected Member Functions</h2></td></tr>
 <li>vector&lt;bool&gt;: Visited campus tracking</li>
 <li>vector&lt;int&gt;: Route as sequence of campus indices </li>
 </ul>
-
-<p class="definition">Definition at line <a class="el" href="_tour_planner_8h_source.html#l00065">65</a> of file <a class="el" href="_tour_planner_8h_source.html">TourPlanner.h</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a0466540d07a69a9e8231f85aae5622fc" name="a0466540d07a69a9e8231f85aae5622fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0466540d07a69a9e8231f85aae5622fc">&#9670;&#160;</a></span>calculateOptimalTour()</h2>
@@ -183,18 +181,6 @@ Static Protected Member Functions</h2></td></tr>
 <li>Convert to <a class="el" href="struct_tour_result.html" title="Represents a complete tour itinerary with route and total distance.">TourResult</a> format</li>
 </ol>
 <p>Time Complexity: O(n²) where n = number of campuses Space Complexity: O(n²) for distance matrix </p>
-
-<p class="definition">Definition at line <a class="el" href="_tour_planner_8cpp_source.html#l00166">166</a> of file <a class="el" href="_tour_planner_8cpp_source.html">TourPlanner.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tour_planner_a0466540d07a69a9e8231f85aae5622fc_cgraph.png" border="0" usemap="#aclass_tour_planner_a0466540d07a69a9e8231f85aae5622fc_cgraph" loading="lazy" alt=""/></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tour_planner_a0466540d07a69a9e8231f85aae5622fc_icgraph.png" border="0" usemap="#aclass_tour_planner_a0466540d07a69a9e8231f85aae5622fc_icgraph" loading="lazy" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -252,18 +238,6 @@ campusIndex must contain all campus names with valid indices</dd></dl>
 <p>Queries the distances database for each campus and fills the symmetric distance matrix. Uses campusIndex to map campus names to matrix indices.</p>
 <p>Time Complexity: O(n) database queries, O(n²) total distance assignments </p>
 
-<p class="definition">Definition at line <a class="el" href="_tour_planner_8cpp_source.html#l00028">28</a> of file <a class="el" href="_tour_planner_8cpp_source.html">TourPlanner.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tour_planner_ad1db6fe9f361820319ed00e2af2e55fa_cgraph.png" border="0" usemap="#aclass_tour_planner_ad1db6fe9f361820319ed00e2af2e55fa_cgraph" loading="lazy" alt=""/></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tour_planner_ad1db6fe9f361820319ed00e2af2e55fa_icgraph.png" border="0" usemap="#aclass_tour_planner_ad1db6fe9f361820319ed00e2af2e55fa_icgraph" loading="lazy" alt=""/></div>
-</div>
-
 </div>
 </div>
 <a id="a643a19f043ed014316112a5e7605a184" name="a643a19f043ed014316112a5e7605a184"></a>
@@ -318,13 +292,6 @@ Here is the caller graph for this function:</div>
 <p>Space Complexity: O(1) - operates in-place</p>
 <p>Iteratively checks all pairs of edges and reverses segments when it would reduce total distance. Continues until no further improvements can be made.</p>
 <p>Time Complexity: O(n²) per iteration, typically few iterations </p>
-
-<p class="definition">Definition at line <a class="el" href="_tour_planner_8cpp_source.html#l00113">113</a> of file <a class="el" href="_tour_planner_8cpp_source.html">TourPlanner.cpp</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tour_planner_a643a19f043ed014316112a5e7605a184_icgraph.png" border="0" usemap="#aclass_tour_planner_a643a19f043ed014316112a5e7605a184_icgraph" loading="lazy" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -396,23 +363,11 @@ Here is the caller graph for this function:</div>
 <li>Each call: O(n) heap insertions, O(log n) extraction </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_tour_planner_8cpp_source.html#l00074">74</a> of file <a class="el" href="_tour_planner_8cpp_source.html">TourPlanner.cpp</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tour_planner_a1446be3bdf28c0126428c89550230c45_cgraph.png" border="0" usemap="#aclass_tour_planner_a1446be3bdf28c0126428c89550230c45_cgraph" loading="lazy" alt=""/></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tour_planner_a1446be3bdf28c0126428c89550230c45_icgraph.png" border="0" usemap="#aclass_tour_planner_a1446be3bdf28c0126428c89550230c45_icgraph" loading="lazy" alt=""/></div>
-</div>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/Database/headers/<a class="el" href="_tour_planner_8h_source.html">TourPlanner.h</a></li>
-<li>src/Database/src/<a class="el" href="_tour_planner_8cpp_source.html">TourPlanner.cpp</a></li>
+<li>src/Database/src/<a class="el" href="_tour_planner_8cpp.html">TourPlanner.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

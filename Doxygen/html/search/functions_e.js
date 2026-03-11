@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['read_0',['read',['../struct_university_controller.html#ac1cd76683a94913a5c20c91d5b0a56e5',1,'UniversityController::read()'],['../struct_user_controller.html#a2ad421fae292e4ede32396def596e5cd',1,'UserController::read()'],['../struct_admin_controller.html#a6d5174a9cfac61a4b66ba1d279ad1e80',1,'AdminController::read()'],['../struct_tour_controller.html#a2f47aabbbbc55b48bdfa5c8435882bfc',1,'TourController::read()'],['../struct_souvenir_controller.html#a2c45d8c6caabfd5b5c976deeadfb6061',1,'SouvenirController::read()'],['../struct_purchase_controller.html#a1ff37d4191c9007a571336c45de7fb64',1,'PurchaseController::read()']]],
-  ['register_5fcrud_5froutes_1',['register_crud_routes',['../_route_register_8h.html#acf37a8406e93ce38b3f02208a6228975',1,'RouteRegister.h']]],
-  ['remove_2',['remove',['../struct_university_controller.html#a0715063adcd2ffb500921de42abf86be',1,'UniversityController::remove()'],['../struct_user_controller.html#abc229de15f8e4e855d696612b56434c6',1,'UserController::remove()'],['../struct_admin_controller.html#a1a8e59ae1d9d97915c770362b379165c',1,'AdminController::remove()'],['../struct_tour_controller.html#ad0e1c32f25d9179e7bd889fddbf1c173',1,'TourController::remove()'],['../struct_souvenir_controller.html#a03ebf5e42958ea4a2dfc270acd5b2fca',1,'SouvenirController::remove()'],['../struct_purchase_controller.html#a0a78ae2de322b7cdbaac85ba911d7c77',1,'PurchaseController::remove()'],['../class_linked_heap_tree.html#a28a489254b20a0216f75230fae1cf43b',1,'LinkedHeapTree::remove(const Position &amp;originalPos)']]],
-  ['removemin_3',['removeMin',['../class_linked_heap_tree.html#a6458031a563f580af6e6be9febf1f478',1,'LinkedHeapTree']]],
-  ['replacekey_4',['replaceKey',['../class_linked_heap_tree.html#a1901f9047530e223a4a3487f82accddf',1,'LinkedHeapTree']]],
-  ['right_5',['right',['../class_linked_heap_tree_1_1_position.html#a36a9cd7d1b0357ad2985f0e520d898fc',1,'LinkedHeapTree::Position']]]
+  ['selecthelper_0',['selectHelper',['../namespace_query_data.html#aba6f1049223643ebc3b3a09e244dd812',1,'QueryData']]],
+  ['selectrows_1',['selectRows',['../namespace_query_data.html#a66394157819d568f34f5e79821fb29c0',1,'QueryData']]],
+  ['selectrowswithquery_2',['selectRowsWithQuery',['../namespace_query_data.html#a0bb87510b2d40ad84039bfe341101a12',1,'QueryData']]],
+  ['set_3',['set',['../class_a_b_s_database.html#a5d78c7ec55fba40ee07b1b842785a8a1',1,'ABSDatabase']]],
+  ['size_4',['size',['../class_linked_heap_tree.html#a49c9a153800a647ce7ab4042396ee943',1,'LinkedHeapTree']]],
+  ['statement_5',['Statement',['../class_statement.html#a7fb0eea4e9e73c9e5dfd15b5fb6dffc3',1,'Statement']]],
+  ['step_6',['step',['../class_statement.html#a442a1e524d2fc1b9c2feeed05eccedc0',1,'Statement']]],
+  ['swap_7',['swap',['../class_linked_heap_tree.html#ac34312020460aa314d145153b4b15886',1,'LinkedHeapTree']]]
 ];

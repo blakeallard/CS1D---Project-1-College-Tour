@@ -1,0 +1,227 @@
+\doxysection{Tour\+Controller Struct Reference}
+\hypertarget{struct_tour_controller}{}\label{struct_tour_controller}\index{TourController@{TourController}}
+
+
+Handles tour planning API endpoints.  
+
+
+
+
+{\ttfamily \+\#include $<$Controllers.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static crow::\+response \doxymbox{\hyperlink{struct_tour_controller_a2f47aabbbbc55b48bdfa5c8435882bfc}{read}} (std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles GET requests for tour data. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_tour_controller_a81368218b69a7cacabece0c42190aa96}{patch}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles PATCH requests for tour updates. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_tour_controller_adf7f1689e7cf70c54f480dca14ed082f}{create}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles POST requests for tour calculations. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_tour_controller_ad0e1c32f25d9179e7bd889fddbf1c173}{remove}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles DELETE requests for tour removal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles tour planning API endpoints. 
+
+Endpoints:\+
+\begin{DoxyItemize}
+\item POST /\+api/\+\+Tour/\+calculate -\/ Calculate optimal tour with selected campuses
+\item POST /\+api/\+\+Tour/\+calculate-\/n -\/ Calculate tour visiting N nearest campuses
+\end{DoxyItemize}
+
+Uses \doxylink{class_tour_planner}{Tour\+Planner} class for route optimization algorithms. 
+
+\label{doc-func-members}
+\Hypertarget{struct_tour_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_tour_controller_adf7f1689e7cf70c54f480dca14ed082f}\index{TourController@{TourController}!create@{create}}
+\index{create@{create}!TourController@{TourController}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{struct_tour_controller_adf7f1689e7cf70c54f480dca14ed082f} 
+crow::\+response Tour\+Controller::\+create (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles POST requests for tour calculations. 
+
+Supported endpoints:\+
+\begin{DoxyItemize}
+\item "{}calculate"{}:\+ Calculate tour with user-\/selected campuses Body:\+ \{ start\+Campus:\+ string, selected\+Campuses:\+ string\+[]\+ \}
+\item "{}calculate-\/n"{}:\+ Calculate tour visiting N nearest campuses Body:\+ \{ start\+Campus:\+ string, number\+Of\+Campuses:\+ int \}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object containing tour parameters \\
+\hline
+{\em id} & Endpoint identifier ("{}calculate"{} or "{}calculate-\/n"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with optimal route and total distance
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_tour_planner_a0466540d07a69a9e8231f85aae5622fc}{Tour\+Planner::\+calculate\+Optimal\+Tour}
+\end{DoxySeeAlso}
+Calculates optimal tour routes based on starting campus and selected campuses to visit. Uses greedy nearest-\/neighbor algorithm with 2-\/opt optimization.
+
+Endpoints:\+
+\begin{DoxyItemize}
+\item POST /\+api/\+\+Tour/\+calculate -\/ Calculate tour with user-\/selected campuses
+\item POST /\+api/\+\+Tour/\+custom -\/ Alias for calculate
+\end{DoxyItemize}
+
+Request Body:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}startCampus"{}}:\ \textcolor{stringliteral}{"{}Saddleback\ College"{}},}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}selectedCampuses"{}}:\ [\textcolor{stringliteral}{"{}UCLA"{}},\ \textcolor{stringliteral}{"{}USC"{}},\ \textcolor{stringliteral}{"{}Arizona\ State\ University"{}}]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Response:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}success"{}}:\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}totalDistance"{}}:\ 245.5,}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}campusCount"{}}:\ 4,}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}route"{}}:\ [}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}campus"{}}:\ \textcolor{stringliteral}{"{}Saddleback\ College"{}},\ \textcolor{stringliteral}{"{}distanceFromPrevious"{}}:\ 0\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}campus"{}}:\ \textcolor{stringliteral}{"{}UCLA"{}},\ \textcolor{stringliteral}{"{}distanceFromPrevious"{}}:\ 30.2\},}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object containing tour parameters \\
+\hline
+{\em id} & Endpoint identifier ("{}calculate"{} or "{}custom"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with optimal route and total distance
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Uses \doxylink{class_tour_planner_a0466540d07a69a9e8231f85aae5622fc}{Tour\+Planner::\+calculate\+Optimal\+Tour} for route optimization
+\end{DoxyNote}
+Time Complexity:\+ O(n\texorpdfstring{$^\wedge$}{\string^}2) where n = number of campuses
+\begin{DoxyItemize}
+\item Greedy nearest-\/neighbor:\+ O(n\texorpdfstring{$^\wedge$}{\string^}2)
+\item 2-\/opt optimization:\+ O(n\texorpdfstring{$^\wedge$}{\string^}2) per iteration
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_tour_planner_a0466540d07a69a9e8231f85aae5622fc}{Tour\+Planner::\+calculate\+Optimal\+Tour} 
+\end{DoxySeeAlso}
+Calculate tour visiting N nearest campuses
+
+POST /\+api/\+\+Tour/\+calculate-\/n Body:\+ \{ start\+Campus:\+ string, number\+Of\+Campuses:\+ int \}
+
+Automatically selects the N-\/1 nearest campuses from the starting campus and calculates the optimal tour using greedy algorithm.
+
+Time Complexity:\+ O(n log n) for sorting + O(n\texorpdfstring{$^\wedge$}{\string^}2) for tour calculation\Hypertarget{struct_tour_controller_a81368218b69a7cacabece0c42190aa96}\index{TourController@{TourController}!patch@{patch}}
+\index{patch@{patch}!TourController@{TourController}}
+\doxysubsubsection{\texorpdfstring{patch()}{patch()}}
+{\footnotesize\ttfamily \label{struct_tour_controller_a81368218b69a7cacabece0c42190aa96} 
+crow::\+response Tour\+Controller::\+patch (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles PATCH requests for tour updates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Tour identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future tour modification functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Tour identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response 
+\end{DoxyReturn}
+\Hypertarget{struct_tour_controller_a2f47aabbbbc55b48bdfa5c8435882bfc}\index{TourController@{TourController}!read@{read}}
+\index{read@{read}!TourController@{TourController}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{struct_tour_controller_a2f47aabbbbc55b48bdfa5c8435882bfc} 
+crow::\+response Tour\+Controller::\+read (\begin{DoxyParamCaption}\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles GET requests for tour data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Tour type or identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with tour information
+\end{DoxyReturn}
+Currently returns a placeholder response. Can be extended to retrieve saved tour information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Tour identifier or action \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with tour data
+\end{DoxyReturn}
+Time Complexity:\+ O(1) \Hypertarget{struct_tour_controller_ad0e1c32f25d9179e7bd889fddbf1c173}\index{TourController@{TourController}!remove@{remove}}
+\index{remove@{remove}!TourController@{TourController}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{struct_tour_controller_ad0e1c32f25d9179e7bd889fddbf1c173} 
+crow::\+response Tour\+Controller::\+remove (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles DELETE requests for tour removal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Tour identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future tour deletion functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Tour identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Controllers/\+headers/\+\doxymbox{\hyperlink{_controllers_8h}{Controllers.\+h}}\item 
+src/\+\+Controllers/\+src/\+\doxymbox{\hyperlink{_tour_controller_8cpp}{Tour\+Controller.\+cpp}}\end{DoxyCompactItemize}

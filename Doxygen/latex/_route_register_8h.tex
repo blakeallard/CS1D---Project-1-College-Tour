@@ -1,0 +1,84 @@
+\doxysection{src/\+\+Route\+Register.h File Reference}
+\hypertarget{_route_register_8h}{}\label{_route_register_8h}\index{src/RouteRegister.h@{src/RouteRegister.h}}
+{\ttfamily \+\#include $<$crow.\+h$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::\+string \doxymbox{\hyperlink{_route_register_8h_a4bdb332a33a78a2d999c17e9359d2cd7}{decode\+URL}} (std::\+string id)
+\begin{DoxyCompactList}\small\item\em Decodes a URL-\/encoded string (percent-\/encoding). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Controller$>$ }\\void \doxymbox{\hyperlink{_route_register_8h_acf37a8406e93ce38b3f02208a6228975}{register\+\_\+crud\+\_\+routes}} (crow::\+\+Simple\+App \&app, const std::\+string \&base\+Path)
+\begin{DoxyCompactList}\small\item\em Automatically registers CRUD API endpoints for a given controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_route_register_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_route_register_8h_a4bdb332a33a78a2d999c17e9359d2cd7}\index{RouteRegister.h@{RouteRegister.h}!decodeURL@{decodeURL}}
+\index{decodeURL@{decodeURL}!RouteRegister.h@{RouteRegister.h}}
+\doxysubsubsection{\texorpdfstring{decodeURL()}{decodeURL()}}
+{\footnotesize\ttfamily \label{_route_register_8h_a4bdb332a33a78a2d999c17e9359d2cd7} 
+std::\+string decode\+URL (\begin{DoxyParamCaption}\item[{std::\+string}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Decodes a URL-\/encoded string (percent-\/encoding). 
+
+
+\begin{DoxyItemize}
+\item Scans the input string for \textquotesingle{}\textquotesingle{} characters followed by two hexadecimal digits and converts them back into their original ASCII character representation.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em id} & The URL-\/encoded string to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new std::\+string containing the decoded plain-\/text data. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If a \textquotesingle{}\textquotesingle{} is not followed by two valid hex digits, the characters are treated as literal text. 
+\end{DoxyNote}
+
+\end{DoxyItemize}\Hypertarget{_route_register_8h_acf37a8406e93ce38b3f02208a6228975}\index{RouteRegister.h@{RouteRegister.h}!register\_crud\_routes@{register\_crud\_routes}}
+\index{register\_crud\_routes@{register\_crud\_routes}!RouteRegister.h@{RouteRegister.h}}
+\doxysubsubsection{\texorpdfstring{register\_crud\_routes()}{register\_crud\_routes()}}
+{\footnotesize\ttfamily \label{_route_register_8h_acf37a8406e93ce38b3f02208a6228975} 
+template$<$typename Controller$>$ \\
+void register\+\_\+crud\+\_\+routes (\begin{DoxyParamCaption}\item[{crow::\+\+Simple\+App \&}]{app}{, }\item[{const std::\+string \&}]{base\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Automatically registers CRUD API endpoints for a given controller. 
+
+
+\begin{DoxyItemize}
+\item Maps standard HTTP methods to static methods within the provided Controller class. All routes are prefixed with {\ttfamily /\+api/\+} and include a trailing dynamic string ID.
+\item 
+\item \#\#\# Controller Requirements The {\ttfamily Controller} template type must implement the following static methods:\+
+\item {\ttfamily static crow::\+response create(const crow::\+request\&, std::\+string)}
+\item {\ttfamily static crow::\+response read(std::\+string)}
+\item {\ttfamily static crow::\+response patch(const crow::\+request\&, std::\+string)}
+\item {\ttfamily static crow::\+response remove(const crow::\+request\&, std::\+string)}
+\item \#\#\# Endpoint Mapping 
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}Method  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Action  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Controller Method  \\
+GET  &Read  &Controller::\+read  \\
+POST  &Create  &Controller::\+create  \\
+PATCH  &Update  &Controller::\+patch  \\
+DELETE  &Delete  &Controller::\+remove  \\
+\end{DoxyTable}
+
+\item 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Controller} & A class/\+struct defining the logic for each HTTP action. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em app} & Reference to the Crow application instance. \\
+\hline
+{\em base\+Path} & The resource name used in the URL (e.\+g., "{}users/\+"{}). \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}

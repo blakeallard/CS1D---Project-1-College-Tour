@@ -1,0 +1,53 @@
+\doxysection{src/\+\+Database/\+headers/\+\+Queries.h File Reference}
+\hypertarget{_queries_8h}{}\label{_queries_8h}\index{src/Database/headers/Queries.h@{src/Database/headers/Queries.h}}
+
+
+Database query utilities for SQLite operations.  
+
+
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \+\#include $<$variant$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespace_query_data}{Query\+Data}}
+\begin{DoxyCompactList}\small\item\em High-\/level wrapper for SQLite CRUD operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{Query\+Data::\+\+SQLite\+Value}} = std::\+variant$<$int, double, std::\+string, std::\+nullptr\+\_\+t$>$
+\begin{DoxyCompactList}\small\item\em A variant representing data types storable in a SQLite cell. \end{DoxyCompactList}\item 
+using \doxymbox{\hyperlink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Query\+Data::\+\+Row}} = std::\+unordered\+\_\+map$<$std::\+string, \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}}$>$
+\begin{DoxyCompactList}\small\item\em Represents a single database row as a map of Column Names to Values. \end{DoxyCompactList}\item 
+using \doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Data::\+\+Query\+Result}} = std::\+vector$<$\doxymbox{\hyperlink{namespace_query_data_af59311f651efab3125dc437835296dc5}{Row}}$>$
+\begin{DoxyCompactList}\small\item\em A collection of rows returned by a SELECT query. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespace_query_data_a20e4c47bac415e0fe2b2e19be65a8170}{Query\+Data::\+insert\+Row}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&values)
+\begin{DoxyCompactList}\small\item\em Inserts a new row into a database table. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_query_data_a01407fd8c540bc1d16adb80c69444216}{Query\+Data::\+delete\+Row}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&where\+Columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&where\+Values)
+\begin{DoxyCompactList}\small\item\em Deletes rows from a database table matching criteria. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_query_data_ae764c361af294f2fd2f096c75bc12b22}{Query\+Data::\+update\+Rows}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&where\+Columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&where\+Values, const std::\+vector$<$ std::\+string $>$ \&update\+Columns, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&update\+Values, const std::\+string \&math\+Value="{}"{})
+\begin{DoxyCompactList}\small\item\em Updates rows in a database table. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} \doxymbox{\hyperlink{namespace_query_data_a66394157819d568f34f5e79821fb29c0}{Query\+Data::\+select\+Rows}} (const std::\+string \&db\+Name, const std::\+string \&table, const std::\+vector$<$ std::\+string $>$ \&columns, const std::\+vector$<$ std::\+string $>$ \&where\+Columns=\{\}, const std::\+vector$<$ \doxymbox{\hyperlink{namespace_query_data_a51a3fbb82394c5b2cfe2f6db27602313}{SQLite\+Value}} $>$ \&where\+Values=\{\})
+\begin{DoxyCompactList}\small\item\em Selects rows from a database table. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{namespace_query_data_a57256756cac086596df055ae12abc736}{Query\+Result}} \doxymbox{\hyperlink{namespace_query_data_a0bb87510b2d40ad84039bfe341101a12}{Query\+Data::\+select\+Rows\+With\+Query}} (const std::\+string \&db\+Name, const std::\+string \&query)
+\begin{DoxyCompactList}\small\item\em Executes a custom SELECT query. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_query_data_a52ab0faa8bf198d41c4e2c1969a62d1c}{Query\+Data::\+custom\+Execute\+Query}} (const std::\+string \&db\+Name, const std::\+string \&query)
+\begin{DoxyCompactList}\small\item\em Executes a custom non-\/\+SELECT query. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Database query utilities for SQLite operations. 
+
+This file provides a namespace of functions for interacting with SQLite databases used by the College Tour application. Supports CRUD operations with type-\/safe parameter binding.
+
+\begin{DoxyAuthor}{Author}
+CS1D Group Project 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 2026 
+\end{DoxyDate}

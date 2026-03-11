@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['tourcontroller_0',['TourController',['../struct_tour_controller.html',1,'']]],
-  ['tourplanner_1',['TourPlanner',['../class_tour_planner.html',1,'']]],
-  ['tourresult_2',['TourResult',['../struct_tour_result.html',1,'']]],
-  ['tourstop_3',['TourStop',['../struct_tour_stop.html',1,'']]]
+  ['universitycontroller_0',['UniversityController',['../struct_university_controller.html',1,'']]],
+  ['usercontroller_1',['UserController',['../struct_user_controller.html',1,'']]]
 ];
