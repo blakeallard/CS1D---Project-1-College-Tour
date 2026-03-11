@@ -67,9 +67,10 @@ void TourPlanner::getAllDistances(const vector<string> campusNames,
  * nearest unvisited campus at each step. Recursively builds
  * the tour route.
  * 
- * Time Complexity: O(n²) overall
- * - n recursive calls
- * - Each call: O(n) heap insertions, O(log n) extraction
+ * Time Complexity: O(n^2 log n) worst case
+ * - Up to n recursive calls
+ * - Each call inserts up to n campuses into the heap
+ * - Heap insert/remove operations are O(log n)
  */
 void TourPlanner::visit(const int current,
                         const vector<vector<double>> &distances,
