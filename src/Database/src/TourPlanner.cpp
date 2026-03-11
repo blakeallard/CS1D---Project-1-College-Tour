@@ -109,7 +109,7 @@ void TourPlanner::visit(const int current,
  * when it would reduce total distance. Continues until no
  * further improvements can be made.
  * 
- * Time Complexity: O(n²) per iteration, typically few iterations
+ * Time Complexity: O(n²) per iteration, worst case O(n³)
  */
 void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
 {
@@ -161,7 +161,11 @@ void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
  * 4. Optimize with 2-opt
  * 5. Convert to TourResult format
  * 
- * Time Complexity: O(n²) where n = number of campuses
+ * Time Complexity: O(n^3) overall
+ * - Building the distance matrix is O(n^2)
+ * - Greedy nearest-neighbor traversal is O(n^2 log n)
+ * - twoOpt optimization is O(n^3) worst case
+ * - Overall runtime is dominated by twoOpt
  * Space Complexity: O(n²) for distance matrix
  */
 TourResult TourPlanner::calculateOptimalTour(
