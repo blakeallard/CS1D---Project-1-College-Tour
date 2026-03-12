@@ -162,11 +162,10 @@ void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
  * 4. Optimize with 2-opt
  * 5. Convert to TourResult format
  *
- * Time Complexity: O(n^3) overall
+ * Time Complexity: O(n^2 log n) overall
  * - Building the distance matrix is O(n^2)
  * - Greedy nearest-neighbor traversal is O(n^2 log n)
- * - twoOpt optimization is O(n^3) worst case
- * - Overall runtime is dominated by twoOpt
+ * - Overall runtime is dominated by visit(...)
  * Space Complexity: O(n²) for distance matrix
  */
 TourResult TourPlanner::calculateOptimalTour(
@@ -198,14 +197,11 @@ TourResult TourPlanner::calculateOptimalTour(
     vector<vector<double>> allDistancesMatrix(
         N, vector<double>(N, 0)); // Distance matrix
 
-    // Populate distance matrix from database - O(n)
+    // Populate distance matrix from database - O(n²)
     getAllDistances(campuses, allDistancesMatrix, campusIndex);
 
-    // Build initial route using greedy nearest-neighbor - O(n²)
+    // Build initial route using greedy nearest-neighbor - O(n²logn)
     visit(0, allDistancesMatrix, visited, route);
-
-    // Optimize route with 2-opt local search - O(n²) per iteration
-    // twoOpt(route, allDistancesMatrix);
 
     // Convert route indices to TourResult format
     double total = 0;
