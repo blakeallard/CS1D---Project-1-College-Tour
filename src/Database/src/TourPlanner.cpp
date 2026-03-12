@@ -103,56 +103,6 @@ void TourPlanner::visit(const int current,
 }
 
 /**
- * @brief NOT USED FOR THIS PROJECT TO GET RIGHT ANSWER
- * 2-opt local
- *optimization
- * Iteratively checks all pairs of edges and reverses segments
- * when it would reduce total distance. Continues until no
- * further improvements can be made.
- *
- * Time Complexity: O(n²) per iteration, worst case O(n³)
- */
-void TourPlanner::twoOpt(vector<int> &route, const vector<vector<double>> &dist)
-{
-    bool improved = true;
-
-    // Continue until no improvement found
-    while (improved)
-    {
-        improved = false;
-
-        // Check all pairs of non-adjacent edges - O(n²)
-        for (int i = 1; i < route.size() - 2; i++)
-        {
-            for (int j = i + 1; j < route.size() - 1; j++)
-            {
-                // Current edges: A-B and C-D
-                int A = route[i - 1];
-                int B = route[i];
-                int C = route[j];
-                int D = route[j + 1];
-
-                // Current total distance of these two edges
-                double current = dist[A][B] + dist[C][D];
-
-                // Proposed distance if we reverse segment B...C
-                // New edges would be: A-C and B-D
-                double proposed = dist[A][C] + dist[B][D];
-
-                // If proposed is better, reverse the segment
-                if (proposed < current)
-                {
-                    // Reverse segment from B to C (inclusive)
-                    reverse(route.begin() + i, route.begin() + j + 1);
-
-                    improved = true;
-                }
-            }
-        }
-    }
-}
-
-/**
  * @brief Main tour calculation entry point
  *
  * Orchestrates the tour planning process:
