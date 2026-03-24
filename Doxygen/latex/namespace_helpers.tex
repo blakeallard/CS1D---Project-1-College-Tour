@@ -1,0 +1,105 @@
+\doxysection{Helpers Namespace Reference}
+\hypertarget{namespace_helpers}{}\label{namespace_helpers}\index{Helpers@{Helpers}}
+
+
+Utility functions for administrative operations.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespace_helpers_addb87b4c4f03cf0cd2ece86e062fc113}{get\+Database\+From\+Request}} (crow::\+request req)
+\begin{DoxyCompactList}\small\item\em Extracts and saves database file from HTTP request. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{merge\+Databases}} (const std::\+string \&main\+DBName, const std::\+string \&other\+File, const std::\+string \&merge\+Into\+Table, const std::\+string \&merge\+From\+Table, const bool is\+Unique=false, const std::\+vector$<$ std::\+string $>$ \&merge\+Into\+Columns=\{\}, const std::\+vector$<$ std::\+string $>$ \&merge\+From\+Columns=\{\}, const std::\+string \&unique\+Into\+Column="{}"{}, const std::\+string \&unique\+From\+Column="{}"{})
+\begin{DoxyCompactList}\small\item\em Merges data from one database into another. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility functions for administrative operations. 
+
+Contains helper functions for processing file uploads and merging database content during administrative imports. 
+
+\label{doc-func-members}
+\Hypertarget{namespace_helpers_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespace_helpers_addb87b4c4f03cf0cd2ece86e062fc113}\index{Helpers@{Helpers}!getDatabaseFromRequest@{getDatabaseFromRequest}}
+\index{getDatabaseFromRequest@{getDatabaseFromRequest}!Helpers@{Helpers}}
+\doxysubsubsection{\texorpdfstring{getDatabaseFromRequest()}{getDatabaseFromRequest()}}
+{\footnotesize\ttfamily \label{namespace_helpers_addb87b4c4f03cf0cd2ece86e062fc113} 
+bool Helpers::\+get\+Database\+From\+Request (\begin{DoxyParamCaption}\item[{crow::\+request}]{req}{}\end{DoxyParamCaption})}
+
+
+
+Extracts and saves database file from HTTP request. 
+
+Parses multipart form data from the request to extract an uploaded database file. Saves the file to Databases/\+uploaded.\+db for subsequent merging operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request containing multipart form data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if extraction successful, false otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Expected form field name varies based on implementation 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{merge\+Databases} 
+\end{DoxySeeAlso}
+\Hypertarget{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}\index{Helpers@{Helpers}!mergeDatabases@{mergeDatabases}}
+\index{mergeDatabases@{mergeDatabases}!Helpers@{Helpers}}
+\doxysubsubsection{\texorpdfstring{mergeDatabases()}{mergeDatabases()}}
+{\footnotesize\ttfamily \label{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1} 
+bool Helpers::\+merge\+Databases (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{main\+DBName}{, }\item[{const std::\+string \&}]{other\+File}{, }\item[{const std::\+string \&}]{merge\+Into\+Table}{, }\item[{const std::\+string \&}]{merge\+From\+Table}{, }\item[{const bool}]{is\+Unique}{ = {\ttfamily false}, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{merge\+Into\+Columns}{ = {\ttfamily \{\}}, }\item[{const std::\+vector$<$ std::\+string $>$ \&}]{merge\+From\+Columns}{ = {\ttfamily \{\}}, }\item[{const std::\+string \&}]{unique\+Into\+Column}{ = {\ttfamily "{}"{}}, }\item[{const std::\+string \&}]{unique\+From\+Column}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Merges data from one database into another. 
+
+Copies rows from the source database/\+table into the destination database/\+table. Supports unique constraint checking to prevent duplicate entries.
+
+
+\begin{DoxyParams}{Parameters}
+{\em main\+DBName} & Path to destination database \\
+\hline
+{\em other\+File} & Path to source database (typically uploaded.\+db) \\
+\hline
+{\em merge\+Into\+Table} & Table name in destination database \\
+\hline
+{\em merge\+From\+Table} & Table name in source database \\
+\hline
+{\em is\+Unique} & If true, only merge rows with unique key values \\
+\hline
+{\em merge\+Into\+Columns} & Columns to insert into (empty for all) \\
+\hline
+{\em merge\+From\+Columns} & Columns to read from (empty for all) \\
+\hline
+{\em unique\+Into\+Column} & Column in destination for uniqueness check \\
+\hline
+{\em unique\+From\+Column} & Column in source for uniqueness check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if merge successful, false otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Used for importing new campuses and souvenirs via admin interface
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Merge\ distances\ from\ uploaded\ file}}
+\DoxyCodeLine{\doxymbox{\hyperlink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{Helpers::mergeDatabases}}(\textcolor{stringliteral}{"{}Databases/distances.db"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Databases/uploaded.db"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}distances"{}},\ \textcolor{stringliteral}{"{}distances"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Merge\ unique\ colleges}}
+\DoxyCodeLine{\doxymbox{\hyperlink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{Helpers::mergeDatabases}}(\textcolor{stringliteral}{"{}Databases/distances.db"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Databases/uploaded.db"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}colleges"{}},\ \textcolor{stringliteral}{"{}distances"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true},\ \{\},\ \{\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}college"{}},\ \textcolor{stringliteral}{"{}starting\_college"{}});}
+
+\end{DoxyCode}
+ 

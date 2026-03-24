@@ -1,0 +1,222 @@
+\doxysection{Souvenir\+Controller Struct Reference}
+\hypertarget{struct_souvenir_controller}{}\label{struct_souvenir_controller}\index{SouvenirController@{SouvenirController}}
+
+
+Handles souvenir-\/related API endpoints.  
+
+
+
+
+{\ttfamily \+\#include $<$Controllers.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static crow::\+response \doxymbox{\hyperlink{struct_souvenir_controller_a2c45d8c6caabfd5b5c976deeadfb6061}{read}} (std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles GET requests for souvenir data. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_souvenir_controller_abbc911858688d0cb86efe4b3d1435c48}{patch}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles PATCH requests for souvenir updates. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_souvenir_controller_a2f0b62bdbe840ce927b25468126d8d46}{create}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles POST requests for adding souvenirs. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_souvenir_controller_a03ebf5e42958ea4a2dfc270acd5b2fca}{remove}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles DELETE requests for souvenir removal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles souvenir-\/related API endpoints. 
+
+Endpoints:\+
+\begin{DoxyItemize}
+\item GET /\+api/\+\+Souvenir/\+\{campus\} -\/ Get souvenirs for a campus
+\item POST /\+api/\+\+Souvenir/\+add -\/ Add new souvenir (admin)
+\item PATCH /\+api/\+\+Souvenir/\+update -\/ Update souvenir price (admin)
+\item DELETE /\+api/\+\+Souvenir/\+delete -\/ Delete souvenir (admin) 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{struct_souvenir_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_souvenir_controller_a2f0b62bdbe840ce927b25468126d8d46}\index{SouvenirController@{SouvenirController}!create@{create}}
+\index{create@{create}!SouvenirController@{SouvenirController}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{struct_souvenir_controller_a2f0b62bdbe840ce927b25468126d8d46} 
+crow::\+response Souvenir\+Controller::\+create (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles POST requests for adding souvenirs. 
+
+Handles POST requests for creating souvenirs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object with souvenir data \\
+\hline
+{\em id} & Action identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Supports two operations:\+
+
+
+\begin{DoxyEnumerate}
+\item Import souvenirs from file:\+ POST /\+api/\+\+Souvenir/\+import
+\begin{DoxyItemize}
+\item Imports souvenir data from uploaded database file
+\item Merges with existing souvenirs.\+db
+\end{DoxyItemize}
+\item Add single souvenir:\+ POST /\+api/\+\+Souvenir/\+\{campus\+Name\} Body:\+ \{ "{}name"{}:\+ "{}\+New Item"{}, "{}price"{}:\+ 15.\+99 \}
+\begin{DoxyItemize}
+\item Creates new souvenir for specified campus
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object containing souvenir data \\
+\hline
+{\em id} & Action identifier ("{}import"{}) or campus name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HTTP 200 on success, HTTP 400 on error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires administrator authentication for import 
+\end{DoxyNote}
+\Hypertarget{struct_souvenir_controller_abbc911858688d0cb86efe4b3d1435c48}\index{SouvenirController@{SouvenirController}!patch@{patch}}
+\index{patch@{patch}!SouvenirController@{SouvenirController}}
+\doxysubsubsection{\texorpdfstring{patch()}{patch()}}
+{\footnotesize\ttfamily \label{struct_souvenir_controller_abbc911858688d0cb86efe4b3d1435c48} 
+crow::\+response Souvenir\+Controller::\+patch (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles PATCH requests for souvenir updates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object with update data \\
+\hline
+{\em id} & Souvenir or action identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Updates a souvenir\textquotesingle{}s name and/\+or price for a specific campus.
+
+PATCH /\+api/\+\+Souvenir/\+\{campus\+Name\}
+
+Request Body:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}itemName"{}}:\ \textcolor{stringliteral}{"{}Old\ T-\/Shirt"{}},}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}newName"{}}:\ \textcolor{stringliteral}{"{}Premium\ T-\/Shirt"{}},}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}price"{}}:\ 29.99}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object containing update data \\
+\hline
+{\em id} & Campus name where the souvenir belongs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HTTP 200 on success, HTTP 400 on error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires administrator authentication (handled by frontend) 
+\end{DoxyNote}
+\Hypertarget{struct_souvenir_controller_a2c45d8c6caabfd5b5c976deeadfb6061}\index{SouvenirController@{SouvenirController}!read@{read}}
+\index{read@{read}!SouvenirController@{SouvenirController}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{struct_souvenir_controller_a2c45d8c6caabfd5b5c976deeadfb6061} 
+crow::\+response Souvenir\+Controller::\+read (\begin{DoxyParamCaption}\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles GET requests for souvenir data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Campus name to get souvenirs for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON array of souvenirs with names and prices
+\end{DoxyReturn}
+Retrieves all souvenirs for a specific campus.
+
+GET /\+api/\+\+Souvenir/\+\{campus\+Name\}
+
+Response:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \{\textcolor{stringliteral}{"{}name"{}}:\ \textcolor{stringliteral}{"{}T-\/Shirt"{}},\ \textcolor{stringliteral}{"{}price"{}}:\ 25.99\},}
+\DoxyCodeLine{\ \ \{\textcolor{stringliteral}{"{}name"{}}:\ \textcolor{stringliteral}{"{}Coffee\ Mug"{}},\ \textcolor{stringliteral}{"{}price"{}}:\ 12.50\},}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Campus name to retrieve souvenirs for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON array of souvenirs with names and prices
+\end{DoxyReturn}
+Time Complexity:\+ O(n) where n is number of souvenirs for the campus \Hypertarget{struct_souvenir_controller_a03ebf5e42958ea4a2dfc270acd5b2fca}\index{SouvenirController@{SouvenirController}!remove@{remove}}
+\index{remove@{remove}!SouvenirController@{SouvenirController}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{struct_souvenir_controller_a03ebf5e42958ea4a2dfc270acd5b2fca} 
+crow::\+response Souvenir\+Controller::\+remove (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles DELETE requests for souvenir removal. 
+
+Handles DELETE requests for removing souvenirs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Souvenir identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Deletes a specific souvenir from a campus.
+
+DELETE /\+api/\+\+Souvenir/\+\{campus\+Name\} Body:\+ \{ "{}item"{}:\+ "{}\+Item Name"{} \}
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object with item to delete \\
+\hline
+{\em id} & Campus name where the souvenir belongs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HTTP 200 on success, HTTP 400 on error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires administrator authentication (handled by frontend) 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Controllers/\+headers/\+\doxymbox{\hyperlink{_controllers_8h}{Controllers.\+h}}\item 
+src/\+\+Controllers/\+src/\+\doxymbox{\hyperlink{_souvenir_controller_8cpp}{Souvenir\+Controller.\+cpp}}\end{DoxyCompactItemize}

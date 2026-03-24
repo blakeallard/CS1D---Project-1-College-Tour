@@ -1,0 +1,196 @@
+\doxysection{User\+Controller Struct Reference}
+\hypertarget{struct_user_controller}{}\label{struct_user_controller}\index{UserController@{UserController}}
+
+
+Handles user account-\/related API endpoints.  
+
+
+
+
+{\ttfamily \+\#include $<$Controllers.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static crow::\+response \doxymbox{\hyperlink{struct_user_controller_a2ad421fae292e4ede32396def596e5cd}{read}} (std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles GET requests for user data. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_user_controller_a7cc17f11c6d2d7cf6bda508538e17139}{patch}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles PATCH requests for updating user data. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_user_controller_ac07f482d97b9d64491f21244c996b1fc}{create}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles POST requests for user creation/\+actions. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_user_controller_abc229de15f8e4e855d696612b56434c6}{remove}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles DELETE requests for user removal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles user account-\/related API endpoints. 
+
+Manages user registration, authentication, and profile operations. 
+
+\label{doc-func-members}
+\Hypertarget{struct_user_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_user_controller_ac07f482d97b9d64491f21244c996b1fc}\index{UserController@{UserController}!create@{create}}
+\index{create@{create}!UserController@{UserController}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{struct_user_controller_ac07f482d97b9d64491f21244c996b1fc} 
+crow::\+response User\+Controller::\+create (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles POST requests for user creation/\+actions. 
+
+Handles POST requests for user actions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Action identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Supports administrator login:\+
+
+POST /\+api/\+\+User/\+admin Request Body:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}username"{}}:\ \textcolor{stringliteral}{"{}admin"{}},}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}password"{}}:\ \textcolor{stringliteral}{"{}password123"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Success Response (HTTP 200):\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{stringliteral}{"{}token"{}}:\ \textcolor{stringliteral}{"{}admin-\/session-\/token"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Failure Response:\+ HTTP 401 Unauthorized
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object containing credentials \\
+\hline
+{\em id} & Action identifier ("{}admin"{} for login) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with session token or 401 error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Password is compared in plaintext (production should use hashing)
+\end{DoxyNote}
+Time Complexity:\+ O(1) for single admin lookup \Hypertarget{struct_user_controller_a7cc17f11c6d2d7cf6bda508538e17139}\index{UserController@{UserController}!patch@{patch}}
+\index{patch@{patch}!UserController@{UserController}}
+\doxysubsubsection{\texorpdfstring{patch()}{patch()}}
+{\footnotesize\ttfamily \label{struct_user_controller_a7cc17f11c6d2d7cf6bda508538e17139} 
+crow::\+response User\+Controller::\+patch (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles PATCH requests for updating user data. 
+
+Handles PATCH requests for user updates.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & User identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Future functionality:\+ Add funds to user wallet.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Amount to add (as string) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with updated balance 
+\end{DoxyReturn}
+\Hypertarget{struct_user_controller_a2ad421fae292e4ede32396def596e5cd}\index{UserController@{UserController}!read@{read}}
+\index{read@{read}!UserController@{UserController}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{struct_user_controller_a2ad421fae292e4ede32396def596e5cd} 
+crow::\+response User\+Controller::\+read (\begin{DoxyParamCaption}\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles GET requests for user data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & User identifier or action \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with user data
+\end{DoxyReturn}
+Retrieves user-\/related data such as purchase summaries. Currently returns empty response (TODO:\+ implement).
+
+Future functionality:\+
+\begin{DoxyItemize}
+\item "{}summary"{}:\+ Get user\textquotesingle{}s balance, total spent, and all purchases
+\item "{}\{campus\+Id\}"{}:\+ Get purchases and spending for specific campus
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Query type ("{}summary"{}) or campus ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with user data 
+\end{DoxyReturn}
+\Hypertarget{struct_user_controller_abc229de15f8e4e855d696612b56434c6}\index{UserController@{UserController}!remove@{remove}}
+\index{remove@{remove}!UserController@{UserController}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{struct_user_controller_abc229de15f8e4e855d696612b56434c6} 
+crow::\+response User\+Controller::\+remove (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles DELETE requests for user removal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & User identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future user deletion functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & User identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Controllers/\+headers/\+\doxymbox{\hyperlink{_controllers_8h}{Controllers.\+h}}\item 
+src/\+\+Controllers/\+src/\+\doxymbox{\hyperlink{_user_controller_8cpp}{User\+Controller.\+cpp}}\end{DoxyCompactItemize}

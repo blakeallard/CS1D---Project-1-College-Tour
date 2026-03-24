@@ -1,0 +1,122 @@
+\doxysection{ABSDatabase Class Reference}
+\hypertarget{class_a_b_s_database}{}\label{class_a_b_s_database}\index{ABSDatabase@{ABSDatabase}}
+
+
+A wrapper for the SQLite database connection handle. Handles the opening and closing of the database connection using RAII.  
+
+
+
+
+{\ttfamily \+\#include $<$Abs\+Database.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_a_b_s_database_ad8fe7079c162c4a687bf59b0a0a2a3ff}{ABSDatabase}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes an empty database handle. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_a_b_s_database_a8037a8164480932e7f971e2b6c6dc2e5}{ABSDatabase}} (const std::\+string \&file)
+\begin{DoxyCompactList}\small\item\em Overloaded constructor that immediately connects to a database file. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_a_b_s_database_a1ac32905ac33d748e932d737c1606960}{\texorpdfstring{$\sim$}{\string~}\+ABSDatabase}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Ensures the database connection is safely closed. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_a_b_s_database_a215561d7110bcc920e24c0484916d1e4}{Connect\+To\+DB}} (const std::\+string \&file)
+\begin{DoxyCompactList}\small\item\em Opens a connection to the specified SQLite database file. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_a_b_s_database_a8ded40e7cd13e6d95207e6291e8c3cc9}{Close\+DB}} ()
+\begin{DoxyCompactList}\small\item\em Closes the current SQLite database connection and releases resources. \end{DoxyCompactList}\item 
+sqlite3 \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_a_b_s_database_a146e3fa04b791437b717a616a451f70f}{get}} () const
+\item 
+void \doxymbox{\hyperlink{class_a_b_s_database_a5d78c7ec55fba40ee07b1b842785a8a1}{set}} (sqlite3 \texorpdfstring{$\ast$}{*}aG)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A wrapper for the SQLite database connection handle. Handles the opening and closing of the database connection using RAII. 
+
+\label{doc-constructors}
+\Hypertarget{class_a_b_s_database_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_a_b_s_database_ad8fe7079c162c4a687bf59b0a0a2a3ff}\index{ABSDatabase@{ABSDatabase}!ABSDatabase@{ABSDatabase}}
+\index{ABSDatabase@{ABSDatabase}!ABSDatabase@{ABSDatabase}}
+\doxysubsubsection{\texorpdfstring{ABSDatabase()}{ABSDatabase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_a_b_s_database_ad8fe7079c162c4a687bf59b0a0a2a3ff} 
+ABSDatabase::\+\+ABSDatabase (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. Initializes an empty database handle. 
+
+\Hypertarget{class_a_b_s_database_a8037a8164480932e7f971e2b6c6dc2e5}\index{ABSDatabase@{ABSDatabase}!ABSDatabase@{ABSDatabase}}
+\index{ABSDatabase@{ABSDatabase}!ABSDatabase@{ABSDatabase}}
+\doxysubsubsection{\texorpdfstring{ABSDatabase()}{ABSDatabase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_a_b_s_database_a8037a8164480932e7f971e2b6c6dc2e5} 
+ABSDatabase::\+\+ABSDatabase (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overloaded constructor that immediately connects to a database file. 
+
+\texorpdfstring{$\ast$}{*}
+\begin{DoxyParams}{Parameters}
+{\em file} & Path to the SQLite database file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_a_b_s_database_a1ac32905ac33d748e932d737c1606960}\index{ABSDatabase@{ABSDatabase}!````~ABSDatabase@{\texorpdfstring{$\sim$}{\string~}ABSDatabase}}
+\index{````~ABSDatabase@{\texorpdfstring{$\sim$}{\string~}ABSDatabase}!ABSDatabase@{ABSDatabase}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ABSDatabase()}{\string~ABSDatabase()}}
+{\footnotesize\ttfamily \label{class_a_b_s_database_a1ac32905ac33d748e932d737c1606960} 
+ABSDatabase::\+\texorpdfstring{$\sim$}{\string~}\+ABSDatabase (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. Ensures the database connection is safely closed. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_a_b_s_database_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_a_b_s_database_a8ded40e7cd13e6d95207e6291e8c3cc9}\index{ABSDatabase@{ABSDatabase}!CloseDB@{CloseDB}}
+\index{CloseDB@{CloseDB}!ABSDatabase@{ABSDatabase}}
+\doxysubsubsection{\texorpdfstring{CloseDB()}{CloseDB()}}
+{\footnotesize\ttfamily \label{class_a_b_s_database_a8ded40e7cd13e6d95207e6291e8c3cc9} 
+void ABSDatabase::\+\+Close\+DB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Closes the current SQLite database connection and releases resources. 
+
+\Hypertarget{class_a_b_s_database_a215561d7110bcc920e24c0484916d1e4}\index{ABSDatabase@{ABSDatabase}!ConnectToDB@{ConnectToDB}}
+\index{ConnectToDB@{ConnectToDB}!ABSDatabase@{ABSDatabase}}
+\doxysubsubsection{\texorpdfstring{ConnectToDB()}{ConnectToDB()}}
+{\footnotesize\ttfamily \label{class_a_b_s_database_a215561d7110bcc920e24c0484916d1e4} 
+void ABSDatabase::\+\+Connect\+To\+DB (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{file}{}\end{DoxyParamCaption})}
+
+
+
+Opens a connection to the specified SQLite database file. 
+
+\Hypertarget{class_a_b_s_database_a146e3fa04b791437b717a616a451f70f}\index{ABSDatabase@{ABSDatabase}!get@{get}}
+\index{get@{get}!ABSDatabase@{ABSDatabase}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{class_a_b_s_database_a146e3fa04b791437b717a616a451f70f} 
+sqlite3 \texorpdfstring{$\ast$}{*} ABSDatabase::\+get (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+The raw sqlite3 pointer. 
+\end{DoxyReturn}
+\Hypertarget{class_a_b_s_database_a5d78c7ec55fba40ee07b1b842785a8a1}\index{ABSDatabase@{ABSDatabase}!set@{set}}
+\index{set@{set}!ABSDatabase@{ABSDatabase}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{class_a_b_s_database_a5d78c7ec55fba40ee07b1b842785a8a1} 
+void ABSDatabase::\+set (\begin{DoxyParamCaption}\item[{sqlite3 \texorpdfstring{$\ast$}{*}}]{aG}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em aG} & Pointer to an existing sqlite3 connection to manage. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Database/\+headers/\+\doxymbox{\hyperlink{_abs_database_8h}{Abs\+Database.\+h}}\item 
+src/\+\+Database/\+src/\+\doxymbox{\hyperlink{_abs_database_8cpp}{Abs\+Database.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,242 @@
+\doxysection{Linked\+Heap\+Tree\texorpdfstring{$<$}{<} Key, Value \texorpdfstring{$>$}{>}::\+Position Class Reference}
+\hypertarget{class_linked_heap_tree_1_1_position}{}\label{class_linked_heap_tree_1_1_position}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+
+
+Handle for accessing and manipulating heap entries.  
+
+
+
+
+{\ttfamily \+\#include $<$Linked\+Heap\+Tree.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor creates invalid position. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a6d031b71477e32a3f98b920af4abda8d}{Position}} (\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \texorpdfstring{$\ast$}{*}e)
+\begin{DoxyCompactList}\small\item\em Constructs position from entry pointer. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \& \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_ab505dceb5110e2ff32ac02f2d9782897}{operator\texorpdfstring{$\ast$}{*}}} ()
+\begin{DoxyCompactList}\small\item\em Dereference operator for entry access. \end{DoxyCompactList}\item 
+const \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \& \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a3641533626f4dda9b7cd46f8337acb99}{operator\texorpdfstring{$\ast$}{*}}} () const
+\begin{DoxyCompactList}\small\item\em Const dereference operator. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a5f187efc5b2e15a9b30894543b152f3c}{get\+Entry}} () const
+\begin{DoxyCompactList}\small\item\em Gets raw entry pointer. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a190f02b23af2e0faaa62fe51df85352f}{get\+Node}} () const
+\begin{DoxyCompactList}\small\item\em Gets the containing node. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_abec7e308e53138135f8c21469059176a}{left}} () const
+\begin{DoxyCompactList}\small\item\em Gets position of left child. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a36a9cd7d1b0357ad2985f0e520d898fc}{right}} () const
+\begin{DoxyCompactList}\small\item\em Gets position of right child. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_acda37d9e83c1862b356c0bb72e2e46d2}{parent}} () const
+\begin{DoxyCompactList}\small\item\em Gets position of parent. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_ac1bb7b3886100adca28b8ef0ea4a3346}{is\+Root}} () const
+\begin{DoxyCompactList}\small\item\em Checks if this is the root position. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a3cbea7e2d575bf4a5fdf34e63a677f51}{is\+Leaf}} () const
+\begin{DoxyCompactList}\small\item\em Checks if this is a leaf position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std::\+ostream \& \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a7f0a7445bb4ca573e25dec40f01e291f}{operator$<$$<$}} (std::\+ostream \&os, const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \&p)
+\begin{DoxyCompactList}\small\item\em Stream output operator for \doxylink{class_linked_heap_tree_1_1_position}{Position}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Key, typename Value$>$\newline
+class Linked\+Heap\+Tree$<$ Key, Value $>$::\+\+Position}
+Handle for accessing and manipulating heap entries. 
+
+Provides an abstraction for interacting with heap entries without direct node manipulation. Supports tree traversal via \doxylink{class_linked_heap_tree_1_1_position_abec7e308e53138135f8c21469059176a}{left()}, \doxylink{class_linked_heap_tree_1_1_position_a36a9cd7d1b0357ad2985f0e520d898fc}{right()}, and \doxylink{class_linked_heap_tree_1_1_position_acda37d9e83c1862b356c0bb72e2e46d2}{parent()} methods. 
+
+\label{doc-constructors}
+\Hypertarget{class_linked_heap_tree_1_1_position_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!Position@{Position}}
+\index{Position@{Position}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{Position()}{Position()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor creates invalid position. 
+
+\Hypertarget{class_linked_heap_tree_1_1_position_a6d031b71477e32a3f98b920af4abda8d}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!Position@{Position}}
+\index{Position@{Position}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{Position()}{Position()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a6d031b71477e32a3f98b920af4abda8d} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+\+Position (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs position from entry pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Pointer to entry \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_linked_heap_tree_1_1_position_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_linked_heap_tree_1_1_position_a5f187efc5b2e15a9b30894543b152f3c}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!getEntry@{getEntry}}
+\index{getEntry@{getEntry}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{getEntry()}{getEntry()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a5f187efc5b2e15a9b30894543b152f3c} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+get\+Entry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets raw entry pointer. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to entry 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_a190f02b23af2e0faaa62fe51df85352f}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!getNode@{getNode}}
+\index{getNode@{getNode}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{getNode()}{getNode()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a190f02b23af2e0faaa62fe51df85352f} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_node}{Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+get\+Node (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the containing node. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to node, or nullptr if invalid position 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_a3cbea7e2d575bf4a5fdf34e63a677f51}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!isLeaf@{isLeaf}}
+\index{isLeaf@{isLeaf}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{isLeaf()}{isLeaf()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a3cbea7e2d575bf4a5fdf34e63a677f51} 
+template$<$typename Key, typename Value$>$ \\
+bool \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+is\+Leaf (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if this is a leaf position. 
+
+\begin{DoxyReturn}{Returns}
+true if no children, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_ac1bb7b3886100adca28b8ef0ea4a3346}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!isRoot@{isRoot}}
+\index{isRoot@{isRoot}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{isRoot()}{isRoot()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_ac1bb7b3886100adca28b8ef0ea4a3346} 
+template$<$typename Key, typename Value$>$ \\
+bool \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+is\+Root (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if this is the root position. 
+
+\begin{DoxyReturn}{Returns}
+true if root (no parent), false otherwise 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_abec7e308e53138135f8c21469059176a}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!left@{left}}
+\index{left@{left}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{left()}{left()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_abec7e308e53138135f8c21469059176a} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+left (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets position of left child. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_linked_heap_tree_1_1_position}{Position} of left child, or invalid position if none 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_ab505dceb5110e2ff32ac02f2d9782897}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_ab505dceb5110e2ff32ac02f2d9782897} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \& \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dereference operator for entry access. 
+
+\begin{DoxyReturn}{Returns}
+Reference to entry 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_a3641533626f4dda9b7cd46f8337acb99}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a3641533626f4dda9b7cd46f8337acb99} 
+template$<$typename Key, typename Value$>$ \\
+const \doxymbox{\hyperlink{struct_linked_heap_tree_1_1_entry}{Entry}} \& \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Const dereference operator. 
+
+\begin{DoxyReturn}{Returns}
+Const reference to entry 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_acda37d9e83c1862b356c0bb72e2e46d2}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!parent@{parent}}
+\index{parent@{parent}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{parent()}{parent()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_acda37d9e83c1862b356c0bb72e2e46d2} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+parent (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets position of parent. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_linked_heap_tree_1_1_position}{Position} of parent, or invalid position if root 
+\end{DoxyReturn}
+\Hypertarget{class_linked_heap_tree_1_1_position_a36a9cd7d1b0357ad2985f0e520d898fc}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!right@{right}}
+\index{right@{right}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{right()}{right()}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a36a9cd7d1b0357ad2985f0e520d898fc} 
+template$<$typename Key, typename Value$>$ \\
+\doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \doxymbox{\hyperlink{class_linked_heap_tree}{Linked\+Heap\+Tree}}$<$ Key, Value $>$::\+\+Position::\+right (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets position of right child. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_linked_heap_tree_1_1_position}{Position} of right child, or invalid position if none 
+\end{DoxyReturn}
+
+
+\label{doc-related-members}
+\Hypertarget{class_linked_heap_tree_1_1_position_doc-related-members}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_linked_heap_tree_1_1_position_a7f0a7445bb4ca573e25dec40f01e291f}\index{LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!LinkedHeapTree$<$ Key, Value $>$::Position@{LinkedHeapTree$<$ Key, Value $>$::Position}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{class_linked_heap_tree_1_1_position_a7f0a7445bb4ca573e25dec40f01e291f} 
+template$<$typename Key, typename Value$>$ \\
+std::\+ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std::\+ostream \&}]{os}{, }\item[{const \doxymbox{\hyperlink{class_linked_heap_tree_1_1_position_a457728ab2f5e9994df085d853259aaec}{Position}} \&}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Stream output operator for \doxylink{class_linked_heap_tree_1_1_position}{Position}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Output stream \\
+\hline
+{\em p} & \doxylink{class_linked_heap_tree_1_1_position}{Position} to output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to output stream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Database/\+headers/\+\doxymbox{\hyperlink{_linked_heap_tree_8h}{Linked\+Heap\+Tree.\+h}}\end{DoxyCompactItemize}

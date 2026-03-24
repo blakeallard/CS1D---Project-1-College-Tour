@@ -1,0 +1,36 @@
+.adminPage {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+    text-align: center;
+}
+
+.navButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+}
+
+.navButton {
+    text-decoration: none;
+    background-color: #A35C6E;
+    color: white;
+
+    padding: 14px 20px;
+    border-radius: 8px;
+
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+}
+
+.navButton:hover {
+    background-color: #1a5ec8;
+    transform: translateY(-2px);
+}

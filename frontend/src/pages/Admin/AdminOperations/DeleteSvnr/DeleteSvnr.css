@@ -1,0 +1,22 @@
+.delete-svnr-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: auto;
+}
+
+.delete-svnr-form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.delete-svnr-form select {
+    padding: 0.5rem;
+}
+
+.delete-svnr-form button {
+    padding: 0.6rem;
+    cursor: pointer;
+}

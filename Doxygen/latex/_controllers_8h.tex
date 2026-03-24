@@ -1,0 +1,38 @@
+\doxysection{src/\+\+Controllers/\+headers/\+\+Controllers.h File Reference}
+\hypertarget{_controllers_8h}{}\label{_controllers_8h}\index{src/Controllers/headers/Controllers.h@{src/Controllers/headers/Controllers.h}}
+
+
+REST API controllers for the College Tour application.  
+
+
+{\ttfamily \+\#include $<$crow.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_university_controller}{University\+Controller}}
+\begin{DoxyCompactList}\small\item\em Handles university/\+campus-\/related API endpoints. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_user_controller}{User\+Controller}}
+\begin{DoxyCompactList}\small\item\em Handles user account-\/related API endpoints. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_admin_controller}{Admin\+Controller}}
+\begin{DoxyCompactList}\small\item\em Handles administrator API endpoints. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_tour_controller}{Tour\+Controller}}
+\begin{DoxyCompactList}\small\item\em Handles tour planning API endpoints. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_souvenir_controller}{Souvenir\+Controller}}
+\begin{DoxyCompactList}\small\item\em Handles souvenir-\/related API endpoints. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_purchase_controller}{Purchase\+Controller}}
+\begin{DoxyCompactList}\small\item\em Handles souvenir purchase API endpoints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+REST API controllers for the College Tour application. 
+
+This file defines controller structs that handle HTTP requests for different API endpoints. Each controller follows CRUD pattern with read, create, patch, and remove operations.
+
+Controllers use the Crow HTTP framework for request/\+response handling.
+
+\begin{DoxyAuthor}{Author}
+CS1D Group Project 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 2026 
+\end{DoxyDate}

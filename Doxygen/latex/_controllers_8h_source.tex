@@ -1,0 +1,79 @@
+\doxysection{Controllers.\+h}
+\hypertarget{_controllers_8h_source}{}\label{_controllers_8h_source}\index{src/Controllers/headers/Controllers.h@{src/Controllers/headers/Controllers.h}}
+\doxymbox{\hyperlink{_controllers_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ CONTROLLERS\_H}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ CONTROLLERS\_H}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <crow.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_university_controller}{UniversityController}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_university_controller_ac1cd76683a94913a5c20c91d5b0a56e5}{read}}(std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00037\ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_university_controller_a3b9d7a2ef14fa5ea3b777d7a7a1f534d}{patch}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_university_controller_a00092d84fd11b71f455b960eca579e20}{create}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_university_controller_a0715063adcd2ffb500921de42abf86be}{remove}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_user_controller}{UserController}}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_user_controller_a2ad421fae292e4ede32396def596e5cd}{read}}(std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_user_controller_a7cc17f11c6d2d7cf6bda508538e17139}{patch}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00085\ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_user_controller_ac07f482d97b9d64491f21244c996b1fc}{create}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00093\ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_user_controller_abc229de15f8e4e855d696612b56434c6}{remove}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_admin_controller}{AdminController}}}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_admin_controller_a6d5174a9cfac61a4b66ba1d279ad1e80}{read}}(std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00121\ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_admin_controller_aeb80b5c77ad3a25c01f8e4e4e0a5a61d}{patch}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00129\ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_admin_controller_abfdac111269c7c60edd8404619712e0c}{create}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00137\ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_admin_controller_a1a8e59ae1d9d97915c770362b379165c}{remove}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_tour_controller}{TourController}}}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_tour_controller_a2f47aabbbbc55b48bdfa5c8435882bfc}{read}}(std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00165\ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_tour_controller_a81368218b69a7cacabece0c42190aa96}{patch}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00173\ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_tour_controller_adf7f1689e7cf70c54f480dca14ed082f}{create}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00190\ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_tour_controller_ad0e1c32f25d9179e7bd889fddbf1c173}{remove}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00198\ \};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00210\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_souvenir_controller}{SouvenirController}}}
+\DoxyCodeLine{00211\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_souvenir_controller_a2c45d8c6caabfd5b5c976deeadfb6061}{read}}(std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00218\ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_souvenir_controller_abbc911858688d0cb86efe4b3d1435c48}{patch}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00226\ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_souvenir_controller_a2f0b62bdbe840ce927b25468126d8d46}{create}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00234\ \ \ \ \ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_souvenir_controller_a03ebf5e42958ea4a2dfc270acd5b2fca}{remove}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00242\ \};}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00254\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_purchase_controller}{PurchaseController}}}
+\DoxyCodeLine{00255\ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_purchase_controller_a1ff37d4191c9007a571336c45de7fb64}{read}}(std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00262\ \ \ \ \ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_purchase_controller_a7b3f7effcbac991af2db8fd0bd59bfcb}{patch}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00270\ \ \ \ \ }
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_purchase_controller_a9455c0f9b7b59b97ca2bc07ef541b2b8}{create}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00285\ \ \ \ \ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{static}\ crow::response\ \doxymbox{\hyperlink{struct_purchase_controller_a0a78ae2de322b7cdbaac85ba911d7c77}{remove}}(\textcolor{keyword}{const}\ crow::request\ \&req,\ std::string\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00293\ \};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

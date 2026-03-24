@@ -1,0 +1,202 @@
+\doxysection{University\+Controller Struct Reference}
+\hypertarget{struct_university_controller}{}\label{struct_university_controller}\index{UniversityController@{UniversityController}}
+
+
+Handles university/\+campus-\/related API endpoints.  
+
+
+
+
+{\ttfamily \+\#include $<$Controllers.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static crow::\+response \doxymbox{\hyperlink{struct_university_controller_ac1cd76683a94913a5c20c91d5b0a56e5}{read}} (std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles GET requests for university data. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_university_controller_a3b9d7a2ef14fa5ea3b777d7a7a1f534d}{patch}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles PATCH requests for updating university data. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_university_controller_a00092d84fd11b71f455b960eca579e20}{create}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles POST requests for creating/\+importing university data. \end{DoxyCompactList}\item 
+static crow::\+response \doxymbox{\hyperlink{struct_university_controller_a0715063adcd2ffb500921de42abf86be}{remove}} (const crow::\+request \&req, std::\+string id)
+\begin{DoxyCompactList}\small\item\em Handles DELETE requests for removing university data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles university/\+campus-\/related API endpoints. 
+
+Endpoints:\+
+\begin{DoxyItemize}
+\item GET /\+api/\+\+University/\+all -\/ List all campuses with distances from Saddleback
+\item GET /\+api/\+\+University/\+from-\/\{campus\} -\/ List campuses reachable from specified campus
+\item GET /\+api/\+\+University/\+\{campus\} -\/ Get souvenirs for a specific campus
+\item POST /\+api/\+\+University/\+import -\/ Import new campus data 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{struct_university_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_university_controller_a00092d84fd11b71f455b960eca579e20}\index{UniversityController@{UniversityController}!create@{create}}
+\index{create@{create}!UniversityController@{UniversityController}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{struct_university_controller_a00092d84fd11b71f455b960eca579e20} 
+crow::\+response University\+Controller::\+create (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles POST requests for creating/\+importing university data. 
+
+Handles POST requests for university data creation/\+import.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object containing data to create \\
+\hline
+{\em id} & Endpoint identifier (e.\+g., "{}import"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Supports administrative data import functionality:\+
+
+POST /\+api/\+\+University/\+import
+\begin{DoxyItemize}
+\item Imports new campus and distance data from uploaded file
+\item Merges data into existing distances.\+db and colleges table
+\item Used by administrators to add new campuses during runtime
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object containing upload data \\
+\hline
+{\em id} & Action identifier ("{}import"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HTTP 200 on success, HTTP 400 on error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires administrator authentication (handled by frontend)
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespace_helpers_addb87b4c4f03cf0cd2ece86e062fc113}{Helpers::\+get\+Database\+From\+Request} 
+
+\doxylink{namespace_helpers_a7f5a10a1743ebd40c80fb05d66b525f1}{Helpers::\+merge\+Databases} 
+\end{DoxySeeAlso}
+\Hypertarget{struct_university_controller_a3b9d7a2ef14fa5ea3b777d7a7a1f534d}\index{UniversityController@{UniversityController}!patch@{patch}}
+\index{patch@{patch}!UniversityController@{UniversityController}}
+\doxysubsubsection{\texorpdfstring{patch()}{patch()}}
+{\footnotesize\ttfamily \label{struct_university_controller_a3b9d7a2ef14fa5ea3b777d7a7a1f534d} 
+crow::\+response University\+Controller::\+patch (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles PATCH requests for updating university data. 
+
+Handles PATCH requests for university data updates.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Identifier for the resource to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future update functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Resource identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response 
+\end{DoxyReturn}
+\Hypertarget{struct_university_controller_ac1cd76683a94913a5c20c91d5b0a56e5}\index{UniversityController@{UniversityController}!read@{read}}
+\index{read@{read}!UniversityController@{UniversityController}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{struct_university_controller_ac1cd76683a94913a5c20c91d5b0a56e5} 
+crow::\+response University\+Controller::\+read (\begin{DoxyParamCaption}\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles GET requests for university data. 
+
+Handles GET requests for university/\+campus data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Endpoint identifier ("{}all"{}, "{}from-\/\{campus\}"{}, or campus name) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with campus or souvenir data
+\end{DoxyReturn}
+Supports multiple query types based on the id parameter:\+
+
+
+\begin{DoxyEnumerate}
+\item "{}all"{} -\/ Returns all campuses with distances from Saddleback College GET /\+api/\+\+University/\+all Response:\+ \{ campuses:\+ \+[\{name, distance\}, ...]\+ \}
+\item "{}from-\/\{campus\+Name\}"{} -\/ Returns campuses reachable from specified campus GET /\+api/\+\+University/\+from-\/\+Arizona\%20State\%20University Response:\+ \{ campuses:\+ \+[\{name, distance\}, ...]\+ \}
+\item "{}\{campus\+Name\}"{} -\/ Returns souvenirs for a specific campus GET /\+api/\+\+University/\+\+UCLA Response:\+ \{ souvenirs:\+ \+[\{item, price\}, ...]\+ \}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Query type or campus name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response with campus or souvenir data
+\end{DoxyReturn}
+Time Complexity:\+ O(n) where n is number of results
+\begin{DoxyItemize}
+\item Database query:\+ O(n)
+\item JSON construction:\+ O(n) 
+\end{DoxyItemize}\Hypertarget{struct_university_controller_a0715063adcd2ffb500921de42abf86be}\index{UniversityController@{UniversityController}!remove@{remove}}
+\index{remove@{remove}!UniversityController@{UniversityController}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{struct_university_controller_a0715063adcd2ffb500921de42abf86be} 
+crow::\+response University\+Controller::\+remove (\begin{DoxyParamCaption}\item[{const crow::\+request \&}]{req}{, }\item[{std::\+string}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles DELETE requests for removing university data. 
+
+Handles DELETE requests for university data removal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The HTTP request object \\
+\hline
+{\em id} & Identifier for the resource to delete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response indicating success or failure
+\end{DoxyReturn}
+Placeholder for future deletion functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & HTTP request object \\
+\hline
+{\em id} & Resource identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Empty response 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\+Controllers/\+headers/\+\doxymbox{\hyperlink{_controllers_8h}{Controllers.\+h}}\item 
+src/\+\+Controllers/\+src/\+\doxymbox{\hyperlink{_university_controller_8cpp}{University\+Controller.\+cpp}}\end{DoxyCompactItemize}
